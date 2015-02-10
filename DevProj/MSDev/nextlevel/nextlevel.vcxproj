@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2349026D-4AA4-46A1-973F-5FC86D6224EC}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\..\..\bin\</OutDir>
+    <IntDir>C:\tmp\nextlevel_compil\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\..\..\bin\</OutDir>
+    <IntDir>C:\tmp\nextlevel_compil\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\..\src;..\..\..\src\xml_src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_XKEYCHECK_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)nextlevel.exe</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>c:\tmp\nextlevel_comp\nextlevel.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\..\src;..\..\..\src\xml_src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_XKEYCHECK_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat />
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)nextlevel.exe</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>c:\tmp\nextlevel_comp\nextlevel.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\ccg.cpp" />
+    <ClCompile Include="..\..\..\src\cdb.cpp" />
+    <ClCompile Include="..\..\..\src\cdep.cpp" />
+    <ClCompile Include="..\..\..\src\cdp.cpp" />
+    <ClCompile Include="..\..\..\src\copts.cpp" />
+    <ClCompile Include="..\..\..\src\cpatrn.cpp" />
+    <ClCompile Include="..\..\..\src\cpitem.cpp" />
+    <ClCompile Include="..\..\..\src\cproc.cpp" />
+    <ClCompile Include="..\..\..\src\cproccol.cpp" />
+    <ClCompile Include="..\..\..\src\cscol.cpp" />
+    <ClCompile Include="..\..\..\src\cserver.cpp" />
+    <ClCompile Include="..\..\..\src\ctab.cpp" />
+    <ClCompile Include="..\..\..\src\ctabcol.cpp" />
+    <ClCompile Include="..\..\..\src\nextlevel.cpp" />
+    <ClCompile Include="..\..\..\src\parse.cpp" />
+    <ClCompile Include="..\..\..\src\prettyprint.cpp" />
+    <ClCompile Include="..\..\..\src\xml_src\cdtd.cpp" />
+    <ClCompile Include="..\..\..\src\xml_src\cerr.cpp" />
+    <ClCompile Include="..\..\..\src\xml_src\chartab.cpp" />
+    <ClCompile Include="..\..\..\src\xml_src\cpars.cpp" />
+    <ClCompile Include="..\..\..\src\xml_src\cprop.cpp" />
+    <ClCompile Include="..\..\..\src\xml_src\cstak.cpp" />
+    <ClCompile Include="..\..\..\src\xml_src\cstrm.cpp" />
+    <ClCompile Include="..\..\..\src\xml_src\ctag.cpp" />
+    <ClCompile Include="..\..\..\src\xml_src\custr.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\ccg.h" />
+    <ClInclude Include="..\..\..\src\cdb.h" />
+    <ClInclude Include="..\..\..\src\cdep.h" />
+    <ClInclude Include="..\..\..\src\cdp.h" />
+    <ClInclude Include="..\..\..\src\copts.h" />
+    <ClInclude Include="..\..\..\src\cpatrn.h" />
+    <ClInclude Include="..\..\..\src\cpitem.h" />
+    <ClInclude Include="..\..\..\src\cproc.h" />
+    <ClInclude Include="..\..\..\src\cproccol.h" />
+    <ClInclude Include="..\..\..\src\cscol.h" />
+    <ClInclude Include="..\..\..\src\cserver.h" />
+    <ClInclude Include="..\..\..\src\ctab.h" />
+    <ClInclude Include="..\..\..\src\ctabcol.h" />
+    <ClInclude Include="..\..\..\src\defs.h" />
+    <ClInclude Include="..\..\..\src\parse.h" />
+    <ClInclude Include="..\..\..\src\prettyprint.h" />
+    <ClInclude Include="..\..\..\src\xml_src\cdtd.h" />
+    <ClInclude Include="..\..\..\src\xml_src\cerr.h" />
+    <ClInclude Include="..\..\..\src\xml_src\chartab.h" />
+    <ClInclude Include="..\..\..\src\xml_src\cpars.h" />
+    <ClInclude Include="..\..\..\src\xml_src\cprop.h" />
+    <ClInclude Include="..\..\..\src\xml_src\cstak.h" />
+    <ClInclude Include="..\..\..\src\xml_src\cstrm.h" />
+    <ClInclude Include="..\..\..\src\xml_src\ctag.h" />
+    <ClInclude Include="..\..\..\src\xml_src\custr.h" />
+    <ClInclude Include="..\..\..\src\xml_src\tlist.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

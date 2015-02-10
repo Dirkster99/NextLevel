@@ -1,0 +1,313 @@
+/** Version 2.1 Build 48 **/
+body
+{font-family: Verdana, Arial, Helvetica;
+ font-size: 12pt;
+ background-color: #ffffff;
+ color: #000000;
+}
+p
+{font-family: Verdana, Arial, Helvetica;
+ font-size: 12pt;
+}
+LI
+{font-family: Verdana, Arial, Helvetica;
+ font-size: 12pt;
+}
+H1
+{
+ font-family: Helvetica;
+ font-size: 16pt;
+ font-weight:bold
+}
+             
+H2
+{font-family: Helvetica;
+ font-size: 14pt;
+ font-weight:bold
+}
+H3
+{font-family: Helvetica;
+ font-size: 12pt;
+ font-weight:bold
+}
+
+H4
+{font-family: Arial;
+ font-size: 12pt;
+}
+
+TABLE#NoBord
+{border: 0px none;
+}
+
+TABLE#NoBord1
+{border-width: 1px;
+ border-style: solid;
+ border-color: #AAAAAA;
+ border-collapse:collapse;
+}
+
+TD#NoBord1Hd
+{font-family: Verdana, Arial, Helvetica;
+ font-size: 12pt;
+ font-weight:bold;
+ vertical-align:top;
+ text-align:left;
+ border-style: none;
+ padding:3;
+ spacing:0;
+ background-color: #000042;
+ color: #aaaaff;
+}
+
+TD#NoBord1
+{font-family: Verdana, Arial, Helvetica;
+ font-size:12pt;
+ vertical-align:top;
+ text-align:left;
+ border-style: none;
+ padding:3;
+ spacing:0;
+ color: #00001f;
+}
+
+/** Format of index tables viewing collections of DB Objects **/
+TABLE#Bord
+{border-width: 1px;
+ border-style: solid;
+ border-color: #AAAAAA;
+ border-collapse:collapse;
+ align: left;
+ valign: top;
+
+ padding:3;
+ spacing:0;
+}
+
+TD#Bord
+{font-family: Verdana, Arial, Helvetica;
+ font-size:12pt;
+ vertical-align:top;
+ text-align:left;
+ border-width: 1px;
+ border-style: solid;
+ border-color: #AAAAAA;
+ border-collapse:collapse;
+ padding:3;
+ spacing:0;
+}
+
+/*** Table header formating for main tables ***/
+TD#BordHead
+{font-family: Verdana, Arial, Helvetica;
+ font-size:12pt;
+ font-weight:bold;
+ vertical-align:top;
+ text-align:left;
+ border-width: 1px;
+ border-style: solid;
+ border-color: #AAAAAA;
+ border-collapse:collapse;
+ padding:3;
+ spacing:0;
+ background-color: #000042;
+ color: #aaaaff;
+}
+
+/** Format of index tables viewing collections of DB Objects **/
+TABLE#Idx
+{border-width: 1px;
+ border-style: solid;
+ border-color: #AAAAAA;
+ border-collapse:collapse;
+ vertical-align:top;
+ text-align:left;
+
+ padding:3;
+ spacing:0;
+}
+
+TD#Idx
+{font-family: Verdana, Arial, Helvetica;
+ font-size:12pt;
+ vertical-align:top;
+ text-align:left;
+ border-width: 1px;
+ border-style: solid;
+ border-color: #AAAAAA;
+ border-collapse:collapse;
+ padding:3;
+ spacing:0;
+}
+
+/*** Table header formating for main tables ***/
+TD#IdxHead
+{font-family: Verdana, Arial, Helvetica;
+ font-size:12pt;
+ font-weight:bold;
+ vertical-align:top;
+ text-align:left;
+ border-width: 1px;
+ border-style: solid;
+ border-color: #AAAAAA;
+ border-collapse:collapse;
+ padding:3;
+ spacing:0;
+ background-color: #000042;
+ color: #aaaaff;
+}
+
+/*** Table header formating ***/
+CODE
+{font-family: Courier;
+ font-size: 12pt;
+ font-family: monospace;
+}
+
+PRE
+{
+ font-family: Courier;
+ font-size: 12pt;
+}
+CAPTION
+{font-family: Courier;
+ font-size: 8pt;
+}
+
+.caption
+{
+ font-family: Courier;
+ font-size: 8pt;
+}
+
+a, A:link, a:visited
+{color: #000000; text-decoration: none;
+             }
+a:active
+{color: #DD0000; text-decoration: none;
+             }
+A:hover
+{
+color: #000099; text-decoration: none;
+background-color: #E0E0F0;
+}
+
+/* SQL comment highlighting style 
+   (-- This is a comment or Slash Asterix ... Asterix Slash)
+*/
+.cmt
+{COLOR: #009000;
+}
+
+/* SQL string highlighting style 
+   used for ' ... ' and " ... " Strings
+*/
+.str
+{background-color: #FFFFAE;
+ COLOR: #00644A;
+}
+
+/* SQL keyword highlighting style  (e.g.: SELECT, INSERT INTO etc...)*/
+.kwd
+{COLOR: #0000AA;
+}
+
+/* SQL procedure name highlighting style  (e.g.: exec <procedure_name>)*/
+.pnm
+{COLOR: #A44D4D;
+}
+
+.viw /* Color highlighting for references to views */
+{COLOR: #B65600;
+}
+
+.tbl /* Color highlighting for references to tables */
+{COLOR: #b60022;
+}
+
+/* SQL cursor name highlighting style
+
+  (e.g.: declare <cursor_name>) cursor for ... for read only
+*/
+.crsr
+{COLOR: #A44D4D;
+}
+
+.utbl
+/* Color highlighting for references to unknown tables
+   This is for references to tables outside of the database
+   or tables that do not exist anymore (or never did)
+*/
+{COLOR: #a6a6a6;
+}
+
+/*Same as above for procedures */
+.uproc
+{COLOR: #868686;
+}
+
+/* Default color for any object that falls outside of the normal classification
+   (This is normally not used at all, but available as fall back option for highlighting
+    of unknown objects)
+*/
+.dflt
+{COLOR: #a600a6;
+}
+
+/*
+Example of selectors for icons. Change the height and width to match the actual 
+height and width of the icon image.
+*/
+.LostAndFound
+{background-image: url(cogweel_16.png);
+ background-repeat: no-repeat; /* Do not alter this line! */
+ height: 16px;
+ left: 4px;
+ position: absolute; /* Do not alter this line! */
+ width: 16px;
+}
+
+.Connections
+{background-image: url(radar.png);
+ background-repeat: no-repeat;
+ height: 16px;
+ left: 4px;
+ position: absolute;
+ width: 16px;
+}
+
+.help
+{background-image: url(question.png);
+ background-repeat: no-repeat;
+ height: 16px;
+ left: 4px;
+ position: absolute;
+ width: 16px;
+}
+
+.help
+{background-image: url(question.png);
+ background-repeat: no-repeat;
+ height: 16px;
+ left: 4px;
+ position: absolute;
+ width: 16px;
+}
+
+.BackIcon
+{background-image: url(back.png);
+ background-repeat: no-repeat;
+ height: 16px;
+ left: 4px;
+ position: absolute;
+ width: 16px;
+}
+
+.nl
+{background-image: url(nl_logo.png);
+ background-repeat: no-repeat;
+ height: 16px;
+ left: 4px;
+ position: absolute;
+ width: 16px;
+}

@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+HEAD
+<meta name="GENERATOR" content="NextLevel 2.1 (Build 43)">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SHOPS">
+		<param name="Local" value="__ExternCalls.html#t11">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ADDRESS">
+		<param name="Local" value="address.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="CATEGORY">
+		<param name="Local" value="category.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="COST_TYPES">
+		<param name="Local" value="cost_types.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="COSTS">
+		<param name="Local" value="costs.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="CURRENCY">
+		<param name="Local" value="currency.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="ERROR_MSG">
+		<param name="Local" value="error_msg.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PRODUCT">
+		<param name="Local" value="product.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PRODUCT_PRICE">
+		<param name="Local" value="product_price.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PURCHASE">
+		<param name="Local" value="purchase.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PURCHASE_HISTORY">
+		<param name="Local" value="purchase_history.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SALES">
+		<param name="Local" value="sales.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SALES_HISTORY">
+		<param name="Local" value="sales_history.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SALESPRICE">
+		<param name="Local" value="salesprice.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SHOP">
+		<param name="Local" value="shop.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Shop_Performance">
+		<param name="Local" value="shop_performance.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="STANDARDPRICE">
+		<param name="Local" value="standardprice.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="VENDOR">
+		<param name="Local" value="vendor.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="view_ACT_ShopPerformance">
+		<param name="Local" value="view_act_shopperformance.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="view_PURCHASE">
+		<param name="Local" value="view_purchase.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="MOON.TITAN.dbo.proc_PurchaseHistory">
+		<param name="Local" value="__ExternCalls.html#p19">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SUN.TITAN.dbo.proc_PurchaseHistory">
+		<param name="Local" value="__ExternCalls.html#p20">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SUN.TITAN.dbo.proc_PurchaseHistory1">
+		<param name="Local" value="__ExternCalls.html#p21">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="COSTS_TRIG_D">
+		<param name="Local" value="costs_trig_d.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="COSTS_TRIG_I">
+		<param name="Local" value="costs_trig_i.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="COSTS_TRIG_U">
+		<param name="Local" value="costs_trig_u.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="COSTTYPE_TRIG_D">
+		<param name="Local" value="costtype_trig_d.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="COSTTYPE_TRIG_U">
+		<param name="Local" value="costtype_trig_u.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="proc_Error">
+		<param name="Local" value="proc_error.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="proc_PurchaseHistory">
+		<param name="Local" value="proc_purchasehistory.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="proc_SalesHistory">
+		<param name="Local" value="proc_saleshistory.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="proc_ShopPerformance">
+		<param name="Local" value="proc_shopperformance.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PRODUCT_PRICE_TRIG_D">
+		<param name="Local" value="product_price_trig_d.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PRODUCT_TRIG_D">
+		<param name="Local" value="product_trig_d.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PRODUCT_TRIG_I">
+		<param name="Local" value="product_trig_i.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PRODUCT_TRIG_U">
+		<param name="Local" value="product_trig_u.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PURCHASE_TRIG_D">
+		<param name="Local" value="purchase_trig_d.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PURCHASE_TRIG_I">
+		<param name="Local" value="purchase_trig_i.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="PURCHASE_TRIG_U">
+		<param name="Local" value="purchase_trig_u.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SALES_TRIG_D">
+		<param name="Local" value="sales_trig_d.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SALES_TRIG_I">
+		<param name="Local" value="sales_trig_i.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SALES_TRIG_U">
+		<param name="Local" value="sales_trig_u.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="sp_exchange">
+		<param name="Local" value="__ExternCalls.html#p22">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="MOON.TITAN.dbo.proc_PurchaseHistory">
+		<param name="Local" value="__ExternCalls.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SUN.TITAN.dbo.proc_PurchaseHistory">
+		<param name="Local" value="__ExternCalls.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="SUN.TITAN.dbo.proc_PurchaseHistory1">
+		<param name="Local" value="__ExternCalls.html">
+	</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="sp_exchange">
+		<param name="Local" value="__ExternCalls.html">
+	</OBJECT>
+</UL>
+</BODY></HTML>

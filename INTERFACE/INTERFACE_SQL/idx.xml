@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?NextLevel version="1.1" date="November, 2004"?>
+<!-- Database CallGraph Utility Application File -->
+<!-- Generated with: php GenIdx.php idx.txt SUN INTERFACE dbo > index.xml -->
+<parse_files SERVER="SUN" DB="INTERFACE" owner="dbo">
+
+<!-- header information to be used in nextlevel sample database index file -->
+<htmlroot>
+  <backlink link="../index.html" text="Back to Homepage" />
+</htmlroot>
+
+<program_opts>
+  <dbobj_docs folder="..\INTERFACE_DOKU\" />
+</program_opts>
+<procs>
+  <proc name="proc_Error" src="dbo_proc_Error.sql" type="P" owner="dbo"/>
+  <proc name="proc_PurchaseHistory" src="dbo_proc_PurchaseHistory.sql" type="P" owner="dbo"/>
+  <proc name="proc_SalesHistory" src="dbo_proc_SalesHistory.sql" type="P" owner="dbo"/>
+  <proc name="proc_ShopPerformance" src="dbo_proc_ShopPerformance.sql" type="P" owner="dbo"/>
+  <proc name="COSTS_TRIG_D" src="dbo_COSTS_TRIG_D.sql" type="TR" owner="dbo"/>
+  <proc name="COSTS_TRIG_I" src="dbo_COSTS_TRIG_I.sql" type="TR" owner="dbo"/>
+  <proc name="COSTS_TRIG_U" src="dbo_COSTS_TRIG_U.sql" type="TR" owner="dbo"/>
+  <proc name="COSTTYPE_TRIG_D" src="dbo_COSTTYPE_TRIG_D.sql" type="TR" owner="dbo"/>
+  <proc name="COSTTYPE_TRIG_U" src="dbo_COSTTYPE_TRIG_U.sql" type="TR" owner="dbo"/>
+  <proc name="PRODUCT_PRICE_TRIG_D" src="dbo_PRODUCT_PRICE_TRIG_D.sql" type="TR" owner="dbo"/>
+  <proc name="PRODUCT_TRIG_D" src="dbo_PRODUCT_TRIG_D.sql" type="TR" owner="dbo"/>
+  <proc name="PRODUCT_TRIG_I" src="dbo_PRODUCT_TRIG_I.sql" type="TR" owner="dbo"/>
+  <proc name="PRODUCT_TRIG_U" src="dbo_PRODUCT_TRIG_U.sql" type="TR" owner="dbo"/>
+  <proc name="Purchase_TRIG_D" src="dbo_Purchase_TRIG_D.sql" type="TR" owner="dbo"/>
+  <proc name="Purchase_TRIG_I" src="dbo_Purchase_TRIG_I.sql" type="TR" owner="dbo"/>
+  <proc name="Purchase_TRIG_U" src="dbo_Purchase_TRIG_U.sql" type="TR" owner="dbo"/>
+  <proc name="SALES_TRIG_D" src="dbo_SALES_TRIG_D.sql" type="TR" owner="dbo"/>
+  <proc name="SALES_TRIG_I" src="dbo_SALES_TRIG_I.sql" type="TR" owner="dbo"/>
+  <proc name="SALES_TRIG_U" src="dbo_SALES_TRIG_U.sql" type="TR" owner="dbo"/>
+</procs>
+
+<tab name="ADDRESS" owner="dbo">
+  <col name="ADDRESS_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="COUNTRYvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="CITYvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="ZIPCODEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="STREETvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="STATEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="EMAILvc" type="varchar" len="255" nulls="NOT NULL" />
+  <col name="WEB_SITEvc" type="varchar" len="255" nulls="NOT NULL" />
+</tab>
+<tab name="CATEGORY" owner="dbo">
+  <col name="CAT_1_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="CAT_2_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="NAMEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="SUB_NAMEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="DESCRIPTIONvc" type="varchar" len="64" nulls="NOT NULL" />
+</tab>
+<tab name="COST_TYPES" owner="dbo">
+  <col name="TYPE_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="DESCRIPTIONvc" type="varchar" len="64" nulls="NOT NULL" />
+</tab>
+<tab name="COSTS" owner="dbo">
+  <col name="COST_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="SHOP_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="TYPE_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="PRICE" type="numeric" len="6" prec="10" scale="2" nulls="NOT NULL" />
+  <col name="CURRENCY_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="DateStamp" type="datetime" len="8" nulls="NOT NULL" />
+</tab>
+<tab name="CURRENCY" owner="dbo">
+  <col name="CURRENCY_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="NAMEvc" type="varchar" len="64" nulls="NOT NULL" />
+</tab>
+<tab name="ERROR_MSG" owner="dbo">
+  <col name="ID" type="numeric" len="10" prec="identity" scale="6" />
+  <col name="NOWdt" type="datetime" len="8" nulls="NOT NULL" />
+  <col name="SOURCEvc" type="varchar" len="32" nulls="NOT NULL" />
+  <col name="PARAMSvc" type="varchar" len="255" nulls="NOT NULL" />
+  <col name="MESSAGEvc" type="varchar" len="255" nulls="NOT NULL" />
+</tab>
+<tab name="PRODUCT" owner="dbo">
+  <col name="Product_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="NAMEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="DESCRIPTIONvc" type="varchar" len="255" nulls="NOT NULL" />
+  <col name="STDRD_PRICE_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="SALES_PRICE_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="CATEGORY_1_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="CATEGORY_2_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="bVALID" type="bit" len="1" nulls="NOT NULL" />
+</tab>
+<tab name="PRODUCT_PRICE" owner="dbo">
+  <col name="Product_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="NAMEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="DESCRIPTIONvc" type="varchar" len="255" nulls="NOT NULL" />
+  <col name="bVALID" type="bit" len="1" nulls="NOT NULL" />
+  <col name="STDRD_PRICE_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="STDRD_VALID_FROMdt" type="datetime" len="8" nulls="NOT NULL" />
+  <col name="STDRD_VALID_TOdt" type="datetime" len="8" nulls="NOT NULL" />
+  <col name="STDRD_PRICEnc" type="numeric" len="6" prec="10" scale="2" nulls="NOT NULL" />
+  <col name="STDRD_CURRENCY_ID" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="SALES_PRICE_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="SALES_VALID_FROMdt" type="datetime" len="8" nulls="NOT NULL" />
+  <col name="SALES_VALID_TOdt" type="datetime" len="8" nulls="NOT NULL" />
+  <col name="SALES_PRICEnc" type="numeric" len="6" prec="10" scale="2" nulls="NOT NULL" />
+  <col name="SALES_CURRENCY_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="SALES_DESCRIPTIONvc" type="varchar" len="255" nulls="NOT NULL" />
+  <col name="SALES_NAMEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="CAT_NAMEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="CAT_SUB_NAMEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="CAT_DESCRIPTIONvc" type="varchar" len="64" nulls="NOT NULL" />
+</tab>
+<tab name="PURCHASE" owner="dbo">
+  <col name="PURCHASE_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="VENDOR_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="PRODUCT_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="PURCHASE_PRICEnc" type="numeric" len="6" prec="10" scale="2" nulls="NOT NULL" />
+  <col name="CURRENCY_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="UNITSi" type="int" len="4" nulls="NOT NULL" />
+</tab>
+<tab name="PURCHASE_HISTORY" owner="dbo">
+  <col name="PH_ID" type="numeric" len="10" prec="identity" scale="6" />
+  <col name="PURCHASE_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="PURCHASE_PRICE" type="numeric" len="6" prec="10" scale="2" nulls="NOT NULL" />
+  <col name="PURCHASE_UNITS" type="int" len="4" nulls="NOT NULL" />
+  <col name="VENDOR_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="VENDOR_NAME" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="VENDOR_COUNTRY" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="PRODUCT_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="PRODUCT_NAME" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="PRODUCT_DESCRIPTION" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="CATEGORY_NAME" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="CATEGORY_SUB_NAME" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="VERSION" type="int" len="4" nulls="NOT NULL" />
+  <col name="V_FROM" type="datetime" len="8" nulls="NOT NULL" />
+  <col name="V_TO" type="datetime" len="8" />
+</tab>
+<tab name="SALES" owner="dbo">
+  <col name="SALES_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="PURCHASE_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="SHOP_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="PRICEnc" type="numeric" len="6" prec="10" scale="2" nulls="NOT NULL" />
+  <col name="CURRENCY_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="UNITSi" type="int" len="4" nulls="NOT NULL" />
+</tab>
+<tab name="SALES_HISTORY" owner="dbo">
+  <col name="SH_ID" type="numeric" len="10" prec="identity" scale="6" />
+  <col name="SALES_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="SALES_PRICE" type="numeric" len="6" prec="10" scale="2" nulls="NOT NULL" />
+  <col name="SALES_UNITS" type="int" len="4" nulls="NOT NULL" />
+  <col name="VENDOR_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="VENDOR_NAME" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="VENDOR_COUNTRY" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="PRODUCT_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="PRODUCT_NAME" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="PRODUCT_DESCRIPTION" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="CATEGORY_NAME" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="CATEGORY_SUB_NAME" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="SHOP_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="SHOP_NAME" type="varchar" len="32" nulls="NOT NULL" />
+  <col name="SHOP_TYPE" type="varchar" len="255" nulls="NOT NULL" />
+  <col name="SHOP_ADDRESS_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="SHOP_COUNTRYvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="SHOP_CITYvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="SHOP_ZIPCODEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="SHOP_STREETvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="SHOP_STATEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="SHOP_EMAILvc" type="varchar" len="255" nulls="NOT NULL" />
+  <col name="SHOP_WEB_SITEvc" type="varchar" len="255" nulls="NOT NULL" />
+  <col name="VERSION" type="int" len="4" nulls="NOT NULL" />
+  <col name="V_FROM" type="datetime" len="8" nulls="NOT NULL" />
+  <col name="V_TO" type="datetime" len="8" />
+</tab>
+<tab name="SALESPRICE" owner="dbo">
+  <col name="PRICE_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="VALID_FROMdt" type="datetime" len="8" nulls="NOT NULL" />
+  <col name="VALID_TOdt" type="datetime" len="8" nulls="NOT NULL" />
+  <col name="PRICEnc" type="numeric" len="6" prec="10" scale="2" nulls="NOT NULL" />
+  <col name="CURRENCY_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="DESCRIPTIONvc" type="varchar" len="255" nulls="NOT NULL" />
+  <col name="NAMEvc" type="varchar" len="64" nulls="NOT NULL" />
+</tab>
+<tab name="SHOP" owner="dbo">
+  <col name="SHOP_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="ADDRESS_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="NAMEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="TYPE" type="varchar" len="64" nulls="NOT NULL" />
+</tab>
+<tab name="Shop_Performance" owner="dbo">
+  <col name="SP_ID" type="numeric" len="10" prec="identity" scale="6" />
+  <col name="SHOP_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="SHOP_NAME" type="varchar" len="32" nulls="NOT NULL" />
+  <col name="SHOP_TYPE" type="varchar" len="255" nulls="NOT NULL" />
+  <col name="SHOP_ADDRESS_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="SHOP_COUNTRYvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="SHOP_CITYvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="SHOP_ZIPCODEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="SHOP_STREETvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="SHOP_STATEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="SHOP_EMAILvc" type="varchar" len="255" nulls="NOT NULL" />
+  <col name="SHOP_WEB_SITEvc" type="varchar" len="255" nulls="NOT NULL" />
+  <col name="COST_ID" type="int" len="4" />
+  <col name="PURCHASE_ID" type="int" len="4" />
+  <col name="PRICE_TYPE" type="int" len="4" nulls="NOT NULL" />
+  <col name="PRICE" type="numeric" len="6" prec="10" scale="2" nulls="NOT NULL" />
+  <col name="PRICE_DESCRIPTION" type="varchar" len="255" nulls="NOT NULL" />
+  <col name="VERSION" type="int" len="4" nulls="NOT NULL" />
+  <col name="V_FROM" type="datetime" len="8" nulls="NOT NULL" />
+  <col name="V_TO" type="datetime" len="8" />
+</tab>
+<tab name="STANDARDPRICE" owner="dbo">
+  <col name="PRICE_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="VALID_FROMdt" type="datetime" len="8" nulls="NOT NULL" />
+  <col name="VALID_TOdt" type="datetime" len="8" nulls="NOT NULL" />
+  <col name="PRICEnc" type="numeric" len="6" prec="10" scale="2" nulls="NOT NULL" />
+  <col name="CURRENCY_ID" type="varchar" len="64" nulls="NOT NULL" />
+</tab>
+<tab name="VENDOR" owner="dbo">
+  <col name="VENDOR_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="NAMEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="COUNTRYvc" type="varchar" len="64" nulls="NOT NULL" />
+</tab>
+<view name="view_ACT_ShopPerformance" owner="dbo" src="dbo_view_ACT_ShopPerformance.sql">
+  <col name="SP_ID" type="numeric" len="10" prec="identity" scale="6" />
+  <col name="SHOP_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="SHOP_NAME" type="varchar" len="32" nulls="NOT NULL" />
+  <col name="SHOP_TYPE" type="varchar" len="255" nulls="NOT NULL" />
+  <col name="SHOP_ADDRESS_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="SHOP_COUNTRYvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="SHOP_CITYvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="SHOP_ZIPCODEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="SHOP_STREETvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="SHOP_STATEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="SHOP_EMAILvc" type="varchar" len="255" nulls="NOT NULL" />
+  <col name="SHOP_WEB_SITEvc" type="varchar" len="255" nulls="NOT NULL" />
+  <col name="COST_ID" type="int" len="4" />
+  <col name="PURCHASE_ID" type="int" len="4" />
+  <col name="PRICE_TYPE" type="int" len="4" nulls="NOT NULL" />
+  <col name="PRICE" type="numeric" len="6" prec="10" scale="2" nulls="NOT NULL" />
+  <col name="PRICE_DESCRIPTION" type="varchar" len="255" nulls="NOT NULL" />
+  <col name="VERSION" type="int" len="4" nulls="NOT NULL" />
+  <col name="V_FROM" type="datetime" len="8" nulls="NOT NULL" />
+</view>
+<view name="view_PURCHASE" owner="dbo" src="dbo_view_PURCHASE.sql">
+  <col name="PURCHASE_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="VENDOR_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="PRODUCT_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="PURCHASE_PRICEnc" type="numeric" len="6" prec="10" scale="2" nulls="NOT NULL" />
+  <col name="CURRENCY_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="UNITSi" type="int" len="4" nulls="NOT NULL" />
+  <col name="VDR_NAMEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="COUNTRYvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="PRD_NAMEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="DESCRIPTIONvc" type="varchar" len="255" nulls="NOT NULL" />
+  <col name="STDRD_PRICE_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="SALES_PRICE_ID" type="int" len="4" nulls="NOT NULL" />
+  <col name="CAT_NAMEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="CAT_SUB_NAMEvc" type="varchar" len="64" nulls="NOT NULL" />
+  <col name="CAT_DESCRIPTIONvc" type="varchar" len="64" nulls="NOT NULL" />
+</view>  <!-- 17 tables and 2 views found -->
+  <!-- XXXXXXXXXXX 4 procedures and 15 triggers found XXXXXX -->
+</parse_files>

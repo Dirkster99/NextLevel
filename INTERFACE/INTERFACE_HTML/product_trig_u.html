@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>Trig: INTERFACE.dbo.PRODUCT_TRIG_U</title>
+	<link rel="shortcut icon" href="res/trigger.jpg">
+<link rel="stylesheet" type="text/css" href="res/style.css">
+<link rel="stylesheet" type="text/css" href="res/office_xp.css" title="Office XP" />
+<script type="text/javascript" src="res/jsdomenu.js"></script>
+<script type="text/javascript" src="res/jsdomenubar.js"></script>
+<script type="text/javascript" src="menuconf.js"></script>
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</head>
+<body onload="initjsDOMenu('SUN/INTERFACE')">
+<table id="NoBord" width="100%"><tr><td align="right" valign="top">
+<img src="res/trigger.jpg" title="trigger"></td><td align="left" valign="top">
+<a href="../INTERFACE_SQL/dbo_PRODUCT_TRIG_U.sql"><SPAN CLASS="pnm">PRODUCT_TRIG_U</SPAN></a>&nbsp;(0 Callers,&nbsp;1 Calls,&nbsp;8 Tables Accessed)&nbsp;</td><td Align="right" valign="top"><div id="staticMenu"></div></td>
+</tr><tr><td align="right" valign="top">ON <img src="res/table.jpg" title="table"></td><td><a href="product.html"><SPAN CLASS="tbl">PRODUCT</SPAN></a> (UPDATE)</td><td>
+</table>
+
+<table id="NoBord" cellPadding="3" cellSpacing="0" width="100%">
+<tr><td align="left" valign="top">
+<script type="text/javascript" language="JavaScript" src="res/tree.js"></script>
+<script type="text/javascript" language="JavaScript">
+var TREE_ITEMS = 
+[
+['<code>PRODUCT_TRIG_U<\/code>',,
+['<code>proc_SalesHistory<\/code>','proc_saleshistory.html|#2x',
+['<code>proc_Error<\/code>','proc_error.html|proc_saleshistory.html#0x'],
+['<code><SPAN class=\"uproc\">sp_exchange<SPAN><\/code>','__ExternCalls.html'],
+['<code><SPAN class=\"uproc\">TITAN.dbo.proc_PurchaseHistory<SPAN><\/code>','__ExternCalls.html'],
+],
+],
+];
+</script>
+<script type="text/javascript" language="JavaScript" src="res/tree_tpl.js"></script>
+
+<br>
+<table id="Bord">
+<thead><tr>
+<TD id="BordHead">Calls</TD>
+<TD id="BordHead">Tables/Views</TD>
+</tr></thead><tr>
+<td id="Bord"><script type="text/javascript" language="JavaScript">
+<!--//
+  new tree (TREE_ITEMS, TREE_TPL);
+//-->
+</script></td>
+<td id="Bord">
+<table id="NoBord" cellpadding="3" cellSpacing="0">
+<tr>
+<td valign="top" align="left"><a href="category.html"><SPAN CLASS="tbl">CATEGORY</SPAN></a></td><td align="left" valign="top"><a href="#8_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="currency.html"><SPAN CLASS="tbl">CURRENCY</SPAN></a></td><td align="left" valign="top"><a href="#14_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="product.html"><SPAN CLASS="tbl">PRODUCT</SPAN></a></td><td align="left" valign="top"><a href="#7_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="product_price.html"><SPAN CLASS="tbl">PRODUCT_PRICE</SPAN></a></td><td></td>
+<td align="left" valign="top"><a href="#15_U">U</a></td><td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="purchase.html"><SPAN CLASS="tbl">PURCHASE</SPAN></a></td><td align="left" valign="top"><a href="#6_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="sales.html"><SPAN CLASS="tbl">SALES</SPAN></a></td><td align="left" valign="top"><a href="#18_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="salesprice.html"><SPAN CLASS="tbl">SALESPRICE</SPAN></a></td><td align="left" valign="top"><a href="#17_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="standardprice.html"><SPAN CLASS="tbl">STANDARDPRICE</SPAN></a></td><td align="left" valign="top"><a href="#16_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table></td>
+</tr></table>
+</td><td Align="right" valign="top">
+<small>owner="dbo"</small>
+<td>
+</tr></table>
+<PRE><CODE>
+
+<SPAN CLASS="cmt">--
+</SPAN><SPAN CLASS="cmt">-- The PRODUCT update trigger is fired when records in the PRODUCT table are updated
+</SPAN><SPAN CLASS="cmt">-- Each change in a record is processed by the proc_SalesHistory table which in
+</SPAN><SPAN CLASS="cmt">-- turn is used to analyze changing data over time ...
+</SPAN><SPAN CLASS="cmt">--
+</SPAN><SPAN CLASS="kwd">create</SPAN> <SPAN CLASS="kwd">trigger</SPAN> PRODUCT_TRIG_U <SPAN CLASS="kwd">on</SPAN> <a href="product.html"><SPAN CLASS="tbl">PRODUCT</SPAN></a> <SPAN CLASS="kwd">for</SPAN> <SPAN CLASS="kwd">UPDATE</SPAN> <SPAN CLASS="kwd">as</SPAN>
+<SPAN CLASS="kwd">begin</SPAN>
+
+  <SPAN CLASS="kwd">DECLARE</SPAN> <a name="cu_crs_Hist" href="#co_crs_Hist"><SPAN CLASS="crsr">crs_Hist</SPAN></a> <SPAN CLASS="kwd">CURSOR FOR</SPAN> <SPAN CLASS="cmt">-- Get all fields from that table
+</SPAN>  <SPAN CLASS="kwd">SELECT</SPAN> SALE.SALES_ID
+        ,SALE.PURCHASE_ID                     
+        ,SALE.SHOP_ID                         
+        ,SALE.PRICEnc
+        ,CUR.NAMEvc
+        ,SALE.UNITSi
+        <SPAN CLASS="kwd">FROM</SPAN> <a name="7_S" href="product.html"><SPAN CLASS="tbl">inserted</SPAN></a> i, <a name="7_S" href="product.html"><SPAN CLASS="tbl">deleted</SPAN></a> d, <a name="14_S" href="currency.html"><SPAN CLASS="tbl">CURRENCY</SPAN></a> CUR, <a name="6_S" href="purchase.html"><SPAN CLASS="tbl">PURCHASE</SPAN></a> PUR, <a name="18_S" href="sales.html"><SPAN CLASS="tbl">SALES</SPAN></a> SALE
+       <SPAN CLASS="kwd">WHERE</SPAN> d.PRODUCT_ID    = i.PRODUCT_ID
+         <SPAN CLASS="kwd">AND</SPAN> i.PRODUCT_ID    = PUR.PRODUCT_ID
+         <SPAN CLASS="kwd">AND</SPAN> PUR.PURCHASE_ID = SALE.PURCHASE_ID
+         <SPAN CLASS="kwd">AND</SPAN> CUR.CURRENCY_ID = SALE.CURRENCY_ID
+         <SPAN CLASS="kwd">AND</SPAN> i.bVALID       &lt;&gt; d.bVALID          <SPAN CLASS="cmt">-- We want only valid entries, so we react
+</SPAN>  <SPAN CLASS="kwd">FOR</SPAN> <SPAN CLASS="kwd">READ O</SPAN><SPAN CLASS="kwd">NLY</SPAN>                                 <SPAN CLASS="cmt">-- if and when this changes
+</SPAN>   
+  <SPAN CLASS="kwd">declare</SPAN>
+     @SALES_ID    <SPAN CLASS="kwd">int</SPAN>
+    ,@PURCHASE_ID <SPAN CLASS="kwd">int</SPAN>
+    ,@SHOP_ID     <SPAN CLASS="kwd">int</SPAN>
+    ,@PRICEnc     <SPAN CLASS="kwd">numeric</SPAN>(10,2)
+    ,@NAMEvc        <SPAN CLASS="kwd">varchar</SPAN>(64)
+    ,@UNITSi      <SPAN CLASS="kwd">int</SPAN>
+   
+    <SPAN CLASS="kwd">OPEN</SPAN> <a name="co_crs_Hist" href="#cu_crs_Hist"><SPAN CLASS="crsr">crs_Hist</SPAN></a>
+    <SPAN CLASS="kwd">WHILE</SPAN> (1 = 1)
+    <SPAN CLASS="kwd">BEGIN</SPAN>
+      <SPAN CLASS="kwd">FETCH</SPAN> <a name="co_crs_Hist" href="#cu_crs_Hist"><SPAN CLASS="crsr">crs_Hist</SPAN></a> <SPAN CLASS="kwd">INTO</SPAN>  @SALES_ID, @PURCHASE_ID, @SHOP_ID, @PRICEnc, @NAMEvc, @UNITSi
+   
+      <SPAN CLASS="kwd">IF</SPAN> (@@sqlstatus &lt;&gt; 0) <SPAN CLASS="kwd">BREAK</SPAN> <SPAN CLASS="cmt">-- Break loop once we finished this
+</SPAN>
+      <SPAN CLASS="kwd">exec</SPAN> <a name="2x" href="proc_saleshistory.html"><SPAN CLASS="pnm">proc_SalesHistory</SPAN></a> 3, @SALES_ID, @PURCHASE_ID, @SHOP_ID, @PRICEnc, @NAMEvc, @UNITSi
+    <SPAN CLASS="kwd">END</SPAN>
+    <SPAN CLASS="kwd">CLOSE</SPAN> <a name="co_crs_Hist" href="#cu_crs_Hist"><SPAN CLASS="crsr">crs_Hist</SPAN></a>
+    <SPAN CLASS="kwd">DEALLOCATE CURSOR</SPAN> <a name="co_crs_Hist" href="#cu_crs_Hist"><SPAN CLASS="crsr">crs_Hist</SPAN></a>
+
+  <a name="15_U"><SPAN CLASS="kwd">UPDATE</SPAN></a> <a href="product_price.html"><SPAN CLASS="tbl">PRODUCT_PRICE</SPAN></a>
+     <SPAN CLASS="kwd">SET</SPAN> Product_ID         = i.PRODUCT_ID
+        ,NAMEvc             = i.NAMEvc
+        ,DESCRIPTIONvc      = i.DESCRIPTIONvc
+        ,bVALID             = i.bVALID
+        ,STDRD_PRICE_ID     = STD_PR.PRICE_ID     <SPAN CLASS="cmt">-- STDRD Records
+</SPAN>        ,STDRD_VALID_FROMdt = STD_PR.VALID_FROMdt
+        ,STDRD_VALID_TOdt   = STD_PR.VALID_TOdt
+        ,STDRD_PRICEnc      = STD_PR.PRICEnc
+        ,STDRD_CURRENCY_ID  = STD_PR.CURRENCY_ID
+        ,SALES_PRICE_ID      = SLPR.PRICE_ID      <SPAN CLASS="cmt">-- SALES Records
+</SPAN>        ,SALES_VALID_FROMdt  = SLPR.VALID_FROMdt
+        ,SALES_VALID_TOdt    = SLPR.VALID_TOdt
+        ,SALES_PRICEnc       = SLPR.PRICEnc
+        ,SALES_CURRENCY_ID   = SLPR.CURRENCY_ID
+        ,SALES_DESCRIPTIONvc = SLPR.DESCRIPTIONvc
+        ,SALES_NAMEvc        = SLPR.NAMEvc
+        ,CAT_NAMEvc          = CAT.NAMEvc       <SPAN CLASS="cmt">--CATEGORY_1_ID    int         not null,
+</SPAN>        ,CAT_SUB_NAMEvc      = CAT.SUB_NAMEvc   <SPAN CLASS="cmt">--CATEGORY_2_ID    int         not null
+</SPAN>        ,CAT_DESCRIPTIONvc   = CAT.SUB_NAMEvc
+    <SPAN CLASS="kwd">FROM</SPAN> <a name="7_S" href="product.html"><SPAN CLASS="tbl">inserted</SPAN></a> i, <a name="7_S" href="product.html"><SPAN CLASS="tbl">deleted</SPAN></a> d, <a name="16_S" href="standardprice.html"><SPAN CLASS="tbl">STANDARDPRICE</SPAN></a> STD_PR, <a name="17_S" href="salesprice.html"><SPAN CLASS="tbl">SALESPRICE</SPAN></a> SLPR, <a name="8_S" href="category.html"><SPAN CLASS="tbl">CATEGORY</SPAN></a> CAT
+   <SPAN CLASS="kwd">WHERE</SPAN> d.PRODUCT_ID    = i.PRODUCT_ID
+     <SPAN CLASS="kwd">AND</SPAN> STD_PR.PRICE_ID = i.STDRD_PRICE_ID
+     <SPAN CLASS="kwd">AND</SPAN> SLPR.PRICE_ID   = i.SALES_PRICE_ID
+     <SPAN CLASS="kwd">AND</SPAN> CAT.CAT_1_ID    = i.CATEGORY_1_ID
+     <SPAN CLASS="kwd">AND</SPAN> CAT.CAT_1_ID    = i.CATEGORY_2_ID
+
+<SPAN CLASS="kwd">end</SPAN> <SPAN CLASS="cmt">-- End of Trigger
+</SPAN></CODE></PRE>
+
+</body></html>

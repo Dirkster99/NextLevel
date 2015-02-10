@@ -1,0 +1,118 @@
+#################################################################
+## This Makefile Exported by MinGW Developer Studio
+## Copyright (c) 2002-2004 by Parinya Thipchart
+##
+## Build on DOS: 'mingw32-make CFG=release' or just 'mingw32-make'
+##
+#################################################################
+
+ifneq ($(CFG),debug) 
+ifneq ($(CFG),release)
+  CFG = debug
+endif
+endif
+
+PROJECT = nextlevel
+CC = g++
+
+ifeq ($(CFG),debug)
+  OBJ_DIR = /tmp/nextlevel/debug
+  OUTPUT_DIR = bin
+  TARGET = nextlevel
+  C_INCLUDE_DIRS = -I src -I src/xml_src
+  C_PREPROC = 
+  CFLAGS = -pipe -Wno-deprecated -Wall -W -g2 -O0 -frtti -fexceptions
+  RC_INCLUDE_DIRS = 
+  RC_PREPROC = 
+  RCFLAGS = 
+  LIB_DIRS = 
+  LIBS = 
+  LDFLAGS = -pipe
+endif
+
+ifeq ($(CFG),release)
+  OBJ_DIR = /tmp/nextlevel/release
+  OUTPUT_DIR = bin
+  TARGET = nextlevel.exe
+  C_INCLUDE_DIRS = -I src -I src/xml_src
+  C_PREPROC = 
+  CFLAGS = -pipe -Wno-deprecated -Wall -W -g0 -O2 -frtti -fexceptions 
+  RC_INCLUDE_DIRS = 
+  RC_PREPROC = 
+  RCFLAGS = 
+  LIB_DIRS = 
+  LIBS = 
+  LDFLAGS = -pipe -s 
+endif
+
+ifeq ($(OS),Windows_NT)
+  NULL =
+else
+  NULL = nul
+endif
+
+SRC_OBJS = \
+  $(OBJ_DIR)/cdep.o	\
+  $(OBJ_DIR)/cpitem.o	\
+  $(OBJ_DIR)/ccg.o	\
+  $(OBJ_DIR)/cdb.o	\
+  $(OBJ_DIR)/cpatrn.o	\
+  $(OBJ_DIR)/cproc.o	\
+  $(OBJ_DIR)/cproccol.o	\
+  $(OBJ_DIR)/cscol.o	\
+  $(OBJ_DIR)/ctab.o	\
+  $(OBJ_DIR)/ctabcol.o	\
+  $(OBJ_DIR)/copts.o	\
+  $(OBJ_DIR)/nextlevel.o	\
+  $(OBJ_DIR)/parse.o	\
+  $(OBJ_DIR)/prettyprint.o	\
+  $(OBJ_DIR)/cdtd.o	\
+  $(OBJ_DIR)/cpars.o	\
+  $(OBJ_DIR)/cerr.o	\
+  $(OBJ_DIR)/chartab.o	\
+  $(OBJ_DIR)/cprop.o	\
+  $(OBJ_DIR)/cstak.o	\
+  $(OBJ_DIR)/cstrm.o	\
+  $(OBJ_DIR)/ctag.o	\
+  $(OBJ_DIR)/custr.o \
+  $(OBJ_DIR)/cserver.o
+
+define build_target
+@echo Linking...
+@$(CC) -o "$(OUTPUT_DIR)/$(TARGET)" $(SRC_OBJS) $(LIB_DIRS) $(LIBS) $(LDFLAGS)
+endef
+
+define compile_source
+@echo Compiling $<
+@$(CC) $(CFLAGS) $(C_PREPROC) $(C_INCLUDE_DIRS) -c "$<" -o "$@"
+endef
+
+.PHONY: print_header directories
+
+$(TARGET): print_header directories $(SRC_OBJS)
+	$(build_target)
+
+.PHONY: clean cleanall
+
+cleanall:
+	@echo 'Deleting intermediate files for nextlevel - $(CFG)'
+	-@rm $(OBJ_DIR)/*.o
+	-@rm "$(OUTPUT_DIR)/$(TARGET)"
+	-@mkdir "$(OUTPUT_DIR)"
+
+clean:
+	@echo Deleting intermediate files for 'nextlevel - $(CFG)'
+	-@rm $(OBJ_DIR)/*.o
+
+print_header:
+	@echo 
+	@echo '----------Configuration: NextLevel - $(CFG)----------'
+
+#directories:
+#	-@if not exist "$(OUTPUT_DIR)/$(NULL)" mkdir "$(OUTPUT_DIR)"
+#	-@if not exist "$(OBJ_DIR)/$(NULL)" mkdir "$(OBJ_DIR)"
+
+#
+#Include module files from seperate file (so windows and linux use same list)
+#
+include depends.inc

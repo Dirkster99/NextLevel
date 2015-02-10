@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>Table: SUN.INTERFACE.dbo.PRODUCT_PRICE</title>
+
+<link rel="shortcut icon" href="res/table.jpg">
+<link rel="stylesheet" type="text/css" href="res/style.css">
+<script type="text/javascript" language="JavaScript" src="res/dropdown.js"></script><script type="text/javascript">
+<!-- Begin
+window.onload=function() {if(document.getElementById && document.createElement) {initCollapse();}}
+//-->
+</script>
+<link rel="stylesheet" type="text/css" href="res/office_xp.css" title="Office XP" />
+<script type="text/javascript" src="res/jsdomenu.js"></script>
+<script type="text/javascript" src="res/jsdomenubar.js"></script>
+<script type="text/javascript" src="menuconf.js"></script>
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</head>
+<body onload="initjsDOMenu('SUN/INTERFACE')">
+
+<table id="NoBord" cellSpacing="0" width="100%">
+<tr><td align="left" valign="top"><table id="NoBord">
+<tr><td align="right" valign="top"><img src="res/table.jpg" title="table"></td><td align="left" valign="top">
+PRODUCT_PRICE<small>
+ owner="dbo"</small>
+</td></tr>
+<tr><td align="right" valign="top">
+<SPAN CLASS="pnm"></td><td align="left" valign="top"><a href="product_price_trig_d.html"><SPAN CLASS="pnm">PRODUCT_PRICE_TRIG_D</SPAN></a>&nbsp;
+<small>(ON: DELETE)</small></td></tr>
+</table>
+</td>
+<td align="right" valign="top"><div id="staticMenu"></div></td>
+</tr>
+</table>
+
+<div align="left"><dl id="content"><dt>Documentation</dt>
+<dd  style="border: 1px solid rgb(51, 125, 51); color: rgb(0, 0, 0); background-color: rgb(252, 255, 248); padding: 0.4em 0.9em 0.9em;"><p>
+This is just a sample documentation for tables showing that you can import
+additional documentation, and so, comment on database objects, which normally,
+can not be commented on in a real life database system. You could, for example,
+put the next paragraph to remind you later on what the PRODUCT_PROCE table was
+all about:
+</p>
+
+<p>
+The PRODUCT_PRICE table is a decomposition of the PRODUCT, CATEGORY, STANDARDPRICE,
+and SALESPRICE tables.
+</p>
+</dd></dl></div>
+<table id="NoBord" cellspacing="4"><tr>
+<td valign="top" align="left">Objects Accessing Table</td>
+<td valign="top" align="left">Table Definition</td></tr><tr>
+<td valign="top" align="left">
+
+<table id="Bord">
+<thead><tr>
+<TD id="BordHead" align="left" valign="top">Database Object</TD>
+<TD id="BordHead" align="left" valign="top">Access</TD>
+</tr></thead>
+<tr><td id="Bord" align="left" valign="top"><a href="product_price_trig_d.html"><SPAN CLASS="pnm">PRODUCT_PRICE_TRIG_D</SPAN></a></td><td id="Bord" align="left" valign="top"><a href="product_price_trig_d.html#15_S">SELECT</a></td></tr>
+<tr><td id="Bord" align="left" valign="top"><a href="product_trig_d.html"><SPAN CLASS="pnm">PRODUCT_TRIG_D</SPAN></a></td><td id="Bord" align="left" valign="top"><a href="product_trig_d.html#15_S">SELECT</a>, <a href="product_trig_d.html#15_D">DELETE</a></td></tr>
+<tr><td id="Bord" align="left" valign="top"><a href="product_trig_i.html"><SPAN CLASS="pnm">PRODUCT_TRIG_I</SPAN></a></td><td id="Bord" align="left" valign="top"><a href="product_trig_i.html#15_I">INSERT</a></td></tr>
+<tr><td id="Bord" align="left" valign="top"><a href="product_trig_u.html"><SPAN CLASS="pnm">PRODUCT_TRIG_U</SPAN></a></td><td id="Bord" align="left" valign="top"><a href="product_trig_u.html#15_U">UPDATE</a></td></tr>
+</table>
+
+</td>
+
+<td valign="top" align="left">
+
+<table id="NoBord1" cellPadding="4" cellSpacing="0">
+<thead><tr>
+<TD id="NoBord1Hd">column</TD>
+<TD id="NoBord1Hd">type</TD>
+<TD id="NoBord1Hd">len</TD>
+<TD id="NoBord1Hd">nulls</TD>
+<TD id="NoBord1Hd">prec</TD>
+<TD id="NoBord1Hd">scale</TD>
+</tr></thead>
+<tr BGCOLOR="#DDDDDD"><td id="NoBord1">Product_ID</td><td id="NoBord1">int</td><td id="NoBord1">4</td><td id="NoBord1">no</td><td id="NoBord1"></td><td id="NoBord1"></td>
+</tr>
+<tr BGCOLOR="#FFFFFF"><td id="NoBord1">NAMEvc</td><td id="NoBord1">varchar</td><td id="NoBord1">64</td><td id="NoBord1">no</td><td id="NoBord1"></td><td id="NoBord1"></td>
+</tr>
+<tr BGCOLOR="#DDDDDD"><td id="NoBord1">DESCRIPTIONvc</td><td id="NoBord1">varchar</td><td id="NoBord1">255</td><td id="NoBord1">no</td><td id="NoBord1"></td><td id="NoBord1"></td>
+</tr>
+<tr BGCOLOR="#FFFFFF"><td id="NoBord1">bVALID</td><td id="NoBord1">bit</td><td id="NoBord1">1</td><td id="NoBord1">no</td><td id="NoBord1"></td><td id="NoBord1"></td>
+</tr>
+<tr BGCOLOR="#DDDDDD"><td id="NoBord1">STDRD_PRICE_ID</td><td id="NoBord1">int</td><td id="NoBord1">4</td><td id="NoBord1">no</td><td id="NoBord1"></td><td id="NoBord1"></td>
+</tr>
+<tr BGCOLOR="#FFFFFF"><td id="NoBord1">STDRD_VALID_FROMdt</td><td id="NoBord1">datetime</td><td id="NoBord1">8</td><td id="NoBord1">no</td><td id="NoBord1"></td><td id="NoBord1"></td>
+</tr>
+<tr BGCOLOR="#DDDDDD"><td id="NoBord1">STDRD_VALID_TOdt</td><td id="NoBord1">datetime</td><td id="NoBord1">8</td><td id="NoBord1">no</td><td id="NoBord1"></td><td id="NoBord1"></td>
+</tr>
+<tr BGCOLOR="#FFFFFF"><td id="NoBord1">STDRD_PRICEnc</td><td id="NoBord1">numeric</td><td id="NoBord1">6</td><td id="NoBord1">no</td><td id="NoBord1">10</td><td id="NoBord1">2</td>
+</tr>
+<tr BGCOLOR="#DDDDDD"><td id="NoBord1">STDRD_CURRENCY_ID</td><td id="NoBord1">varchar</td><td id="NoBord1">64</td><td id="NoBord1">no</td><td id="NoBord1"></td><td id="NoBord1"></td>
+</tr>
+<tr BGCOLOR="#FFFFFF"><td id="NoBord1">SALES_PRICE_ID</td><td id="NoBord1">int</td><td id="NoBord1">4</td><td id="NoBord1">no</td><td id="NoBord1"></td><td id="NoBord1"></td>
+</tr>
+<tr BGCOLOR="#DDDDDD"><td id="NoBord1">SALES_VALID_FROMdt</td><td id="NoBord1">datetime</td><td id="NoBord1">8</td><td id="NoBord1">no</td><td id="NoBord1"></td><td id="NoBord1"></td>
+</tr>
+<tr BGCOLOR="#FFFFFF"><td id="NoBord1">SALES_VALID_TOdt</td><td id="NoBord1">datetime</td><td id="NoBord1">8</td><td id="NoBord1">no</td><td id="NoBord1"></td><td id="NoBord1"></td>
+</tr>
+<tr BGCOLOR="#DDDDDD"><td id="NoBord1">SALES_PRICEnc</td><td id="NoBord1">numeric</td><td id="NoBord1">6</td><td id="NoBord1">no</td><td id="NoBord1">10</td><td id="NoBord1">2</td>
+</tr>
+<tr BGCOLOR="#FFFFFF"><td id="NoBord1">SALES_CURRENCY_ID</td><td id="NoBord1">int</td><td id="NoBord1">4</td><td id="NoBord1">no</td><td id="NoBord1"></td><td id="NoBord1"></td>
+</tr>
+<tr BGCOLOR="#DDDDDD"><td id="NoBord1">SALES_DESCRIPTIONvc</td><td id="NoBord1">varchar</td><td id="NoBord1">255</td><td id="NoBord1">no</td><td id="NoBord1"></td><td id="NoBord1"></td>
+</tr>
+<tr BGCOLOR="#FFFFFF"><td id="NoBord1">SALES_NAMEvc</td><td id="NoBord1">varchar</td><td id="NoBord1">64</td><td id="NoBord1">no</td><td id="NoBord1"></td><td id="NoBord1"></td>
+</tr>
+<tr BGCOLOR="#DDDDDD"><td id="NoBord1">CAT_NAMEvc</td><td id="NoBord1">varchar</td><td id="NoBord1">64</td><td id="NoBord1">no</td><td id="NoBord1"></td><td id="NoBord1"></td>
+</tr>
+<tr BGCOLOR="#FFFFFF"><td id="NoBord1">CAT_SUB_NAMEvc</td><td id="NoBord1">varchar</td><td id="NoBord1">64</td><td id="NoBord1">no</td><td id="NoBord1"></td><td id="NoBord1"></td>
+</tr>
+<tr BGCOLOR="#DDDDDD"><td id="NoBord1">CAT_DESCRIPTIONvc</td><td id="NoBord1">varchar</td><td id="NoBord1">64</td><td id="NoBord1">no</td><td id="NoBord1"></td><td id="NoBord1"></td>
+</tr>
+</table>
+
+</td>
+</tr></table>
+</body></html>

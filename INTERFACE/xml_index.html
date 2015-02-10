@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>NextLevel Project Page - Reverse Engineering RDBMS</title>
+  <link rel="shortcut icon" href="images/nl_logo.jpg">
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body bgcolor="#ffffff">
+<table border="0" cellpadding="3" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td align="left" bgcolor="#cccccc" valign="top">
+      <h1>NextLevel</h1>
+      </td>
+      <td align="right" bgcolor="#cccccc" valign="top"></td>
+    </tr>
+    <tr>
+      <td align="left" bgcolor="#aaaaaa"><b>Reverse Engineering Relational Databases</b></td>
+      <td align="right" bgcolor="#aaaaaa" valign="top"></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>A Sample XML Index File for Data Import to NextLevel</h2>
+<p><a href="xml_design.html">Back</a></p>
+<table cellSpacing="3" width="100%" style="border: 1px dashed #006600; solid rgb(51, 125, 51); color: rgb(0, 0, 0);">
+<tr><td>
+<CODE><PRE>
+&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;
+&lt;?NextLevel version="1.1" date="November, 2004"?&gt;
+&lt;!-- Database CallGraph Utility Application File --&gt;
+&lt;!-- Generated with: php GenIdx.php idx.txt ZEUS TITAN dbo &gt; index.xml --&gt;
+&lt;parse_files SERVER="ZEUS" DB="TITAN" owner="dbo"&gt;
+
+&lt;!-- header information to be used in nextlevel sample database index file --&gt;
+&lt;htmlroot&gt;
+  &lt;backlink link="../index.html" text="Back to Homepage" /&gt;
+&lt;/htmlroot&gt;
+
+&lt;program_opts&gt;
+  &lt;dbobj_docs folder="..\TITAN_DOKU\" /&gt;
+&lt;/program_opts&gt;
+&lt;procs&gt;
+&lt;proc name="proc_PurchaseHistory" src="dbo_proc_PurchaseHistory.sql" type="P" owner="dbo"/&gt;
+&lt;proc name="COSTS_TRIG_D" src="dbo_COSTS_TRIG_D.sql" type="TR" owner="dbo"/&gt;
+&lt;proc name="COSTS_TRIG_I" src="dbo_COSTS_TRIG_I.sql" type="TR" owner="dbo"/&gt;
+&lt;proc name="COSTS_TRIG_U" src="dbo_COSTS_TRIG_U.sql" type="TR" owner="dbo"/&gt;
+&lt;/procs&gt;
+
+&lt;!-- Generated with: awk dash f TabCatGenXML2.awk TabCat.txt --&gt;
+
+&lt;tab name="COSTS" owner="dbo"&gt;
+&lt;col name="COST_ID" type="int" len="4" nulls="NOT NULL" /&gt;
+&lt;col name="SHOP_ID" type="int" len="4" nulls="NOT NULL" /&gt;
+&lt;col name="TYPE_ID" type="int" len="4" nulls="NOT NULL" /&gt;
+&lt;col name="PRICE" type="numeric" len="6" prec="10" scale="2" nulls="NOT NULL" /&gt;
+&lt;col name="CURRENCY_ID" type="int" len="4" nulls="NOT NULL" /&gt;
+&lt;col name="DateStamp" type="datetime" len="8" nulls="NOT NULL" /&gt;
+&lt;/tab&gt;
+
+&lt;view name="view_PURCHASE" owner="dbo" src="dbo_view_PURCHASE.sql"&gt;
+&lt;col name="PURCHASE_ID" type="int" len="4" nulls="NOT NULL" /&gt;
+&lt;col name="VENDOR_ID" type="int" len="4" nulls="NOT NULL" /&gt;
+&lt;col name="PRODUCT_ID" type="int" len="4" nulls="NOT NULL" /&gt;
+&lt;col name="PURCHASE_PRICEnc" type="numeric" len="6" prec="10" scale="2" nulls="NOT NULL" /&gt;
+&lt;col name="CURRENCY_ID" type="int" len="4" nulls="NOT NULL" /&gt;
+&lt;col name="UNITSi" type="int" len="4" nulls="NOT NULL" /&gt;
+&lt;col name="VDR_NAMEvc" type="varchar" len="64" nulls="NOT NULL" /&gt;
+&lt;col name="COUNTRYvc" type="varchar" len="64" nulls="NOT NULL" /&gt;
+&lt;col name="PRD_NAMEvc" type="varchar" len="64" nulls="NOT NULL" /&gt;
+&lt;col name="DESCRIPTIONvc" type="varchar" len="255" nulls="NOT NULL" /&gt;
+&lt;col name="STDRD_PRICE_ID" type="int" len="4" nulls="NOT NULL" /&gt;
+&lt;col name="SALES_PRICE_ID" type="int" len="4" nulls="NOT NULL" /&gt;
+&lt;col name="CAT_NAMEvc" type="varchar" len="64" nulls="NOT NULL" /&gt;
+&lt;col name="CAT_SUB_NAMEvc" type="varchar" len="64" nulls="NOT NULL" /&gt;
+&lt;col name="CAT_DESCRIPTIONvc" type="varchar" len="64" nulls="NOT NULL" /&gt;
+&lt;/view&gt;
+&lt;/parse_files&gt;
+</PRE></CODE>
+</td>
+</tr>
+<tr><td align="center"><code>Figure 1: A Sample XML index File</code></td></tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>Proc: TITAN.dbo.proc_SalesHistory</title>
+	<link rel="shortcut icon" href="res/proc.jpg">
+<link rel="stylesheet" type="text/css" href="res/style.css">
+<link rel="stylesheet" type="text/css" href="res/office_xp.css" title="Office XP" />
+<script type="text/javascript" src="res/jsdomenu.js"></script>
+<script type="text/javascript" src="res/jsdomenubar.js"></script>
+<script type="text/javascript" src="menuconf.js"></script>
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</head>
+<body onload="initjsDOMenu('ZEUS/TITAN')">
+<table id="NoBord" width="100%"><tr><td align="right" valign="top">
+<img src="res/proc.jpg" title="procedure"></td><td align="left" valign="top">
+<a href="../TITAN_SQL/dbo_proc_SalesHistory.sql"><SPAN CLASS="pnm">proc_SalesHistory</SPAN></a>&nbsp;(4 Callers,&nbsp;3 Calls,&nbsp;9 Tables Accessed)&nbsp;</td><td Align="right" valign="top"><div id="staticMenu"></div></td>
+</tr></table>
+
+<table id="NoBord" cellPadding="3" cellSpacing="0" width="100%">
+<tr><td align="left" valign="top">
+<script type="text/javascript" language="JavaScript" src="res/tree.js"></script>
+<script type="text/javascript" language="JavaScript">
+var TREE_ITEMS = 
+[
+['<code>proc_SalesHistory<\/code>',,
+['<code><SPAN class=\"uproc\">SUN.TITAN.dbo.proc_PurchaseHistory<SPAN><\/code>','__ExternCalls.html'],
+['<code>proc_Error<\/code>','proc_error.html|#0x'],
+['<code><SPAN class=\"uproc\">sp_exchange<SPAN><\/code>','__ExternCalls.html'],
+],
+];
+</script>
+<script type="text/javascript" language="JavaScript" src="res/tree_tpl.js"></script>
+
+<br>
+<table id="Bord">
+<thead><tr>
+<TD id="BordHead">Callers</TD>
+<TD id="BordHead">Calls</TD>
+<TD id="BordHead">Tables/Views</TD>
+</tr></thead><tr>
+<td id="Bord">
+<table id="NoBord">
+<tr>
+<td id="NoBord"><a href="product_trig_u.html"><SPAN CLASS="pnm">PRODUCT_TRIG_U</SPAN></a></td></tr>
+<tr>
+<td id="NoBord"><a href="sales_trig_d.html"><SPAN CLASS="pnm">SALES_TRIG_D</SPAN></a></td></tr>
+<tr>
+<td id="NoBord"><a href="sales_trig_i.html"><SPAN CLASS="pnm">SALES_TRIG_I</SPAN></a></td></tr>
+<tr>
+<td id="NoBord"><a href="sales_trig_u.html"><SPAN CLASS="pnm">SALES_TRIG_U</SPAN></a></td></tr>
+</table>
+<td id="Bord"><script type="text/javascript" language="JavaScript">
+<!--//
+  new tree (TREE_ITEMS, TREE_TPL);
+//-->
+</script></td>
+<td id="Bord">
+<table id="NoBord" cellpadding="3" cellSpacing="0">
+<tr>
+<td valign="top" align="left"><a href="address.html"><SPAN CLASS="tbl">ADDRESS</SPAN></a></td><td align="left" valign="top"><a href="#4_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="category.html"><SPAN CLASS="tbl">CATEGORY</SPAN></a></td><td align="left" valign="top"><a href="#8_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="product.html"><SPAN CLASS="tbl">PRODUCT</SPAN></a></td><td align="left" valign="top"><a href="#7_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="purchase.html"><SPAN CLASS="tbl">PURCHASE</SPAN></a></td><td align="left" valign="top"><a href="#6_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="sales_history.html"><SPAN CLASS="tbl">SALES_HISTORY</SPAN></a></td><td align="left" valign="top"><a href="#9_S">S</a></td>
+<td align="left" valign="top"><a href="#9_U">U</a></td><td align="left" valign="top"><a href="#9_I">I</a></td><td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="shop.html"><SPAN CLASS="tbl">SHOP</SPAN></a></td><td align="left" valign="top"><a href="#3_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="vendor.html"><SPAN CLASS="tbl">VENDOR</SPAN></a></td><td align="left" valign="top"><a href="#5_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table></td>
+</tr></table>
+</td><td Align="right" valign="top">
+<small>owner="dbo"</small>
+<td>
+</tr></table>
+<PRE><CODE>
+
+<SPAN CLASS="cmt">--
+</SPAN><SPAN CLASS="cmt">-- Each change in a record is processed by the proc_SalesHistory table which in
+</SPAN><SPAN CLASS="cmt">-- turn is used to analyze changing Sales over time ...
+</SPAN><SPAN CLASS="cmt">-- The history is used to answer questions like:
+</SPAN><SPAN CLASS="cmt">--
+</SPAN><SPAN CLASS="cmt">-- How are shops sales affected by seasonal changes?
+</SPAN><SPAN CLASS="cmt">-- How are certain products priced at certain times?
+</SPAN><SPAN CLASS="cmt">--
+</SPAN><SPAN CLASS="kwd">create</SPAN> <SPAN CLASS="kwd">procedure</SPAN> proc_SalesHistory
+(
+ @ACTION        <SPAN CLASS="kwd">int</SPAN>           <SPAN CLASS="cmt">-- 1=delete, 2=insert, 3=update
+</SPAN>,@SALES_ID    <SPAN CLASS="kwd">int</SPAN>
+,@PURCHASE_ID <SPAN CLASS="kwd">int</SPAN>
+,@SHOP_ID     <SPAN CLASS="kwd">int</SPAN>
+,@PRICEnc     <SPAN CLASS="kwd">numeric</SPAN>(10,2)
+,@NAMEvc        <SPAN CLASS="kwd">varchar</SPAN>(64)
+,@UNITSi      <SPAN CLASS="kwd">int</SPAN>
+)
+<SPAN CLASS="kwd">AS</SPAN>
+<SPAN CLASS="kwd">BEGIN</SPAN>
+  <SPAN CLASS="cmt">-- Sanity Check
+</SPAN>  <SPAN CLASS="kwd">if</SPAN> @ACTION &lt;&gt; 1 <SPAN CLASS="kwd">AND</SPAN> @PRICEnc &lt; 0
+  <SPAN CLASS="kwd">begin</SPAN>
+    <SPAN CLASS="kwd">declare</SPAN> @PARAMSvc <SPAN CLASS="kwd">VARCHAR</SPAN>(255)
+
+    <SPAN CLASS="kwd">select</SPAN> @PARAMSvc = <SPAN CLASS="kwd">convert</SPAN>(<SPAN CLASS="kwd">varchar</SPAN>, @SALES_ID)
+               + <SPAN CLASS="str">","</SPAN> + <SPAN CLASS="kwd">convert</SPAN>(<SPAN CLASS="kwd">varchar</SPAN>, @PURCHASE_ID)
+               + <SPAN CLASS="str">","</SPAN> + <SPAN CLASS="kwd">convert</SPAN>(<SPAN CLASS="kwd">varchar</SPAN>, @SHOP_ID)
+               + <SPAN CLASS="str">","</SPAN> + <SPAN CLASS="kwd">convert</SPAN>(<SPAN CLASS="kwd">varchar</SPAN>, @PRICEnc)
+               + <SPAN CLASS="str">","</SPAN> + <SPAN CLASS="kwd">convert</SPAN>(<SPAN CLASS="kwd">varchar</SPAN>, @NAMEvc)
+               + <SPAN CLASS="str">","</SPAN> + <SPAN CLASS="kwd">convert</SPAN>(<SPAN CLASS="kwd">varchar</SPAN>, @UNITSi)
+
+    <SPAN CLASS="kwd">exec</SPAN> <a name="0x" href="proc_error.html"><SPAN CLASS="pnm">proc_Error</SPAN></a> <SPAN CLASS="str">"proc_SalesHistory"</SPAN>, @PARAMSvc, <SPAN CLASS="str">"ERROR: Negative PRICE in Sales!"</SPAN>
+    <SPAN CLASS="kwd">return</SPAN> -1
+  <SPAN CLASS="kwd">end</SPAN>
+
+<SPAN CLASS="kwd">declare</SPAN>
+  @VENDOR_ID       <SPAN CLASS="kwd">int</SPAN>
+ ,@VENDOR_NAME     <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@VENDOR_COUNTRY  <SPAN CLASS="kwd">varchar</SPAN>(64)
+
+ ,@SHOP_NAME    <SPAN CLASS="kwd">VARCHAR</SPAN>(32)
+ ,@SHOP_TYPE    <SPAN CLASS="kwd">VARCHAR</SPAN>(255)
+
+ ,@PRODUCT_ID          <SPAN CLASS="kwd">int</SPAN>
+ ,@PRODUCT_NAME        <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@PRODUCT_DESCRIPTION <SPAN CLASS="kwd">varchar</SPAN>(64)
+
+ ,@CATEGORY_NAME     <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@CATEGORY_SUB_NAME <SPAN CLASS="kwd">varchar</SPAN>(64)
+
+ ,@SHOP_ADDRESS_ID <SPAN CLASS="kwd">int</SPAN>
+ ,@SHOP_COUNTRYvc  <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@SHOP_CITYvc     <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@SHOP_ZIPCODEvc  <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@SHOP_STREETvc   <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@SHOP_STATEvc    <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@SHOP_EMAILvc    <SPAN CLASS="kwd">varchar</SPAN>(255)
+ ,@SHOP_WEB_SITEvc <SPAN CLASS="kwd">varchar</SPAN>(255)
+
+ ,@DATESTAMP  <SPAN CLASS="kwd">datetime</SPAN>
+ ,@VERSION          <SPAN CLASS="kwd">int</SPAN>
+ ,@fix              <SPAN CLASS="kwd">bit</SPAN>
+ ,@bValid           <SPAN CLASS="kwd">bit</SPAN>
+
+  <SPAN CLASS="kwd">select</SPAN> @DATESTAMP = getdate(), @VERSION  = 1,@bValid = 0
+
+  <SPAN CLASS="cmt">--Here is one mor eof this on another imaginary server called SUN
+</SPAN>  <SPAN CLASS="kwd">exec</SPAN> @retCODEi = <a href="__ExternCalls.html"><SPAN CLASS="uproc">SUN . TITAN .dbo.proc_PurchaseHistory</SPAN></a> @ACTION, @PURCHASE_ID ,@PURCHASE_PRICEnc ,@CUR_NAMEvc ,@UNITSi
+
+  <SPAN CLASS="kwd">if</SPAN> @ACTION &lt;&gt; 1 <SPAN CLASS="cmt">-- No need for this to process a delete
+</SPAN>  <SPAN CLASS="kwd">begin</SPAN>
+    <SPAN CLASS="cmt">-- Get Shop information
+</SPAN>    <SPAN CLASS="kwd">SELECT</SPAN> @SHOP_NAME       = SH.NAMEvc
+          ,@SHOP_TYPE       = SH.TYPE
+          ,@SHOP_ADDRESS_ID = ADR.ADDRESS_ID
+          ,@SHOP_COUNTRYvc  = ADR.COUNTRYvc
+          ,@SHOP_CITYvc     = ADR.CITYvc
+          ,@SHOP_ZIPCODEvc  = ADR.ZIPCODEvc
+          ,@SHOP_STREETvc   = ADR.STREETvc
+          ,@SHOP_STATEvc    = ADR.STATEvc
+          ,@SHOP_EMAILvc    = ADR.EMAILvc
+          ,@SHOP_WEB_SITEvc = ADR.WEB_SITEvc
+      <SPAN CLASS="kwd">FROM</SPAN> <a name="3_S" href="shop.html"><SPAN CLASS="tbl">SHOP</SPAN></a> SH, <a name="4_S" href="address.html"><SPAN CLASS="tbl">ADDRESS</SPAN></a> ADR
+     <SPAN CLASS="kwd">WHERE</SPAN> SH.SHOP_ID    = @SHOP_ID
+       <SPAN CLASS="kwd">AND</SPAN> SH.ADDRESS_ID = ADR.ADDRESS_ID
+
+    <SPAN CLASS="cmt">-- Get Vendor information
+</SPAN>    <SPAN CLASS="kwd">SELECT</SPAN> @VENDOR_ID        = VDR.VENDOR_ID
+          ,@VENDOR_NAME        = VDR.NAMEvc
+          ,@VENDOR_COUNTRY      = VDR.COUNTRYvc
+          ,@PRODUCT_ID           = PROD.PRODUCT_ID
+          ,@PRODUCT_NAME         = PROD.NAMEvc
+          ,@PRODUCT_DESCRIPTION = PROD.DESCRIPTIONvc
+          ,@CATEGORY_NAME      = CAT.NAMEvc
+          ,@CATEGORY_SUB_NAME = CAT.SUB_NAMEvc
+          ,@bValid           = PROD.bVALID
+      <SPAN CLASS="kwd">FROM</SPAN> <a name="5_S" href="vendor.html"><SPAN CLASS="tbl">VENDOR</SPAN></a> VDR, <a name="6_S" href="purchase.html"><SPAN CLASS="tbl">PURCHASE</SPAN></a> PRC, <a name="7_S" href="product.html"><SPAN CLASS="tbl">PRODUCT</SPAN></a> PROD, <a name="8_S" href="category.html"><SPAN CLASS="tbl">CATEGORY</SPAN></a> CAT
+     <SPAN CLASS="kwd">WHERE</SPAN> PRC.PURCHASE_ID    = @PURCHASE_ID
+       <SPAN CLASS="kwd">AND</SPAN> VDR.VENDOR_ID      = PRC.VENDOR_ID
+       <SPAN CLASS="kwd">AND</SPAN> PRC.PRODUCT_ID     = PROD.PRODUCT_ID
+       <SPAN CLASS="kwd">AND</SPAN> PROD.CATEGORY_1_ID = CAT.CAT_1_ID
+       <SPAN CLASS="kwd">AND</SPAN> PROD.CATEGORY_2_ID = CAT.CAT_2_ID
+       <SPAN CLASS="kwd">AND</SPAN> PROD.bVALID        = 1               <SPAN CLASS="cmt">-- We want only valid entries
+
+    -- convert prices to EURO
+</SPAN>    <SPAN CLASS="kwd">exec</SPAN> <a href="__ExternCalls.html"><SPAN CLASS="uproc">sp_exchange</SPAN></a> @NAMEvc, <SPAN CLASS="str">"EUR"</SPAN>, @PRICEnc, @PRICEnc output, @fix output
+  <SPAN CLASS="kwd">end</SPAN>
+
+  <SPAN CLASS="kwd">if</SPAN> <SPAN CLASS="kwd">exists</SPAN>(
+  <SPAN CLASS="kwd">select</SPAN> 1
+    <SPAN CLASS="kwd">from</SPAN> <a name="9_S" href="sales_history.html"><SPAN CLASS="tbl">SALES_HISTORY</SPAN></a>
+   <SPAN CLASS="kwd">where</SPAN> SHOP_ID    = @SHOP_ID
+     <SPAN CLASS="kwd">and</SPAN> PRODUCT_ID = @PRODUCT_ID
+  )<SPAN CLASS="kwd">begin</SPAN>
+    <a name="9_U"><SPAN CLASS="kwd">UPDATE</SPAN></a> <a href="sales_history.html"><SPAN CLASS="tbl">SALES_HISTORY</SPAN></a>              <SPAN CLASS="cmt">-- Close last version and insert new record
+</SPAN>       <SPAN CLASS="kwd">SET</SPAN> V_TO        = @DATESTAMP
+     <SPAN CLASS="kwd">WHERE</SPAN> SHOP_ID     = @SHOP_ID
+       <SPAN CLASS="kwd">and</SPAN> PRODUCT_ID  = @PRODUCT_ID
+       <SPAN CLASS="kwd">and</SPAN> VENDOR_ID   = @VENDOR_ID
+       <SPAN CLASS="kwd">AND</SPAN> V_TO <SPAN CLASS="kwd">IS</SPAN> <SPAN CLASS="kwd">NULL</SPAN>
+
+    <SPAN CLASS="kwd">select</SPAN> @VERSION = max(VERSION) + 1 <SPAN CLASS="cmt">-- Get Version for new last record
+</SPAN>    <SPAN CLASS="kwd">from</SPAN> <a name="9_S" href="sales_history.html"><SPAN CLASS="tbl">SALES_HISTORY</SPAN></a>
+   <SPAN CLASS="kwd">where</SPAN> SHOP_ID    = @SHOP_ID
+     <SPAN CLASS="kwd">and</SPAN> PRODUCT_ID = @PRODUCT_ID
+     <SPAN CLASS="kwd">and</SPAN> VENDOR_ID  = @VENDOR_ID
+  <SPAN CLASS="kwd">end</SPAN>
+
+  <SPAN CLASS="kwd">if</SPAN> @ACTION &lt;&gt; 1                      <SPAN CLASS="cmt">-- We don't need this to process a delete
+</SPAN>  <SPAN CLASS="kwd">begin</SPAN>                                <SPAN CLASS="cmt">-- The update above should have closed the last version
+</SPAN>    <SPAN CLASS="kwd">if</SPAN> @bValid <SPAN CLASS="kwd">is</SPAN> <SPAN CLASS="kwd">not</SPAN> <SPAN CLASS="kwd">null</SPAN>             <SPAN CLASS="cmt">-- This will close the history when a product becomes unavailable
+</SPAN>    <SPAN CLASS="kwd">begin</SPAN>
+      <a name="9_I"><SPAN CLASS="kwd">INSERT</SPAN></a> <a href="sales_history.html"><SPAN CLASS="tbl">SALES_HISTORY</SPAN></a> <SPAN CLASS="kwd">VALUES</SPAN> <SPAN CLASS="cmt">-- INSERT FIRST TIME/VERSIONED RECORD
+</SPAN>      (  @SALES_ID
+        ,@PRICEnc
+        ,@UNITSi
+        ,@VENDOR_ID
+        ,@VENDOR_NAME
+        ,@VENDOR_COUNTRY
+        ,@PRODUCT_ID
+        ,@PRODUCT_NAME
+        ,@PRODUCT_DESCRIPTION
+        ,@CATEGORY_NAME
+        ,@CATEGORY_SUB_NAME
+        ,@SHOP_ID
+        ,@SHOP_NAME
+        ,@SHOP_TYPE
+        ,@SHOP_ADDRESS_ID
+        ,@SHOP_COUNTRYvc
+        ,@SHOP_CITYvc
+        ,@SHOP_ZIPCODEvc
+        ,@SHOP_STREETvc
+        ,@SHOP_STATEvc
+        ,@SHOP_EMAILvc
+        ,@SHOP_WEB_SITEvc
+
+        ,@VERSION
+        ,@DATESTAMP
+        ,<SPAN CLASS="kwd">null</SPAN>
+      )
+    <SPAN CLASS="kwd">end</SPAN>
+  <SPAN CLASS="kwd">end</SPAN>
+
+  <SPAN CLASS="kwd">return</SPAN> 0
+<SPAN CLASS="kwd">END</SPAN>
+
+</CODE></PRE>
+
+</body></html>

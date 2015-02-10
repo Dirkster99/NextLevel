@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>NextLevel Help Index</title>
+	<link rel="shortcut icon" href="../nlogo.jpg">
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+<link rel="stylesheet" type="text/css" href="../office_xp.css" title="Office XP" />
+<script type="text/javascript" src="jsdomenu.js"></script>
+<script type="text/javascript" src="jsdomenubar.js"></script>
+<script type="text/javascript" src="helpmenuconf.js"></script>
+</head>
+
+<body  onload="initjsDOMenu()" BGCOLOR="#ffffff">
+
+<table width="100%"><tr>
+<td align="left" valign="top">
+<h1>NextLevel Online Help</h1>
+<h2>Introduction</h2>
+</td>
+<td align="right" valign="top"><div id="staticMenu"></div></td>
+</tr>
+</table>
+
+<table border="0" width="100%">
+  <tbody>
+    <tr>
+      <td align="right" valign="top">
+      <a href="../nl_logo.jpg"><img src="../nl_logo.jpg" alt="NextLevel Logo" border="0"></a>
+      </td>
+      <td align="left" valign="middle">
+      <p>
+Working on a datawarehouse project at a large company has intrigued <a href="about.html"><u>me</u></a>
+about reverse engineering Relational Database Management Systems (RDBMS) to the point that I had to sit
+down, invent, and develop the NextLevel tool. The aim of this tool is to compute dependencies between
+tables, views, procedures, and triggers in a database. This information may seem trivial to get at,
+however, things get complicated given a few hundred triggers, procedures, views, and of course tables.
+      </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<P>
+Note the menu in the upper right corner of this and <a href="../../index.html"><u>other pages</u></a>.
+You will see this only, if you your browser is Javascript enabled.
+Please enable Javascript on your browser, if you do not see the menu on the right upper corner, because your
+experience with these pages will be much better. For starters, play around with the menu and make sure you
+clicked on each entry at least once.
+</P>
+<P>
+Begin your analysis by looking at the <a href="../../index.html"><u>index page</u></a> of the database catalog,
+here you will find a list of tables, procedures, and views sorted by owner and object name. Note that database
+objects owned by the database owner are stated with their name only, while objects owned by another user than the
+owner of the database, are stated in the &quot;&lt;owner&gt;.&lt;object name&gt;&quot; syntax.
+</P>
+<P>
+Just click on any of the names listed in the main table of the index page
+(in the &quot;<a href="tblesum.html"><u>Table</u></a>&quot;,
+&quot;<a href="callgraph.html"><u>Procedure</u></a>&quot;, or &quot;View&quot; column),
+you should then see another page summarizing each database object with a
+particular set of information.
+</P>
+<P>
+In a standard RDBMS system it is possible to run a special stored procedure each time a record is inserted,
+deleted, or updated on a table, this sort of stored procedure is known as a trigger. Triggers are shown next
+to the name of a table, if a given table has a trigger installed.
+The letters <SPAN CLASS="pnm">D</SPAN>, <SPAN CLASS="pnm">I</SPAN>, or <SPAN CLASS="pnm">U</SPAN>
+represent a delete, insert, or update trigger, respectively. Just click on such a letter and you should be
+transported to a page viewing summary information on that trigger.
+</P>
+<P>
+NextLevel implements its functionality by parsing SQL source code. It is command line driven,
+and outputs HTML files, as a result of its computations. The program is thus, suitable for a great
+number of databases and operating systems. Currently, there are executable versions for Linux and Windows
+in existence. 
+</P>
+<P>
+Here is a list of Nextlevel <a href="feats.html"><u>features</u></a> and known problems.
+Please visit the <a href="changelog.html"><u>Change-Log</u></a> page, if you are interested in past developments.
+</P>
+<P>
+Back to index of <a href="../../index.html"><u>database</u></a>.
+</P>
+
+</body></html>

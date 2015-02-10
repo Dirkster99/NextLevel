@@ -1,0 +1,93 @@
+# Project: NextLevel
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = 
+OBJ  = ../../SRC/Ccg.o ../../SRC/Cdb.o ../../SRC/CDEP.o ../../SRC/COpts.o ../../SRC/Cpatrn.o ../../SRC/CPITEM.o ../../SRC/Cproc.o ../../SRC/Cproccol.o ../../SRC/Cscol.o ../../SRC/Ctab.o ../../SRC/NextLevel.o ../../SRC/Parse.o ../../SRC/PrettyPrint.o ../../SRC/XML_SRC/cdtd.o ../../SRC/XML_SRC/Cerr.o ../../SRC/XML_SRC/CharTab.o ../../SRC/XML_SRC/CPARS.o ../../SRC/XML_SRC/Cprop.o ../../SRC/XML_SRC/Cstak.o ../../SRC/XML_SRC/Cstrm.o ../../SRC/XML_SRC/Ctag.o ../../SRC/XML_SRC/Custr.o $(RES)
+LINKOBJ  = ../../SRC/Ccg.o ../../SRC/Cdb.o ../../SRC/CDEP.o ../../SRC/COpts.o ../../SRC/Cpatrn.o ../../SRC/CPITEM.o ../../SRC/Cproc.o ../../SRC/Cproccol.o ../../SRC/Cscol.o ../../SRC/Ctab.o ../../SRC/NextLevel.o ../../SRC/Parse.o ../../SRC/PrettyPrint.o ../../SRC/XML_SRC/cdtd.o ../../SRC/XML_SRC/Cerr.o ../../SRC/XML_SRC/CharTab.o ../../SRC/XML_SRC/CPARS.o ../../SRC/XML_SRC/Cprop.o ../../SRC/XML_SRC/Cstak.o ../../SRC/XML_SRC/Cstrm.o ../../SRC/XML_SRC/Ctag.o ../../SRC/XML_SRC/Custr.o $(RES)
+LIBS =  -L"lib"  
+INCS =  -I"include" 
+CXXINCS =  -I"lib/gcc/mingw32/3.4.2/include"  -I"include/c++/3.4.2/backward"  -I"include/c++/3.4.2/mingw32"  -I"include/c++/3.4.2"  -I"include" 
+BIN  = NextLevel.exe
+CXXFLAGS = $(CXXINCS)   -pipe -Wno-deprecated -Wall -W -g0 -O2 -frtti -fexceptions
+CFLAGS = $(INCS)   -pipe -Wno-deprecated -Wall -W -g0 -O2 -frtti -fexceptions
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before NextLevel.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "NextLevel.exe" $(LIBS)
+
+../../SRC/Ccg.o: ../../SRC/Ccg.cpp
+	$(CPP) -c ../../SRC/Ccg.cpp -o ../../SRC/Ccg.o $(CXXFLAGS)
+
+../../SRC/Cdb.o: ../../SRC/Cdb.cpp
+	$(CPP) -c ../../SRC/Cdb.cpp -o ../../SRC/Cdb.o $(CXXFLAGS)
+
+../../SRC/CDEP.o: ../../SRC/CDEP.cpp
+	$(CPP) -c ../../SRC/CDEP.cpp -o ../../SRC/CDEP.o $(CXXFLAGS)
+
+../../SRC/COpts.o: ../../SRC/COpts.cpp
+	$(CPP) -c ../../SRC/COpts.cpp -o ../../SRC/COpts.o $(CXXFLAGS)
+
+../../SRC/Cpatrn.o: ../../SRC/Cpatrn.cpp
+	$(CPP) -c ../../SRC/Cpatrn.cpp -o ../../SRC/Cpatrn.o $(CXXFLAGS)
+
+../../SRC/CPITEM.o: ../../SRC/CPITEM.CPP
+	$(CPP) -c ../../SRC/CPITEM.CPP -o ../../SRC/CPITEM.o $(CXXFLAGS)
+
+../../SRC/Cproc.o: ../../SRC/Cproc.cpp
+	$(CPP) -c ../../SRC/Cproc.cpp -o ../../SRC/Cproc.o $(CXXFLAGS)
+
+../../SRC/Cproccol.o: ../../SRC/Cproccol.cpp
+	$(CPP) -c ../../SRC/Cproccol.cpp -o ../../SRC/Cproccol.o $(CXXFLAGS)
+
+../../SRC/Cscol.o: ../../SRC/Cscol.cpp
+	$(CPP) -c ../../SRC/Cscol.cpp -o ../../SRC/Cscol.o $(CXXFLAGS)
+
+../../SRC/Ctab.o: ../../SRC/Ctab.cpp
+	$(CPP) -c ../../SRC/Ctab.cpp -o ../../SRC/Ctab.o $(CXXFLAGS)
+
+../../SRC/NextLevel.o: ../../SRC/NextLevel.cpp
+	$(CPP) -c ../../SRC/NextLevel.cpp -o ../../SRC/NextLevel.o $(CXXFLAGS)
+
+../../SRC/Parse.o: ../../SRC/Parse.cpp
+	$(CPP) -c ../../SRC/Parse.cpp -o ../../SRC/Parse.o $(CXXFLAGS)
+
+../../SRC/PrettyPrint.o: ../../SRC/PrettyPrint.cpp
+	$(CPP) -c ../../SRC/PrettyPrint.cpp -o ../../SRC/PrettyPrint.o $(CXXFLAGS)
+
+../../SRC/XML_SRC/cdtd.o: ../../SRC/XML_SRC/cdtd.cpp
+	$(CPP) -c ../../SRC/XML_SRC/cdtd.cpp -o ../../SRC/XML_SRC/cdtd.o $(CXXFLAGS)
+
+../../SRC/XML_SRC/Cerr.o: ../../SRC/XML_SRC/Cerr.cpp
+	$(CPP) -c ../../SRC/XML_SRC/Cerr.cpp -o ../../SRC/XML_SRC/Cerr.o $(CXXFLAGS)
+
+../../SRC/XML_SRC/CharTab.o: ../../SRC/XML_SRC/CharTab.cpp
+	$(CPP) -c ../../SRC/XML_SRC/CharTab.cpp -o ../../SRC/XML_SRC/CharTab.o $(CXXFLAGS)
+
+../../SRC/XML_SRC/CPARS.o: ../../SRC/XML_SRC/CPARS.CPP
+	$(CPP) -c ../../SRC/XML_SRC/CPARS.CPP -o ../../SRC/XML_SRC/CPARS.o $(CXXFLAGS)
+
+../../SRC/XML_SRC/Cprop.o: ../../SRC/XML_SRC/Cprop.cpp
+	$(CPP) -c ../../SRC/XML_SRC/Cprop.cpp -o ../../SRC/XML_SRC/Cprop.o $(CXXFLAGS)
+
+../../SRC/XML_SRC/Cstak.o: ../../SRC/XML_SRC/Cstak.cpp
+	$(CPP) -c ../../SRC/XML_SRC/Cstak.cpp -o ../../SRC/XML_SRC/Cstak.o $(CXXFLAGS)
+
+../../SRC/XML_SRC/Cstrm.o: ../../SRC/XML_SRC/Cstrm.cpp
+	$(CPP) -c ../../SRC/XML_SRC/Cstrm.cpp -o ../../SRC/XML_SRC/Cstrm.o $(CXXFLAGS)
+
+../../SRC/XML_SRC/Ctag.o: ../../SRC/XML_SRC/Ctag.cpp
+	$(CPP) -c ../../SRC/XML_SRC/Ctag.cpp -o ../../SRC/XML_SRC/Ctag.o $(CXXFLAGS)
+
+../../SRC/XML_SRC/Custr.o: ../../SRC/XML_SRC/Custr.cpp
+	$(CPP) -c ../../SRC/XML_SRC/Custr.cpp -o ../../SRC/XML_SRC/Custr.o $(CXXFLAGS)

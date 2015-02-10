@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>Proc: INTERFACE.dbo.proc_ShopPerformance</title>
+	<link rel="shortcut icon" href="res/proc.jpg">
+<link rel="stylesheet" type="text/css" href="res/style.css">
+<link rel="stylesheet" type="text/css" href="res/office_xp.css" title="Office XP" />
+<script type="text/javascript" src="res/jsdomenu.js"></script>
+<script type="text/javascript" src="res/jsdomenubar.js"></script>
+<script type="text/javascript" src="menuconf.js"></script>
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</head>
+<body onload="initjsDOMenu('SUN/INTERFACE')">
+<table id="NoBord" width="100%"><tr><td align="right" valign="top">
+<img src="res/proc.jpg" title="procedure"></td><td align="left" valign="top">
+<a href="../INTERFACE_SQL/dbo_proc_ShopPerformance.sql"><SPAN CLASS="pnm">proc_ShopPerformance</SPAN></a>&nbsp;(6 Callers,&nbsp;1 Calls,&nbsp;5 Tables Accessed)&nbsp;</td><td Align="right" valign="top"><div id="staticMenu"></div></td>
+</tr></table>
+
+<table id="NoBord" cellPadding="3" cellSpacing="0" width="100%">
+<tr><td align="left" valign="top">
+<script type="text/javascript" language="JavaScript" src="res/tree.js"></script>
+<script type="text/javascript" language="JavaScript">
+var TREE_ITEMS = 
+[
+['<code>proc_ShopPerformance<\/code>',,
+['<code><SPAN class=\"uproc\">sp_exchange<SPAN><\/code>','__ExternCalls.html'],
+],
+];
+</script>
+<script type="text/javascript" language="JavaScript" src="res/tree_tpl.js"></script>
+
+<br>
+<table id="Bord">
+<thead><tr>
+<TD id="BordHead">Callers</TD>
+<TD id="BordHead">Calls</TD>
+<TD id="BordHead">Tables/Views</TD>
+</tr></thead><tr>
+<td id="Bord">
+<table id="NoBord">
+<tr>
+<td id="NoBord"><a href="costs_trig_d.html"><SPAN CLASS="pnm">COSTS_TRIG_D</SPAN></a></td></tr>
+<tr>
+<td id="NoBord"><a href="costs_trig_i.html"><SPAN CLASS="pnm">COSTS_TRIG_I</SPAN></a></td></tr>
+<tr>
+<td id="NoBord"><a href="costs_trig_u.html"><SPAN CLASS="pnm">COSTS_TRIG_U</SPAN></a></td></tr>
+<tr>
+<td id="NoBord"><a href="sales_trig_d.html"><SPAN CLASS="pnm">SALES_TRIG_D</SPAN></a></td></tr>
+<tr>
+<td id="NoBord"><a href="sales_trig_i.html"><SPAN CLASS="pnm">SALES_TRIG_I</SPAN></a></td></tr>
+<tr>
+<td id="NoBord"><a href="sales_trig_u.html"><SPAN CLASS="pnm">SALES_TRIG_U</SPAN></a></td></tr>
+</table>
+<td id="Bord"><script type="text/javascript" language="JavaScript">
+<!--//
+  new tree (TREE_ITEMS, TREE_TPL);
+//-->
+</script></td>
+<td id="Bord">
+<table id="NoBord" cellpadding="3" cellSpacing="0">
+<tr>
+<td valign="top" align="left"><a href="__ExternCalls.html#t11"><SPAN CLASS="utbl">HERCULES.dbo.SHOPS</SPAN></a></td><td align="left" valign="top"><a href="#11_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="address.html"><SPAN CLASS="tbl">ADDRESS</SPAN></a></td><td align="left" valign="top"><a href="#4_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="shop.html"><SPAN CLASS="tbl">SHOP</SPAN></a></td><td align="left" valign="top"><a href="#3_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="shop_performance.html"><SPAN CLASS="tbl">Shop_Performance</SPAN></a></td><td align="left" valign="top"><a href="#10_S">S</a></td>
+<td align="left" valign="top"><a href="#10_U">U</a></td><td align="left" valign="top"><a href="#10_I">I</a></td><td></td>
+<td></td>
+</tr>
+</table></td>
+</tr></table>
+</td><td Align="right" valign="top">
+<small>owner="dbo"</small>
+<td>
+</tr></table>
+<PRE><CODE>
+
+<SPAN CLASS="cmt">--
+</SPAN><SPAN CLASS="cmt">-- A shops performance is measured by computing the
+</SPAN><SPAN CLASS="cmt">-- sales values in a timmeframe against the costs to mantain the shop
+</SPAN><SPAN CLASS="cmt">--
+</SPAN><SPAN CLASS="kwd">create</SPAN> <SPAN CLASS="kwd">procedure</SPAN> proc_ShopPerformance
+(
+  @ACTION           <SPAN CLASS="kwd">int</SPAN>  <SPAN CLASS="cmt">-- 1=delete, 2=insert, 3=update
+</SPAN> ,@PRICE_TYPE       <SPAN CLASS="kwd">int</SPAN>
+ ,@COST_PURCHASE_ID <SPAN CLASS="kwd">int</SPAN>  <SPAN CLASS="cmt">-- COST_ID or Purchase_ID when called from TRIGGER COST or PURCHASE
+</SPAN>
+ ,@PRICE                 <SPAN CLASS="kwd">numeric</SPAN>(10,2) <SPAN CLASS="cmt">-- price in EURO can be cost or sales
+</SPAN> ,@NAMEvc                <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@PRICE_DESCRIPTION     <SPAN CLASS="kwd">varchar</SPAN>(255)
+
+ ,@SHOP_ID               <SPAN CLASS="kwd">numeric</SPAN>(10,0)
+)
+<SPAN CLASS="kwd">AS</SPAN>
+<SPAN CLASS="kwd">BEGIN</SPAN>
+
+<SPAN CLASS="kwd">declare</SPAN>
+  @SHOP_ADDRESS_ID <SPAN CLASS="kwd">int</SPAN>
+ ,@SHOP_COUNTRYvc  <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@SHOP_CITYvc     <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@SHOP_ZIPCODEvc  <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@SHOP_STREETvc   <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@SHOP_STATEvc    <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@SHOP_EMAILvc    <SPAN CLASS="kwd">varchar</SPAN>(255)
+ ,@SHOP_WEB_SITEvc <SPAN CLASS="kwd">varchar</SPAN>(255)
+ ,@SHOP_NAME       <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@SHOP_TYPE       <SPAN CLASS="kwd">varchar</SPAN>(64)
+
+ ,@DATESTAMP       <SPAN CLASS="kwd">datetime</SPAN>
+ ,@VERSION         <SPAN CLASS="kwd">int</SPAN>
+ ,@PRICEnc         <SPAN CLASS="kwd">numeric</SPAN>(10,2)
+ ,@fix             <SPAN CLASS="kwd">bit</SPAN>
+ ,@CntShop         <SPAN CLASS="kwd">int</SPAN>
+
+  <SPAN CLASS="kwd">select</SPAN> @DATESTAMP = getdate(), @VERSION  = 1
+
+  <SPAN CLASS="kwd">if</SPAN> @ACTION &lt;&gt; 1 <SPAN CLASS="cmt">-- No need for this to process a delete
+</SPAN>  <SPAN CLASS="kwd">begin</SPAN>
+    <SPAN CLASS="cmt">-- convert prices to EURO
+</SPAN>    <SPAN CLASS="kwd">exec</SPAN> <a href="__ExternCalls.html"><SPAN CLASS="uproc">sp_exchange</SPAN></a> @NAMEvc, <SPAN CLASS="str">"EUR"</SPAN>, @PRICEnc, @PRICEnc output, @fix output
+  
+    <SPAN CLASS="cmt">-- Get Sop information
+</SPAN>    <SPAN CLASS="kwd">SELECT</SPAN> @SHOP_NAME       = SH.NAMEvc
+          ,@SHOP_TYPE       = SH.TYPE
+          ,@SHOP_ADDRESS_ID = ADR.ADDRESS_ID
+          ,@SHOP_COUNTRYvc  = ADR.COUNTRYvc
+          ,@SHOP_CITYvc     = ADR.CITYvc
+          ,@SHOP_ZIPCODEvc  = ADR.ZIPCODEvc
+          ,@SHOP_STREETvc   = ADR.STREETvc
+          ,@SHOP_STATEvc    = ADR.STATEvc
+          ,@SHOP_EMAILvc    = ADR.EMAILvc
+          ,@SHOP_WEB_SITEvc = ADR.WEB_SITEvc
+      <SPAN CLASS="kwd">FROM</SPAN> <a name="3_S" href="shop.html"><SPAN CLASS="tbl">SHOP</SPAN></a> SH, <a name="4_S" href="address.html"><SPAN CLASS="tbl">ADDRESS</SPAN></a> ADR
+     <SPAN CLASS="kwd">WHERE</SPAN> SH.SHOP_ID    = @SHOP_ID
+       <SPAN CLASS="kwd">AND</SPAN> SH.ADDRESS_ID = ADR.ADDRESS_ID
+  <SPAN CLASS="kwd">end</SPAN>
+
+  <SPAN CLASS="kwd">if</SPAN>(@PRICE_TYPE = 1) <SPAN CLASS="cmt">-- Entry costs for this shop
+</SPAN>  <SPAN CLASS="kwd">begin</SPAN>
+    <SPAN CLASS="kwd">if</SPAN> <SPAN CLASS="kwd">exists</SPAN>(
+      <SPAN CLASS="kwd">SELECT</SPAN> 1
+        <SPAN CLASS="kwd">FROM</SPAN> <a name="10_S" href="shop_performance.html"><SPAN CLASS="tbl">Shop_Performance</SPAN></a>
+       <SPAN CLASS="kwd">WHERE</SPAN> SHOP_ID = @SHOP_ID
+         <SPAN CLASS="kwd">AND</SPAN> COST_ID = @COST_PURCHASE_ID
+    )<SPAN CLASS="kwd">begin</SPAN>
+      <a name="10_U"><SPAN CLASS="kwd">UPDATE</SPAN></a> <a href="shop_performance.html"><SPAN CLASS="tbl">Shop_Performance</SPAN></a>           <SPAN CLASS="cmt">-- Close last version and insert new record
+</SPAN>         <SPAN CLASS="kwd">SET</SPAN> V_TO    = @DATESTAMP
+       <SPAN CLASS="kwd">WHERE</SPAN> SHOP_ID = @SHOP_ID
+         <SPAN CLASS="kwd">AND</SPAN> COST_ID = @COST_PURCHASE_ID
+         <SPAN CLASS="kwd">AND</SPAN> V_TO <SPAN CLASS="kwd">IS</SPAN> <SPAN CLASS="kwd">NULL</SPAN>
+
+      <SPAN CLASS="kwd">select</SPAN> @VERSION = max(VERSION) + 1 <SPAN CLASS="cmt">-- Get Version for new last record
+</SPAN>        <SPAN CLASS="kwd">FROM</SPAN> <a name="10_S" href="shop_performance.html"><SPAN CLASS="tbl">Shop_Performance</SPAN></a>
+       <SPAN CLASS="kwd">WHERE</SPAN> SHOP_ID = @SHOP_ID
+         <SPAN CLASS="kwd">AND</SPAN> COST_ID = @COST_PURCHASE_ID
+    <SPAN CLASS="kwd">end</SPAN>
+
+  <SPAN CLASS="cmt">-- This is just another statemant showing how access to an external DB is implemented
+</SPAN>   <SPAN CLASS="kwd">select</SPAN> @CntShop = <SPAN CLASS="kwd">count</SPAN>(*)
+     <SPAN CLASS="kwd">from</SPAN> <a name="11_S" href="__ExternCalls.html#t11"><SPAN CLASS="utbl">HERCULES..SHOPS</SPAN></a>
+
+    <SPAN CLASS="kwd">if</SPAN> @ACTION &lt;&gt; 1                      <SPAN CLASS="cmt">-- We don't need this to process a delete
+</SPAN>    <SPAN CLASS="kwd">begin</SPAN>                                <SPAN CLASS="cmt">-- The update above should have closed the last version
+</SPAN>      <a name="10_I"><SPAN CLASS="kwd">INSERT</SPAN></a> <a href="shop_performance.html"><SPAN CLASS="tbl">Shop_Performance</SPAN></a> <SPAN CLASS="kwd">VALUES</SPAN>
+      (
+        @SHOP_ID
+       ,@SHOP_NAME
+       ,@SHOP_TYPE
+       ,@SHOP_ADDRESS_ID
+       ,@SHOP_COUNTRYvc
+       ,@SHOP_CITYvc
+       ,@SHOP_ZIPCODEvc
+       ,@SHOP_STREETvc
+       ,@SHOP_STATEvc
+       ,@SHOP_EMAILvc
+       ,@SHOP_WEB_SITEvc
+       ,@COST_PURCHASE_ID
+       ,0
+       ,@PRICE_TYPE
+       ,@PRICEnc
+       ,@PRICE_DESCRIPTION
+       ,@VERSION
+       ,@DATESTAMP
+       ,<SPAN CLASS="kwd">NULL</SPAN>
+     )
+    <SPAN CLASS="kwd">end</SPAN>
+  <SPAN CLASS="kwd">end</SPAN>      <SPAN CLASS="cmt">-- End of cost entry
+</SPAN>  <SPAN CLASS="kwd">else</SPAN>
+  <SPAN CLASS="kwd">if</SPAN>(@PRICE_TYPE = 2) <SPAN CLASS="cmt">-- Entry sale for this shop
+</SPAN>  <SPAN CLASS="kwd">begin</SPAN>
+    <SPAN CLASS="kwd">if</SPAN> <SPAN CLASS="kwd">exists</SPAN>(
+      <SPAN CLASS="kwd">SELECT</SPAN> 1
+        <SPAN CLASS="kwd">FROM</SPAN> <a name="10_S" href="shop_performance.html"><SPAN CLASS="tbl">Shop_Performance</SPAN></a>
+       <SPAN CLASS="kwd">WHERE</SPAN> SHOP_ID     = @SHOP_ID
+         <SPAN CLASS="kwd">AND</SPAN> PURCHASE_ID = @COST_PURCHASE_ID
+    )<SPAN CLASS="kwd">begin</SPAN>
+      <a name="10_U"><SPAN CLASS="kwd">UPDATE</SPAN></a> <a href="shop_performance.html"><SPAN CLASS="tbl">Shop_Performance</SPAN></a>           <SPAN CLASS="cmt">-- Close last version and insert new record
+</SPAN>         <SPAN CLASS="kwd">SET</SPAN> V_TO        = @DATESTAMP
+       <SPAN CLASS="kwd">WHERE</SPAN> SHOP_ID     = @SHOP_ID
+         <SPAN CLASS="kwd">AND</SPAN> PURCHASE_ID = @COST_PURCHASE_ID
+         <SPAN CLASS="kwd">AND</SPAN> V_TO <SPAN CLASS="kwd">IS</SPAN> <SPAN CLASS="kwd">NULL</SPAN>
+
+      <SPAN CLASS="kwd">select</SPAN> @VERSION = max(VERSION) + 1 <SPAN CLASS="cmt">-- Get Version for new last record
+</SPAN>        <SPAN CLASS="kwd">FROM</SPAN> <a name="10_S" href="shop_performance.html"><SPAN CLASS="tbl">Shop_Performance</SPAN></a>
+       <SPAN CLASS="kwd">WHERE</SPAN> SHOP_ID     = @SHOP_ID
+         <SPAN CLASS="kwd">AND</SPAN> PURCHASE_ID = @COST_PURCHASE_ID
+    <SPAN CLASS="kwd">end</SPAN>
+
+    <SPAN CLASS="kwd">if</SPAN> @ACTION &lt;&gt; 1                      <SPAN CLASS="cmt">-- We don't need this to process a delete
+</SPAN>    <SPAN CLASS="kwd">begin</SPAN>                                <SPAN CLASS="cmt">-- The update above should have closed the last version
+</SPAN>      <a name="10_I"><SPAN CLASS="kwd">INSERT</SPAN></a> <a href="shop_performance.html"><SPAN CLASS="tbl">Shop_Performance</SPAN></a> <SPAN CLASS="kwd">VALUES</SPAN>
+      (
+        @SHOP_ID
+       ,@SHOP_NAME
+       ,@SHOP_TYPE
+       ,@SHOP_ADDRESS_ID
+       ,@SHOP_COUNTRYvc
+       ,@SHOP_CITYvc
+       ,@SHOP_ZIPCODEvc
+       ,@SHOP_STREETvc
+       ,@SHOP_STATEvc
+       ,@SHOP_EMAILvc
+       ,@SHOP_WEB_SITEvc
+       ,0
+       ,@COST_PURCHASE_ID
+       ,@PRICE_TYPE
+       ,@PRICEnc
+       ,@PRICE_DESCRIPTION
+       ,@VERSION
+       ,@DATESTAMP
+       ,<SPAN CLASS="kwd">NULL</SPAN>
+     )
+    <SPAN CLASS="kwd">end</SPAN>
+  <SPAN CLASS="kwd">end</SPAN>    <SPAN CLASS="cmt">-- End of sales entry
+</SPAN><SPAN CLASS="kwd">END</SPAN>
+</CODE></PRE>
+
+</body></html>

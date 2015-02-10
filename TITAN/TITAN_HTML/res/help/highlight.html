@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>NextLevel Project Page - Reverse Engineering RDBMS</title>
+	<link rel="shortcut icon" href="../nlogo.jpg">
+  <link rel="stylesheet" type="text/css" href="../style.css">
+  
+<link rel="stylesheet" type="text/css" href="../office_xp.css" title="Office XP" />
+<script type="text/javascript" src="jsdomenu.js"></script>
+<script type="text/javascript" src="jsdomenubar.js"></script>
+<script type="text/javascript" src="helpmenuconf.js"></script>
+</head>
+
+<body  onload="initjsDOMenu()" BGCOLOR="#ffffff">
+
+<table border="0" cellPadding="3" cellSpacing="0" width="100%">
+<tr>
+ <td align="left" valign="top"><h1>NextLevel</h1></td>
+ <td align="right" valign="top"><div id="staticMenu"></div></td>
+</tr>
+<tr><td colspan="2"><b>Online Help</b></td>
+</table>
+
+<h1>Hihlighting SQL Source Keywords</h1>
+<p>
+Parsed and analyzed SQL code can be viewed in HTML as highlighted and linked text. The SQL
+code in Figure 2 gives a bit of an idea of what this may look like. The actual colors and
+font properties are 100% based on style sheet definitions. Recognized names of tables, views
+and procedures are linked with a summary html page of each database object. Just click on
+the name of a database object and you should be looking at it's summary page (the sample text
+below however, does <b>not</b> contain any links).
+</p>
+
+<table cellSpacing="3" width="100%" style="border: 1px dashed #006600; solid rgb(51, 125, 51); color: rgb(0, 0, 0);">
+<tr><td align="left" valign="top"><PRE><CODE><SPAN CLASS="kwd">if</SPAN> <SPAN CLASS="kwd">exists</SPAN>
+  (
+    <SPAN CLASS="kwd">select</SPAN> 1
+      <SPAN CLASS="kwd">from</SPAN> <SPAN CLASS="tbl">PURCHASE_HISTORY</SPAN>
+     <SPAN CLASS="kwd">where</SPAN> PURCHASE_ID = @PURCHASE_ID
+  )
+  <SPAN CLASS="kwd">begin</SPAN>                            <SPAN CLASS="cmt">-- This is not the first version of this record
+</SPAN>    <a name="2_U"><SPAN CLASS="kwd">UPDATE</SPAN></a> <SPAN CLASS="tbl">PURCHASE_HISTORY</SPAN>        <SPAN CLASS="cmt">-- Close last version and insert new record
+</SPAN>       <SPAN CLASS="kwd">SET</SPAN> V_TO        = @DATESTAMP
+     <SPAN CLASS="kwd">WHERE</SPAN> PURCHASE_ID = @PURCHASE_ID
+       <SPAN CLASS="kwd">AND</SPAN> V_TO <SPAN CLASS="kwd">IS</SPAN> <SPAN CLASS="kwd">NULL</SPAN>
+
+    <SPAN CLASS="kwd">select</SPAN> @VERSION = max(VERSION) + 1 <SPAN CLASS="cmt">-- Get Version for new last record
+</SPAN>     <SPAN CLASS="kwd">from</SPAN> <SPAN CLASS="tbl">PURCHASE_HISTORY</SPAN>
+    <SPAN CLASS="kwd">where</SPAN> PURCHASE_ID = @PURCHASE_ID
+  <SPAN CLASS="kwd">end</SPAN></CODE></PRE>
+</td></tr>
+<tr><td align="center"><span class="caption">Figure 2: Sample SQL Code Highlighting</span></td></tr>
+</table>
+
+<a name="trigevent"><h2>Highlighting SQL Source - Specialities</h2></a>
+
+<p>
+An <SPAN CLASS="kwd">INSERT</SPAN>, <SPAN CLASS="kwd">DELETE</SPAN>,
+or <SPAN CLASS="kwd">UPDATE</SPAN> statement on a table can cause a
+<a href="highlight.html#trigevent"><u>trigger to be invoked</u></a>,
+if the targeted table has a trigger installed. This can be seen as an indirect
+extension of a callgraph, because a procedure called <CODE>STORE_ITEM</CODE> could insert
+a record in a table called <CODE>LINE_ITEM</CODE>. <CODE>LINE_ITEM</CODE> in turn may have an
+<CODE>INSERT</CODE> trigger installed, which will be invoked before the procedure
+<CODE>STORE_ITEM</CODE> is continued.
+</p>
+<p>
+The SQL source code in Figure 3 gives an examples showing a delete statement being invoked
+on a table called PRODUCT_PRICE with a delete trigger installed on PRODUCT_PRICE. Here the
+<SPAN CLASS="pnm">DELETE</SPAN> statement is <SPAN CLASS="pnm">colored</SPAN> differently
+and linked with the source code page for the trigger.
+</p>
+<p>
+This way, one can click on the colored <SPAN CLASS="pnm">DELETE</SPAN> keyword to view the
+trigger definition of the delete <SPAN CLASS="tbl">PRODUCT_PRICE</SPAN> trigger (which is
+a logical extension of the callgraph), or click on the table name itself to view a summary
+page of that table (the sample text below however, does <b>not</b> contain any links).
+</p>
+
+<table cellSpacing="3" width="100%" style="border: 1px dashed #006600; solid rgb(51, 125, 51); color: rgb(0, 0, 0);">
+<tr><td align="left" valign="top"><PRE><CODE><SPAN CLASS="cmt">--
+</SPAN><SPAN CLASS="cmt">-- The sales update trigger is fired when records in the SALES table are updated
+</SPAN><SPAN CLASS="cmt">-- Each change in a record is processed by the proc_SalesHistory table which in
+</SPAN><SPAN CLASS="cmt">-- turn is used to analyze changing data over time ...
+</SPAN><SPAN CLASS="cmt">--
+</SPAN><SPAN CLASS="kwd">create</SPAN> <SPAN CLASS="kwd">trigger</SPAN> PRODUCT_TRIG_D <SPAN CLASS="kwd">on</SPAN> <SPAN CLASS="tbl">PRODUCT</SPAN> <SPAN CLASS="kwd">for</SPAN> <SPAN CLASS="kwd">DELETE</SPAN> <SPAN CLASS="kwd">as</SPAN>
+<SPAN CLASS="kwd">begin</SPAN>
+
+<a name="14_D"><SPAN CLASS="pnm">DELETE</SPAN></a> <SPAN CLASS="tbl">PRODUCT_PRICE</SPAN>
+  <SPAN CLASS="kwd">FROM</SPAN> <a name="7_S"><SPAN CLASS="tbl">inserted</SPAN></a> i, <a name="14_S"><SPAN CLASS="tbl">PRODUCT_PRICE</SPAN></a> PP
+ <SPAN CLASS="kwd">WHERE</SPAN> PP.Product_ID = i.PRODUCT_ID
+
+<SPAN CLASS="kwd">end</SPAN> <SPAN CLASS="cmt">-- End of Trigger
+</SPAN></CODE></PRE>
+</td></tr>
+<tr><td align="center"><span class="caption">Figure 3: Finding Trigger Events via Highlighting</span></td></tr>
+</table>
+
+<hr>
+<p><a href="index.html">Back</a></p>
+</body></html>

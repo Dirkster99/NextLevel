@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?NextLevel version="2.1" date="January, 2006"?>
+<!-- Relational Database CallGraph Utility Application File -->
+<db_ptrs>
+	<!-- define xml index files for each DB to be analyzed together -->
+	<DB locate="TITAN\TITAN_SQL\idx.xml" outdir="TITAN\TITAN_HTML\" />
+	<DB locate="INTERFACE\INTERFACE_SQL\idx.xml" outdir="INTERFACE\INTERFACE_HTML\" />
+</db_ptrs>

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>Proc: INTERFACE.dbo.proc_Error</title>
+	<link rel="shortcut icon" href="res/proc.jpg">
+<link rel="stylesheet" type="text/css" href="res/style.css">
+<link rel="stylesheet" type="text/css" href="res/office_xp.css" title="Office XP" />
+<script type="text/javascript" src="res/jsdomenu.js"></script>
+<script type="text/javascript" src="res/jsdomenubar.js"></script>
+<script type="text/javascript" src="menuconf.js"></script>
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</head>
+<body onload="initjsDOMenu('SUN/INTERFACE')">
+<table id="NoBord" width="100%"><tr><td align="right" valign="top">
+<img src="res/proc.jpg" title="procedure"></td><td align="left" valign="top">
+<a href="../INTERFACE_SQL/dbo_proc_Error.sql"><SPAN CLASS="pnm">proc_Error</SPAN></a>&nbsp;(4 Callers,&nbsp;0 Calls,&nbsp;1 Tables Accessed)&nbsp;</td><td Align="right" valign="top"><div id="staticMenu"></div></td>
+</tr></table>
+
+<table id="NoBord" cellPadding="3" cellSpacing="0" width="100%">
+<tr><td align="left" valign="top">
+<br>
+<table id="Bord">
+<thead><tr>
+<TD id="BordHead">Callers</TD>
+<TD id="BordHead">Tables/Views</TD>
+</tr></thead><tr>
+<td id="Bord">
+<table id="NoBord">
+<tr>
+<td id="NoBord"><a href="costtype_trig_d.html"><SPAN CLASS="pnm">COSTTYPE_TRIG_D</SPAN></a></td></tr>
+<tr>
+<td id="NoBord"><a href="costtype_trig_u.html"><SPAN CLASS="pnm">COSTTYPE_TRIG_U</SPAN></a></td></tr>
+<tr>
+<td id="NoBord"><a href="proc_saleshistory.html"><SPAN CLASS="pnm">proc_SalesHistory</SPAN></a></td></tr>
+<tr>
+<td id="NoBord"><a href="product_price_trig_d.html"><SPAN CLASS="pnm">PRODUCT_PRICE_TRIG_D</SPAN></a></td></tr>
+</table>
+<td id="Bord">
+<table id="NoBord" cellpadding="3" cellSpacing="0">
+<tr>
+<td valign="top" align="left"><a href="error_msg.html"><SPAN CLASS="tbl">ERROR_MSG</SPAN></a></td><td></td>
+<td></td>
+<td align="left" valign="top"><a href="#0_I">I</a></td><td></td>
+<td></td>
+</tr>
+</table></td>
+</tr></table>
+</td><td Align="right" valign="top">
+<small>owner="dbo"</small>
+<td>
+</tr></table>
+<PRE><CODE>
+
+<SPAN CLASS="cmt">-- proc_Error is called whenever errors need to be locked away
+</SPAN><SPAN CLASS="cmt">-- in order to have a history of unprocessed events/data or other problems
+</SPAN><SPAN CLASS="kwd">create</SPAN> <SPAN CLASS="kwd">procedure</SPAN> proc_Error
+(
+  @SOURCEvc  <SPAN CLASS="kwd">VARCHAR</SPAN>(32)
+ ,@PARAMSvc  <SPAN CLASS="kwd">VARCHAR</SPAN>(255)
+ ,@MESSAGEvc <SPAN CLASS="kwd">VARCHAR</SPAN>(255)
+)
+<SPAN CLASS="kwd">AS</SPAN>
+<SPAN CLASS="kwd">BEGIN</SPAN>
+  <a name="0_I"><SPAN CLASS="kwd">INSERT INTO</SPAN></a> <a href="error_msg.html"><SPAN CLASS="tbl">ERROR_MSG</SPAN></a>(NOWdt, SOURCEvc, PARAMSvc, MESSAGEvc)
+  <SPAN CLASS="kwd">VALUES</SPAN>(getdate(), @SOURCEvc ,@PARAMSvc ,@MESSAGEvc)
+
+<SPAN CLASS="kwd">END</SPAN>
+go
+</CODE></PRE>
+
+</body></html>

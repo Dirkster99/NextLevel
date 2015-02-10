@@ -1,0 +1,63 @@
+// COPTS.cpp: implementation of the program options class. V1.0
+//
+//////////////////////////////////////////////////////////////////////
+
+
+#include "defs.h"
+#include "copts.h"
+#include "custr.h"
+
+//Here we define a set of sinple keywords which will be highlighted as such
+#define NUM_HASH_KEYS 191
+#define LEN_HASH_KEYS 15
+
+//Size of a number strings when represented in characters
+#define NUM_SZ 15
+const UCHAR KEY_WORDS[NUM_HASH_KEYS][LEN_HASH_KEYS] =
+{
+"ACTIVE","ALL","AFTER","ALTER","AND","ANY","AS",
+"ASC","ASCENDING","AT","AUTO","AUTOINC","AUTO_INCREMENT"
+,"BASE_NAME","BEFORE","BEGIN","BETWEEN","BIT","BOTH","BY","CALL",
+"CACHE","CAST","CHECK","COALESCE","COLUMN","COMMIT","COMMITTED","COMPUTED","CONDITIONAL",
+"CONNECT","CONSTRAINT","CONTAINING","CONTINUE ","COUNT","CREATE","CURRENT","CURSOR"
+,"CONVERT","DATEADD"
+,"DATABASE","DEBUG","DECLARE","DEFAULT","DELETE","DESC","DESCENDING","DISTINCT","DOMAIN"
+,"DO","DROP","ELSE","END","ENTRY_POINT","ESCAPE","EXCEPTION","EXECUTE","EXISTS"
+,"EXIT","EXTERNAL","EXTRACT","FILTER","FOR","FOREIGN","FROM","FULL","FUNCTION","GENERATOR"
+,"GRANT","GROUP","HAVING","IF","IN","INACTIVE","INDEX","INNER","INSERT","INTO","IS","ISNULL"
+,"ISOLATION","JOIN","KEY","NULL","NULLIF","LEADING","LEFT","LEVEL","LIKE","MERGE","NAMES","NO"
+,"NOT","OF","ON","ONLY","OR","ORDER","OUTER","PARAMETER","PASSWORD","PIVOT","PLAN","POSITION"
+,"PROC", "PRINT"
+,"PROCEDURE","PROTECTED","PRIMARY","PRIVILEGES","READ","REFERENCES","RETAIN","RETURNS","REVOKE"
+,"RIGHT","ROLLBACK","SCHEMA","SELECT","SET","SHARED","SHADOW","SNAPSHOT","SOME","SUSPEND"
+,"TABLE","THEN","TO","TRAILING","TRANSFORM","TRANSACTION","TRIGGER","UNCOMMITTED","UNION"
+,"UNIQUE","UPDATE","USER","USING","VALUES","VARIABLE","VIEW","WAIT","WHEN","WHERE","WHILE"
+,"WITH","WORK","TINYINT","SMALLINT","MEDIUMINT","INT","INTEGER","BIGINT","FLOAT","DOUBLE"
+,"PRECISION","REAL","DECIMAL","NUMERIC","DATETIME","DATE","TIMESTAMP","TIME","YEAR","CHAR"
+,"VARCHAR","TINYBLOB","TINYTEXT","BLOB","TEXT","MEDIUMBLOB","MEDIUMTEXT","LONGBLOB"
+,"LONGTEXT","ENUM","RETURN", "DEALLOCATE", "CLOSE", "OPEN", "RAISERROR", "FETCH","MONEY",
+"GOTO", "BREAK", "CASE", "SMALLDATETIME",
+
+"RIGHT","LEFT", "OUTER", "JOIN", "INNER"
+};
+
+//Name of file to reference for external calls
+//extern const char EXTERN_CALLS_FNAME[];
+
+///////////////////////////
+// Construction/Destruction
+///////////////////////////
+COpts::COpts():	sVers(SOFT_VERSION), iBuild(TOOL_BUILD), bGenWinHelp(false)
+{
+	int i;
+
+	for(i=0;i<NUM_HASH_KEYS;i++)
+	{
+		hKeyWords.Add(KEY_WORDS[i]);
+	}
+}
+
+COpts::~COpts()
+{
+
+}

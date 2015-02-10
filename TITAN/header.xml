@@ -1,0 +1,9 @@
+
+<!-- header information to be used in nextlevel sample database index file -->
+<htmlroot>
+  <backlink link="../index.html" text="Back to Homepage" />
+</htmlroot>
+
+<program_opts>
+  <dbobj_docs folder="..\TITAN_DOKU\" />
+</program_opts>

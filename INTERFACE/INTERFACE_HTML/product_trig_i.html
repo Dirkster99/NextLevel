@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>Trig: INTERFACE.dbo.PRODUCT_TRIG_I</title>
+	<link rel="shortcut icon" href="res/trigger.jpg">
+<link rel="stylesheet" type="text/css" href="res/style.css">
+<link rel="stylesheet" type="text/css" href="res/office_xp.css" title="Office XP" />
+<script type="text/javascript" src="res/jsdomenu.js"></script>
+<script type="text/javascript" src="res/jsdomenubar.js"></script>
+<script type="text/javascript" src="menuconf.js"></script>
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</head>
+<body onload="initjsDOMenu('SUN/INTERFACE')">
+<table id="NoBord" width="100%"><tr><td align="right" valign="top">
+<img src="res/trigger.jpg" title="trigger"></td><td align="left" valign="top">
+<a href="../INTERFACE_SQL/dbo_PRODUCT_TRIG_I.sql"><SPAN CLASS="pnm">PRODUCT_TRIG_I</SPAN></a>&nbsp;(0 Callers,&nbsp;0 Calls,&nbsp;5 Tables Accessed)&nbsp;</td><td Align="right" valign="top"><div id="staticMenu"></div></td>
+</tr><tr><td align="right" valign="top">ON <img src="res/table.jpg" title="table"></td><td><a href="product.html"><SPAN CLASS="tbl">PRODUCT</SPAN></a> (INSERT)</td><td>
+</table>
+
+<table id="NoBord" cellPadding="3" cellSpacing="0" width="100%">
+<tr><td align="left" valign="top">
+<br>
+<table id="Bord">
+<thead><tr>
+<TD id="BordHead">Tables/Views</TD>
+</tr></thead><tr>
+<td id="Bord">
+<table id="NoBord" cellpadding="3" cellSpacing="0">
+<tr>
+<td valign="top" align="left"><a href="category.html"><SPAN CLASS="tbl">CATEGORY</SPAN></a></td><td align="left" valign="top"><a href="#8_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="product.html"><SPAN CLASS="tbl">PRODUCT</SPAN></a></td><td align="left" valign="top"><a href="#7_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="product_price.html"><SPAN CLASS="tbl">PRODUCT_PRICE</SPAN></a></td><td></td>
+<td></td>
+<td align="left" valign="top"><a href="#15_I">I</a></td><td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="salesprice.html"><SPAN CLASS="tbl">SALESPRICE</SPAN></a></td><td align="left" valign="top"><a href="#17_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="standardprice.html"><SPAN CLASS="tbl">STANDARDPRICE</SPAN></a></td><td align="left" valign="top"><a href="#16_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table></td>
+</tr></table>
+</td><td Align="right" valign="top">
+<small>owner="dbo"</small>
+<td>
+</tr></table>
+<PRE><CODE>
+
+<SPAN CLASS="cmt">--
+</SPAN><SPAN CLASS="cmt">-- The PRODUCT_TRIG_I insert trigger is fired when new records in the PRODUCT table are inserted
+</SPAN><SPAN CLASS="cmt">-- Each new PRODUCT entry causes an insert on PRODUCT_PRICE
+</SPAN><SPAN CLASS="cmt">--
+</SPAN><SPAN CLASS="kwd">create</SPAN> <SPAN CLASS="kwd">trigger</SPAN> PRODUCT_TRIG_I <SPAN CLASS="kwd">on</SPAN> <a href="product.html"><SPAN CLASS="tbl">PRODUCT</SPAN></a> <SPAN CLASS="kwd">for</SPAN> <SPAN CLASS="kwd">INSERT</SPAN> <SPAN CLASS="kwd">as</SPAN>
+<SPAN CLASS="kwd">begin</SPAN>
+<a name="15_I"><SPAN CLASS="kwd">INSERT INTO</SPAN></a> <a href="product_price.html"><SPAN CLASS="tbl">PRODUCT_PRICE</SPAN></a>
+(
+   Product_ID,NAMEvc,DESCRIPTIONvc,bVALID
+  ,STDRD_PRICE_ID,STDRD_VALID_FROMdt,STDRD_VALID_TOdt,STDRD_PRICEnc,STDRD_CURRENCY_ID
+  ,SALES_PRICE_ID,SALES_VALID_FROMdt,SALES_VALID_TOdt,SALES_PRICEnc,SALES_CURRENCY_ID,SALES_DESCRIPTIONvc,SALES_NAMEvc
+  ,CAT_NAMEvc,CAT_SUB_NAMEvc,CAT_DESCRIPTIONvc
+)
+<SPAN CLASS="kwd">SELECT</SPAN>
+   Product_ID    = i.PRODUCT_ID
+  ,NAMEvc        = i.NAMEvc
+  ,DESCRIPTIONvc = i.DESCRIPTIONvc
+  ,bVALID        = i.bVALID
+  <SPAN CLASS="cmt">-- STDRD Records
+</SPAN>  ,STDRD_PRICE_ID     = STD_PR.PRICE_ID
+  ,STDRD_VALID_FROMdt = STD_PR.VALID_FROMdt
+  ,STDRD_VALID_TOdt   = STD_PR.VALID_TOdt
+  ,STDRD_PRICEnc      = STD_PR.PRICEnc
+  ,STDRD_CURRENCY_ID  = STD_PR.CURRENCY_ID
+  <SPAN CLASS="cmt">-- SALES Records
+</SPAN>  ,SALES_PRICE_ID      = SLPR.PRICE_ID
+  ,SALES_VALID_FROMdt  = SLPR.VALID_FROMdt
+  ,SALES_VALID_TOdt    = SLPR.VALID_TOdt
+  ,SALES_PRICEnc       = SLPR.PRICEnc
+  ,SALES_CURRENCY_ID   = SLPR.CURRENCY_ID
+  ,SALES_DESCRIPTIONvc = SLPR.DESCRIPTIONvc
+  ,SALES_NAMEvc        = SLPR.NAMEvc
+  <SPAN CLASS="cmt">--CATEGORY_1_ID    int         not null,
+  --CATEGORY_2_ID    int         not null
+</SPAN>  ,CAT_NAMEvc          = CAT.NAMEvc
+  ,CAT_SUB_NAMEvc      = CAT.SUB_NAMEvc
+  ,CAT_DESCRIPTIONvc   = CAT.SUB_NAMEvc
+  <SPAN CLASS="kwd">FROM</SPAN> <a name="7_S" href="product.html"><SPAN CLASS="tbl">inserted</SPAN></a> i, <a name="16_S" href="standardprice.html"><SPAN CLASS="tbl">STANDARDPRICE</SPAN></a> STD_PR, <a name="17_S" href="salesprice.html"><SPAN CLASS="tbl">SALESPRICE</SPAN></a> SLPR, <a name="8_S" href="category.html"><SPAN CLASS="tbl">CATEGORY</SPAN></a> CAT
+ <SPAN CLASS="kwd">WHERE</SPAN> STD_PR.PRICE_ID = i.STDRD_PRICE_ID
+   <SPAN CLASS="kwd">AND</SPAN> SLPR.PRICE_ID   = i.SALES_PRICE_ID
+   <SPAN CLASS="kwd">AND</SPAN> CAT.CAT_1_ID    = i.CATEGORY_1_ID
+   <SPAN CLASS="kwd">AND</SPAN> CAT.CAT_1_ID    = i.CATEGORY_2_ID
+
+<SPAN CLASS="kwd">end</SPAN> <SPAN CLASS="cmt">-- End of Trigger
+</SPAN></CODE></PRE>
+
+</body></html>

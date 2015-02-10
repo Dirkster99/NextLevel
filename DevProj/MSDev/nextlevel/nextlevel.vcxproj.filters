@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Quelldateien\xml_src">
+      <UniqueIdentifier>{683c5944-c73f-4be0-8698-4e09c4f2d8d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\ccg.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cdb.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cdep.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cdp.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\copts.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpatrn.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cpitem.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cproc.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cproccol.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cscol.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\cserver.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ctab.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ctabcol.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\nextlevel.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\parse.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\prettyprint.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\xml_src\cdtd.cpp">
+      <Filter>Quelldateien\xml_src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\xml_src\cerr.cpp">
+      <Filter>Quelldateien\xml_src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\xml_src\chartab.cpp">
+      <Filter>Quelldateien\xml_src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\xml_src\cpars.cpp">
+      <Filter>Quelldateien\xml_src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\xml_src\cprop.cpp">
+      <Filter>Quelldateien\xml_src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\xml_src\cstak.cpp">
+      <Filter>Quelldateien\xml_src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\xml_src\cstrm.cpp">
+      <Filter>Quelldateien\xml_src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\xml_src\ctag.cpp">
+      <Filter>Quelldateien\xml_src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\xml_src\custr.cpp">
+      <Filter>Quelldateien\xml_src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\xml_src\cdtd.h">
+      <Filter>Quelldateien\xml_src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\xml_src\cerr.h">
+      <Filter>Quelldateien\xml_src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\xml_src\chartab.h">
+      <Filter>Quelldateien\xml_src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\xml_src\cpars.h">
+      <Filter>Quelldateien\xml_src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\xml_src\cprop.h">
+      <Filter>Quelldateien\xml_src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\xml_src\cstak.h">
+      <Filter>Quelldateien\xml_src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\xml_src\cstrm.h">
+      <Filter>Quelldateien\xml_src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\xml_src\ctag.h">
+      <Filter>Quelldateien\xml_src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\xml_src\custr.h">
+      <Filter>Quelldateien\xml_src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\xml_src\tlist.h">
+      <Filter>Quelldateien\xml_src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ccg.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cdb.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cdep.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cdp.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\copts.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpatrn.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cpitem.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cproc.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cproccol.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cscol.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\cserver.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ctab.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ctabcol.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\defs.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\parse.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\prettyprint.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\ReadMe.txt" />
+  </ItemGroup>
+</Project>

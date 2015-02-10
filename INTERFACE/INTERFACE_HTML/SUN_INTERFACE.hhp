@@ -1,0 +1,50 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=SUN_INTERFACE.chm
+Contents file=SUN_INTERFACE.hhc
+Default Window=Main
+Default topic=index.html
+Display compile progress=Yes
+Enhanced decompilation=Yes
+Full-text search=Yes
+Index file=SUN_INTERFACE.hhk
+Language=0x409 English (United States)
+Title=SUN/INTERFACE 
+
+[WINDOWS]
+Main=,"SUN_INTERFACE.hhc","SUN_INTERFACE.hhk","index.html","index.html",,,,,0x63520,,0x307e,[97,77,833,757],0x1030000,,,,1,,0
+
+[FILES]
+
+res\Base.gif
+res\EMPTY.GIF
+res\radar.jpg
+res\FOLDER.GIF
+res\folderopen.gif
+res\JOIN.GIF
+res\joinbottom.gif
+res\LINE.GIF
+res\Link2Src.GIF
+res\MINUS.GIF
+res\minusbottom.gif
+res\PAGE.GIF
+res\PLUS.GIF
+res\plusbottom.gif
+res\style.css
+res\TREE.JS
+res\Tree_tpl.js
+res\nlogo.jpg
+res\proc.jpg
+res\table.jpg
+res\trigger.jpg
+res\nl_logo.png
+res\question.png
+res\radar.png
+res\cogweel_16.png
+res\office_xp_arrow.png
+res\office_xp_arrow_o.png
+res\office_xp_divider.png
+res\office_xp_menu_left.png
+__unrefed_dbobj.html
+
+[INFOTYPES]

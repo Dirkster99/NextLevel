@@ -1,0 +1,114 @@
+
+/* Generate picture output files with commandlines (without quotes):
+   "dot -Tgif tables.dot -o tablesBig.gif"
+   "dot -G"size=6.5,7" -Tgif tables.dot -o tables.gif"
+*/
+
+digraph g
+{
+	ratio=compress
+	rankdir=LR;
+	node [shape = record,height=.1];
+
+	ndProduct[label = "PRODUCT \l|<Product_ID> PRODUCT_ID \r|\
+                              NAMEvc \r|\
+                              DESCRIPTIONvc \r|\
+                              <StandardPrice_ID>STDRD_PRICE_ID \r|\
+                              <Sales_Price_ID>SALES_PRICE_ID \r|\
+                              <CAT_1_ID>CATEGORY_1_ID \r|\
+                              <CAT_2_ID>CATEGORY_2_ID \r"];
+
+	ndPurchase[label = "PURCHASE \l|<Purchase_ID> PURCHASE_ID \r|\
+                              <Vendor_ID> VENDOR_ID \r|\
+                              <Product_ID> PRODUCT_ID \r|\
+                              PURCHASE_PRICEnc \r|\
+                              <Currency_ID> CURRENCY_ID\r|\
+                              UNITSi \r"];
+
+	ndVendor[label = "VENDOR \l|<Vendor_ID> VENDOR_ID \r|\
+                              NAME \r|\
+                              COUNTRY  \r"];
+
+	ndStandardPrice[label = "STANDARDPRICE \l|<Price_ID> PRICE_ID \r|\
+                              VALID_FROMdt \r|\
+                              VALID_TOdt \r|\
+                              PRICEnc \r|\
+                              <Currency_ID>CURRENCY_ID \r"];
+
+	ndCurrency[label = "CURRENCY \l|<Currency_ID> CURRENCY_ID \r|\
+                              NAMEvc \r"];
+
+	ndSalesPrice[label = "SALESPRICE \l|<Price_ID> Price_ID \r|\
+                              VALID_FROMdt \r|\
+                              VALID_TOdt \r|\
+                              PRICEnc \r|\
+                              <Currency_ID> CURRENCY_ID \r|\
+                              DESCRIPTIONvc \r|\
+                              NAMEvc \r"];
+
+	ndShop[label = "SHOP \l|<Shop_ID> SHOP_ID \r|\
+                              <Address_ID> Address_ID \r|\
+                              NAMEvc \r|\
+                              TYPEi \r"];
+
+	ndAddress[label = "ADDRESS \l|<Address_ID> ADDRESS_ID \r|\
+                              COUNTRYvc \r|\
+                              CITYvc \r|\
+                              ZIPCODEvc \r|\
+                              STREETvc \r|\
+                              STATEvc \r|\
+                              EMAILvc \r|\
+                              WEB_SITEvc \r"];
+
+	ndSales[label = "SALES \l|<Sales_ID> SALES_ID \r|\
+                              <Purchase_ID> PURCHASE_ID \r|\
+                              <Shop_ID> SHOP_ID \r|\
+                              PRICEnc \r|\
+                              <Currency_ID> CURRENCY_ID \r|\
+                              UNITSi \r"];
+
+	ndCategory[label = "CATEGORY \l|<CAT_1_ID> CAT_1_ID \r|\
+                              <CAT_2_ID> CAT_2_ID \r|\
+                              NAMEvc \r|\
+                              SUB_NAMEvc \r|\
+                              DESCRIPTIONvc \r"];
+
+	ndCosts[label = "COSTS \l|<COST_ID> COST_ID \r|\
+                              <Shop_ID> SHOP_ID \r|\
+                              <TYPE_ID> TYPE_ID \r|\
+                              PRICEnc \r|\
+                              <Currency_ID> CURRENCY_ID \r"];
+
+	ndCost_TYPE[label = "Cost_TYPE \l|<TYPE_ID> TYPE_ID \r|\
+                              DESCRIPTIONvc \r"];
+
+	edge[color=brown];
+	ndPurchase:Product_ID -> ndProduct:Product_ID;
+	 ndPurchase:Vendor_ID -> ndVendor:Vendor_ID;
+	ndProduct:StandardPrice_ID -> ndStandardPrice:Price_ID;
+	ndProduct:Sales_Price_ID   -> ndSalesPrice:Price_ID;
+
+  //Currency ID Foreign Keys
+	edge[color=blue];
+	ndStandardPrice:Currency_ID -> ndCurrency:Currency_ID 
+	ndPurchase:Currency_ID      -> ndCurrency:Currency_ID
+  ndSalesPrice:Currency_ID    -> ndCurrency:Currency_ID
+  ndSales:Currency_ID         -> ndCurrency:Currency_ID
+	ndCosts:Currency_ID         -> ndCurrency:Currency_ID
+
+	edge[color=black];
+	ndShop:Address_ID -> ndAddress:Address_ID
+
+	//Links to Sales
+	edge[color=green];
+	//ndSales:Purchase_ID -> ndPurchase:Purchase_ID;
+	ndSales:Shop_ID -> ndShop:Shop_ID;
+
+	ndCosts:Shop_ID -> ndShop:Shop_ID;
+	ndCosts:TYPE_ID -> ndCost_TYPE:TYPE_ID;
+
+	//Category links
+	edge[color=red];
+	ndProduct:CAT_1_ID -> ndCategory:CAT_1_ID
+	ndProduct:CAT_2_ID -> ndCategory:CAT_2_ID
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>Proc: INTERFACE.dbo.proc_PurchaseHistory</title>
+	<link rel="shortcut icon" href="res/proc.jpg">
+<link rel="stylesheet" type="text/css" href="res/style.css">
+<link rel="stylesheet" type="text/css" href="res/office_xp.css" title="Office XP" />
+<script type="text/javascript" src="res/jsdomenu.js"></script>
+<script type="text/javascript" src="res/jsdomenubar.js"></script>
+<script type="text/javascript" src="menuconf.js"></script>
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</head>
+<body onload="initjsDOMenu('SUN/INTERFACE')">
+<table id="NoBord" width="100%"><tr><td align="right" valign="top">
+<img src="res/proc.jpg" title="procedure"></td><td align="left" valign="top">
+<a href="../INTERFACE_SQL/dbo_proc_PurchaseHistory.sql"><SPAN CLASS="pnm">proc_PurchaseHistory</SPAN></a>&nbsp;(3 Callers,&nbsp;3 Calls,&nbsp;5 Tables Accessed)&nbsp;</td><td Align="right" valign="top"><div id="staticMenu"></div></td>
+</tr></table>
+
+<table id="NoBord" cellPadding="3" cellSpacing="0" width="100%">
+<tr><td align="left" valign="top">
+<script type="text/javascript" language="JavaScript" src="res/tree.js"></script>
+<script type="text/javascript" language="JavaScript">
+var TREE_ITEMS = 
+[
+['<code>proc_PurchaseHistory<\/code>',,
+['<code><SPAN class=\"uproc\">sp_exchange<SPAN><\/code>','__ExternCalls.html'],
+['<code><SPAN class=\"uproc\">MOON.TITAN.dbo.proc_PurchaseHistory<SPAN><\/code>','__ExternCalls.html'],
+['<code><SPAN class=\"uproc\">TITAN.dbo.proc_PurchaseHistory1<SPAN><\/code>','__ExternCalls.html'],
+],
+];
+</script>
+<script type="text/javascript" language="JavaScript" src="res/tree_tpl.js"></script>
+
+<br>
+<table id="Bord">
+<thead><tr>
+<TD id="BordHead">Callers</TD>
+<TD id="BordHead">Calls</TD>
+<TD id="BordHead">Tables/Views</TD>
+</tr></thead><tr>
+<td id="Bord">
+<table id="NoBord">
+<tr>
+<td id="NoBord"><a href="purchase_trig_d.html"><SPAN CLASS="pnm">PURCHASE_TRIG_D</SPAN></a></td></tr>
+<tr>
+<td id="NoBord"><a href="purchase_trig_i.html"><SPAN CLASS="pnm">PURCHASE_TRIG_I</SPAN></a></td></tr>
+<tr>
+<td id="NoBord"><a href="purchase_trig_u.html"><SPAN CLASS="pnm">PURCHASE_TRIG_U</SPAN></a></td></tr>
+</table>
+<td id="Bord"><script type="text/javascript" language="JavaScript">
+<!--//
+  new tree (TREE_ITEMS, TREE_TPL);
+//-->
+</script></td>
+<td id="Bord">
+<table id="NoBord" cellpadding="3" cellSpacing="0">
+<tr>
+<td valign="top" align="left"><a href="purchase_history.html"><SPAN CLASS="tbl">PURCHASE_HISTORY</SPAN></a></td><td align="left" valign="top"><a href="#2_S">S</a></td>
+<td align="left" valign="top"><a href="#2_U">U</a></td><td align="left" valign="top"><a href="#2_I">I</a></td><td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="view_purchase.html"><SPAN CLASS="viw">view_PURCHASE</SPAN></a></td><td align="left" valign="top"><a href="#1_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table></td>
+</tr></table>
+</td><td Align="right" valign="top">
+<small>owner="dbo"</small>
+<td>
+</tr></table>
+<PRE><CODE>
+
+<SPAN CLASS="cmt">--
+</SPAN><SPAN CLASS="cmt">-- PurchaseHistory gives an overview on the purchases
+</SPAN><SPAN CLASS="cmt">-- for products that are later sold, this is useful to answer questions such as
+</SPAN><SPAN CLASS="cmt">-- Who is the best vendor in a certain timeframe? etc...
+</SPAN><SPAN CLASS="cmt">--
+</SPAN><SPAN CLASS="kwd">create</SPAN> <SPAN CLASS="kwd">procedure</SPAN> proc_PurchaseHistory
+(
+  @ACTION      <SPAN CLASS="kwd">int</SPAN>         <SPAN CLASS="cmt">-- 1=DELETE, 2=INSERT, 3=UPDATE
+</SPAN> ,@PURCHASE_ID <SPAN CLASS="kwd">int</SPAN>
+
+ ,@PURCHASE_PRICEnc <SPAN CLASS="kwd">numeric</SPAN>(10,2)
+ ,@CUR_NAMEvc       <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@UNITSi           <SPAN CLASS="kwd">int</SPAN>
+)
+<SPAN CLASS="kwd">AS</SPAN>
+<SPAN CLASS="kwd">BEGIN</SPAN>
+
+<SPAN CLASS="kwd">declare</SPAN>
+  @DATESTAMP  <SPAN CLASS="kwd">datetime</SPAN>
+ ,@VERSION    <SPAN CLASS="kwd">int</SPAN>
+ ,@PRICEnc    <SPAN CLASS="kwd">numeric</SPAN>(10,2)
+ ,@fix        <SPAN CLASS="kwd">bit</SPAN>
+
+ ,@VENDOR_ID         <SPAN CLASS="kwd">int</SPAN>
+ ,@VDR_NAMEvc        <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@COUNTRYvc         <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@PRODUCT_ID        <SPAN CLASS="kwd">int</SPAN>
+ ,@PRD_NAMEvc        <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@DESCRIPTIONvc     <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@CAT_NAMEvc        <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@CAT_SUB_NAMEvc    <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@CAT_DESCRIPTIONvc <SPAN CLASS="kwd">varchar</SPAN>(64)
+ ,@retCODEi          <SPAN CLASS="kwd">int</SPAN>
+
+  <SPAN CLASS="kwd">select</SPAN> @DATESTAMP = getdate(), @VERSION  = 1
+
+  <SPAN CLASS="cmt">--This is just a sample statement for an execution of the same procedure on an imaginary server called MOON
+</SPAN>  <SPAN CLASS="kwd">exec</SPAN> @retCODEi = <a href="__ExternCalls.html"><SPAN CLASS="uproc">MOON . TITAN .dbo.proc_PurchaseHistory</SPAN></a> @ACTION, @PURCHASE_ID ,@PURCHASE_PRICEnc ,@CUR_NAMEvc ,@UNITSi
+
+  <SPAN CLASS="kwd">if</SPAN> @ACTION &lt;&gt; 1  <SPAN CLASS="cmt">-- We don't need this to process a delete
+</SPAN>  <SPAN CLASS="kwd">begin</SPAN>
+    <SPAN CLASS="cmt">-- convert prices to EURO
+</SPAN>    <SPAN CLASS="kwd">exec</SPAN> <a href="__ExternCalls.html"><SPAN CLASS="uproc">sp_exchange</SPAN></a> @CUR_NAMEvc, <SPAN CLASS="str">"EUR"</SPAN>, @PURCHASE_PRICEnc, @PRICEnc output, @fix output
+  
+    <SPAN CLASS="kwd">select</SPAN> @VENDOR_ID      = VENDOR_ID
+          ,@VDR_NAMEvc     = VDR_NAMEvc
+          ,@COUNTRYvc      = COUNTRYvc
+          ,@PRODUCT_ID     = PRODUCT_ID
+          ,@PRD_NAMEvc     = PRD_NAMEvc
+          ,@DESCRIPTIONvc  = DESCRIPTIONvc
+          ,@CAT_NAMEvc        = CAT_NAMEvc
+          ,@CAT_SUB_NAMEvc    = CAT_SUB_NAMEvc
+          ,@CAT_DESCRIPTIONvc = CAT_DESCRIPTIONvc
+      <SPAN CLASS="kwd">from</SPAN> <a name="1_S" href="view_purchase.html"><SPAN CLASS="viw">view_PURCHASE</SPAN></a>
+     <SPAN CLASS="kwd">where</SPAN> PURCHASE_ID = @PURCHASE_ID
+  <SPAN CLASS="kwd">end</SPAN>
+
+  <SPAN CLASS="cmt">--Here is one more of this one on another imaginary server called SUN
+</SPAN>  <SPAN CLASS="kwd">exec</SPAN> @retCODEi = <a href="__ExternCalls.html"><SPAN CLASS="uproc">SUN. TITAN .dbo.proc_PurchaseHistory1</SPAN></a> @ACTION, @PURCHASE_ID ,@PURCHASE_PRICEnc ,@CUR_NAMEvc ,@UNITSi
+
+  <SPAN CLASS="kwd">if</SPAN> <SPAN CLASS="kwd">exists</SPAN>
+  (
+    <SPAN CLASS="kwd">select</SPAN> 1
+      <SPAN CLASS="kwd">from</SPAN> <a name="2_S" href="purchase_history.html"><SPAN CLASS="tbl">PURCHASE_HISTORY</SPAN></a>
+     <SPAN CLASS="kwd">where</SPAN> PURCHASE_ID = @PURCHASE_ID
+  )
+  <SPAN CLASS="kwd">begin</SPAN>                            <SPAN CLASS="cmt">-- This is not the first version of this record
+</SPAN>    <a name="2_U"><SPAN CLASS="kwd">UPDATE</SPAN></a> <a href="purchase_history.html"><SPAN CLASS="tbl">PURCHASE_HISTORY</SPAN></a>        <SPAN CLASS="cmt">-- Close last version and insert new record
+</SPAN>       <SPAN CLASS="kwd">SET</SPAN> V_TO        = @DATESTAMP
+     <SPAN CLASS="kwd">WHERE</SPAN> PURCHASE_ID = @PURCHASE_ID
+       <SPAN CLASS="kwd">AND</SPAN> V_TO <SPAN CLASS="kwd">IS</SPAN> <SPAN CLASS="kwd">NULL</SPAN>
+
+    <SPAN CLASS="kwd">select</SPAN> @VERSION = max(VERSION) + 1 <SPAN CLASS="cmt">-- Get Version for new last record
+</SPAN>     <SPAN CLASS="kwd">from</SPAN> <a name="2_S" href="purchase_history.html"><SPAN CLASS="tbl">PURCHASE_HISTORY</SPAN></a>
+    <SPAN CLASS="kwd">where</SPAN> PURCHASE_ID = @PURCHASE_ID
+  <SPAN CLASS="kwd">end</SPAN>
+
+  <SPAN CLASS="kwd">if</SPAN> @ACTION &lt;&gt; 1                      <SPAN CLASS="cmt">-- We don't need this to process a delete
+</SPAN>  <SPAN CLASS="kwd">begin</SPAN>                                <SPAN CLASS="cmt">-- The update above should have closed the last version
+</SPAN>    <a name="2_I"><SPAN CLASS="kwd">INSERT</SPAN></a> <a href="purchase_history.html"><SPAN CLASS="tbl">PURCHASE_HISTORY</SPAN></a> <SPAN CLASS="kwd">VALUES</SPAN>
+    (
+      @PURCHASE_ID
+     ,@PRICEnc        <SPAN CLASS="cmt">-- price in EURO of sales
+</SPAN>     ,@UNITSi
+     ,@VENDOR_ID
+     ,@VDR_NAMEvc
+     ,@COUNTRYvc
+     ,@PRODUCT_ID
+     ,@PRD_NAMEvc
+     ,@PRD_NAMEvc
+     ,@CAT_NAMEvc
+     ,@CAT_SUB_NAMEvc
+     ,@VERSION              <SPAN CLASS="cmt">-- VERSION and datetime of validity
+</SPAN>     ,@DATESTAMP
+     ,<SPAN CLASS="kwd">NULL</SPAN>
+    )
+  <SPAN CLASS="kwd">end</SPAN>
+
+  <SPAN CLASS="kwd">return</SPAN> 0
+<SPAN CLASS="kwd">END</SPAN>
+</CODE></PRE>
+
+</body></html>

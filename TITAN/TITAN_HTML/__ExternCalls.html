@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+
+<title>External/Undefined Objects in ZEUS/TITAN</title>
+<link rel="stylesheet" type="text/css" href="res/style.css"><link rel="shortcut icon" href="res/radar16.jpg">
+<link rel="stylesheet" type="text/css" href="res/office_xp.css" title="Office XP" />
+<script type="text/javascript" src="res/jsdomenu.js"></script>
+<script type="text/javascript" src="menuconf.js"></script>
+<script type="text/javascript" src="res/jsdomenubar.js"></script>
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</head>
+<body onload="initjsDOMenu('ZEUS/TITAN')">
+<table id="NoBord" cellPadding="3" cellSpacing="0" width="100%">
+<tr>
+<td><h1>Access to External and Unknown Database Objects</h1></td>
+<td align="right" valign="top"><div id="staticMenu"></div></td>
+</tr>
+</table><p><a href="res/help/conns.html"><IMG border="0" src ="res/question.png"></a>
+The following tables show all databases being accessed
+from within <b>ZEUS/TITAN</b>. This includes the table/view being accessed,
+the implementing database object, and the kind of access implemented
+(next table shows the same information for stored procedures).</p>
+<table id="Bord">
+<thead><tr><td id="BordHead">Foreign Database</td>
+<td id="BordHead">Table/View</td>
+<td id="BordHead">Procedure/Trigger/View</td>
+<td id="BordHead">Access</td></tr></thead>
+ <tr><td align="left" valign="top" bgcolor="#FFFFFF" id="Bord" rowspan="2"><h1>ZEUS.HERCULES</h1></td>
+<td id="Bord" rowspan="2">SHOPS</td>
+<td id="Bord" align="left" valign="top"><a href="proc_shopperformance.html"><SPAN CLASS="pnm">proc_ShopPerformance</SPAN></a></td><td id="Bord" align="left" valign="top"><a href="proc_shopperformance.html#11_S">SELECT</a></td></tr>
+<tr><td id="Bord" align="left" valign="top"><a href="sales_trig_i.html"><SPAN CLASS="pnm">SALES_TRIG_I</SPAN></a></td><td id="Bord" align="left" valign="top"><a href="sales_trig_i.html#11_S">SELECT</a></td></tr>
+</table>
+<br>
+<table id="Bord">
+<thead><tr><td id="BordHead">Foreign Database</td>
+<td id="BordHead">Foreign Procedure</td>
+<td id="BordHead">Calling Procedure/Trigger</td>
+<td id="BordHead">Access</td></tr></thead>
+ <tr><td align="left" valign="top" bgcolor="#FFFFFF" rowspan="1"><h1>SUN.INTERFACE</h1></td>
+<td id="Bord" rowspan="1">proc_PurchaseHistory</td>
+<td id="Bord"><a href="proc_purchasehistory.html"><SPAN CLASS="pnm">proc_PurchaseHistory</SPAN></a></td>
+<td id="Bord">EXEC</td></tr>
+ <tr><td align="left" valign="top" bgcolor="#DDDDDD" rowspan="1"><h1>MOON.TITAN</h1></td>
+<td id="Bord" rowspan="1">proc_PurchaseHistory</td>
+<td id="Bord"><a href="proc_purchasehistory.html"><SPAN CLASS="pnm">proc_PurchaseHistory</SPAN></a></td>
+<td id="Bord">EXEC</td></tr>
+ <tr><td align="left" valign="top" bgcolor="#FFFFFF" rowspan="1"><h1>SUN.TITAN</h1></td>
+<td id="Bord" rowspan="1">proc_PurchaseHistory</td>
+<td id="Bord"><a href="proc_saleshistory.html"><SPAN CLASS="pnm">proc_SalesHistory</SPAN></a></td>
+<td id="Bord">EXEC</td></tr>
+</table>
+<p>The following tables show all undefined objects being accessed
+from within <b>ZEUS/TITAN</b>. A database object is <b>undefined</b>, if an
+access statement was found, but no definition for the object being accessed.
+This includes the table/view being accessed,
+the implementing database object, and the kind of access implemented
+(next table shows the same information for stored procedures).</p>
+<table id="Bord">
+<thead><tr><td id="BordHead">Foreign Database</td>
+<td id="BordHead">Table/View</td>
+<td id="BordHead">Procedure/Trigger/View</td>
+<td id="BordHead">Access</td></tr></thead>
+</table>
+<br>
+<table id="Bord">
+<thead><tr><td id="BordHead">Foreign Database</td>
+<td id="BordHead">Foreign Procedure</td>
+<td id="BordHead">Calling Procedure/Trigger</td>
+<td id="BordHead">Access</td></tr></thead>
+ <tr><td align="left" valign="top" bgcolor="#FFFFFF" rowspan="3"><h1>ZEUS.TITAN</h1></td>
+<td id="Bord" rowspan="3">sp_exchange</td>
+<td id="Bord"><a href="proc_purchasehistory.html"><SPAN CLASS="pnm">proc_PurchaseHistory</SPAN></a></td>
+<td id="Bord">EXEC</td></tr>
+<tr>
+<td id="Bord"><a href="proc_saleshistory.html"><SPAN CLASS="pnm">proc_SalesHistory</SPAN></a></td>
+<td id="Bord">EXEC</td></tr>
+<tr>
+<td id="Bord"><a href="proc_shopperformance.html"><SPAN CLASS="pnm">proc_ShopPerformance</SPAN></a></td>
+<td id="Bord">EXEC</td></tr>
+</table>
+</body></html>

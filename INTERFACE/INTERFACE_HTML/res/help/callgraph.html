@@ -1,0 +1,282 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>NextLevel Project Page - Reverse Engineering RDBMS</title>
+	<link rel="shortcut icon" href="../nlogo.jpg">
+  <link rel="stylesheet" type="text/css" href="../style.css">
+  
+<link rel="stylesheet" type="text/css" href="../office_xp.css" title="Office XP" />
+<script type="text/javascript" src="jsdomenu.js"></script>
+<script type="text/javascript" src="jsdomenubar.js"></script>
+<script type="text/javascript" src="helpmenuconf.js"></script>
+</head>
+
+<body  onload="initjsDOMenu()" BGCOLOR="#000000">
+
+<table border="0" cellPadding="3" cellSpacing="0" width="100%">
+<tr>
+ <td align="left" valign="top"><h1>NextLevel</h1></td>
+ <td align="right" valign="top"><div id="staticMenu"></div></td>
+</tr>
+<tr><td colspan="2"><b>Online Help</b></td>
+</table>
+
+<h1>Analyzing Stored Procedures and Triggers</h1>
+
+<p>
+A summary page for a <img src="../proc.jpg"> stored procedure or a
+<img src="../trigger.jpg"> Trigger (short: <b>PROC</b>)
+starts with its name in the upper left corner and some
+general information as shown in Figure 7. In brackets, just right
+beside the name there is a number for the number of programs that
+execute the proc, and the number of procs being executed by the
+proc. This is completed with the number of tables or views accessed by the proc.
+</p>
+
+<table align="right" cellSpacing="3" style="border: 1px dashed #006600; solid rgb(51, 125, 51); color: rgb(0, 0, 0);">
+<tr><td>
+
+<table border="0" cellPadding="3" cellSpacing="0" width="100%">
+<tr><td align="left" valign="top">
+<table border="0">
+<tr><td align="right" valign="top">
+<img src="../trigger.jpg" title="trigger"></td><td align="left" valign="top">
+<SPAN CLASS="pnm">PRODUCT_TRIG_U</SPAN>&nbsp;(0 Callers,&nbsp;1 Calls,&nbsp;3 Tables Accessed)&nbsp;
+</td></tr>
+<tr><td align="right" valign="top">ON <img src="../table.jpg" title="table"></td>
+<td><SPAN CLASS="tbl">PRODUCT</SPAN> (UPDATE)</td><td>
+</table>
+<td>
+</tr></table>
+
+</td>
+</tr>
+<tr><td align="center"><span class="caption">Figure 7: Header Information for Stored Procedures and Triggers</span></td></tr>
+</table>
+
+<p>Consider, Figure 7, here we are looking at the a sample header page of an imaginary trigger
+called <SPAN CLASS="pnm">PRODUCT_TRIG_U</SPAN> on a table <SPAN CLASS="tbl">PRODUCT</SPAN>.
+It is trivial to see that we are dealing with a trigger that will fire on update events.
+Naturally, a trigger is not executed by other procs, so the number
+of callers should always be zero for triggers. Our <SPAN CLASS="pnm">PRODUCT_TRIG_U</SPAN> trigger executes one
+other procedure, as we can see in the number of &quot;Calls=1&quot;, and depends on 3 tables, by implementing
+some SQL statement, such as a, <SPAN CLASS="kwd">SELECT</SPAN>, <SPAN CLASS="kwd">UPDATE</SPAN> etc.
+Note that each number shown here, is based on unique database objects, that is, if there are 3 three calls,
+then there are at least 3 different procedures being executed, but this could occur more than 3 times.
+The same rule applies to the other numbers, for example, accessing 3 tables could imply that the first tables is used 10 times,
+while the second and third are used only once. <a href="#FigureOne"><u>Click</u></a> on the name of a proc
+and you will see the original ASCII source file of that proc.
+</p>
+
+
+<p>Procedure and trigger pages also have more advanced summaries, such as:</p>
+
+<ul>
+  <li>a list of <a href="#01"><u>calling procedures</u></a>,</li>
+  <li>a <a href="#maxcall"><u>maximum callgraph</u></a>,</li>
+  <li>and a list of <a href="#02"><u>accessed tables/views</u></a>.</li>
+</ul>
+
+<p>
+We detail the above items in the given order below.
+</p>
+
+<h2><a name="01">List of Calling Procedures</a></h2>
+<p>
+In standard procedural SQL, execution branches from one stored procedure
+to another, whenever an exec command is encountered in the SQL source code.
+A <b>list of calling procedures</b> for a procedure &quot;foo&quot; is a list
+of stored procedures or triggers, which contain an &quot;exec foo&quot; command
+sequence in one of their source lines.
+</p>
+
+<script type="text/javascript" language="JavaScript" src="tree.js"></script>
+<script type="text/javascript" language="JavaScript">
+var TREE_ITEMS = 
+[
+['<code>proc_SalesHistory<\/code>',,
+['<code>proc_Error<\/code>','feats.html|#01'],
+['<code>proc_Check_Valid_Transaction<\/code>','feats.html|#01'],
+['<code>proc_CheckStatus<\/code>',,
+  ['<code>proc_StartTransaction<\/code>',,
+    ['<code>proc_RunTransaction<\/code>',,
+      ['<code>proc_COMMIT_Tran<\/code>','feats.html|#01'],
+    ],
+  ],
+],
+['<code><SPAN class=\"uproc\">dbo.sp_exchange<SPAN><\/code>',''],
+],
+];
+</script>
+<script type="text/javascript" language="JavaScript" src="tree_tpl.js"></script>
+
+<table cellspacing="3" cellpadding="3" border="0" align="right" style="border: 1px dashed #006600; solid rgb(51, 125, 51); color: rgb(0, 0, 0);">
+<tr><TD ALIGN="LEFT" VALIGN="TOP">
+
+<table border="1" cellpadding="2" cellSpacing="0">
+<thead><tr>
+<TD ALIGN="LEFT" VALIGN="TOP">Callers</TD>
+<TD ALIGN="LEFT" VALIGN="TOP">Calls</TD>
+<TD ALIGN="LEFT" VALIGN="TOP">Tables/Views</TD>
+</tr></thead><tr>
+<td valign="top" align="left">
+<table border="0" cellpadding="0" cellSpacing="0">
+<tr>
+<td valign="top" align="left"><SPAN CLASS="pnm">PRODUCT_TRIG_U</SPAN></td></tr>
+<tr>
+<td valign="top" align="left"><SPAN CLASS="pnm">SALES_TRIG_D</SPAN></td></tr>
+<tr>
+<td valign="top" align="left"><SPAN CLASS="pnm">SALES_TRIG_I</SPAN></td></tr>
+<tr>
+<td valign="top" align="left"><SPAN CLASS="pnm">SALES_TRIG_U</SPAN></td></tr>
+</table>
+<td valign="top" align="left"><script type="text/javascript" language="JavaScript">
+<!--//
+  new tree (TREE_ITEMS, TREE_TPL);
+//-->
+</script>
+</td>
+<td valign="top" align="left">
+<table border="0" cellpadding="3" cellSpacing="0">
+<tr>
+<td valign="top" align="left"><SPAN CLASS="tbl">ADDRESS</SPAN></td><td align="left" valign="top">S</td>
+<td></td><td></td><td></td><td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><SPAN CLASS="tbl">CATEGORY</SPAN></td><td align="left" valign="top">S</td>
+<td></td><td></td><td></td><td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><SPAN CLASS="tbl">PRODUCT</SPAN></td><td align="left" valign="top">S</td>
+<td></td><td></td><td></td><td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><SPAN CLASS="tbl">PURCHASE</SPAN></td><td align="left" valign="top">S</td>
+<td></td><td></td><td></td><td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><SPAN CLASS="tbl">SALES_HISTORY</SPAN></td><td align="left" valign="top">S</td>
+<td align="left" valign="top">U</td><td align="left" valign="top">I</td><td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><SPAN CLASS="tbl">SHOP</SPAN></td><td align="left" valign="top">S</td>
+<td></td><td></td><td></td><td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><SPAN CLASS="viw">ACTUAL_VENDOR</SPAN></td><td align="left" valign="top">S</td>
+<td></td><td></td><td></td><td></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</td></tr>
+<tr><td align="center" VALIGN="TOP">
+<code><a href="#FigureOne"><u>Figure 1</u></a>: A list of callers, a callgraph, and objects accessed</code></td></tr>
+</table>
+
+<p>
+In standard procedural SQL, execution branches from one stored procedure
+to another, whenever an exec command is encountered in the SQL source code.
+A <b>list of calling procedures</b> for a procedure &quot;foo&quot; is a list
+of stored procedures or triggers, which contain an &quot;exec foo&quot; command
+sequence in one of their source lines.
+</p>
+
+<p>
+Consider the left column of the table in <b>Figure 1</b>. Here we have
+a list of procedures and triggers, which contain an SQL exec statement for an imaginary
+procedure called &quot;proc_SalesHistory&quot;. The trigger &quot;SALES_TRIG_I&quot;,
+for example, is listed, because it contains a command sequence like
+&quot;exec proc_SalesHistory&quot;.
+</p>
+
+<h2><a name="maxcall">A Maximum Callgraph</a></h2>
+<p>
+A maximum callgraph is a tree of branches of execution, which results from
+an SQL <b>exec</b> command within the procedural code. The maxium callgraph
+contains each unique call on a given level within the tree of procedures. 
+</p>
+
+<p>
+Consider the middle column of the table in Figure 1, here you can see a sample
+maximum callgraph for the imaginary procedure called &quot;proc_SalesHistory&quot;
+(<a href="#FigureOne"><u>click</u></a> on the plus symbol to view all levels).
+In the first level, you can see,
+that the procedure &quot;proc_SalesHistory&quot; executes a four other procedures
+at least once (each call to a procedure is listed at most once in each level of the tree).
+Click on the &quot;plus&quot; symbol next to the &quot;proc_CheckStatus&quot; to
+discover which procedures are called from there.
+</p>
+<p>
+Every procedure in a callgraph generated by nextlevel has a little
+&quot;<IMG border="0" src ="../Link2Src.GIF" Alt="arrow">&quot; symbol next to its name,
+just <a href="#FigureOne"><u>click</u></a> on it and you should be transported to the first occurrence of the
+<CODE>exec</CODE> command in the target proc. You can also click on the name of each
+proc in the callgraph to view the SQL code and dependencies of that proc.
+</p>
+
+<h2><a name="02">A List of Accessed Tables and Views</a></h2>
+
+<p>
+In any standard stored procedure you will find SQL statements such as
+&quot;SELECT, UPDATE, DELETE, INSERT, or TRUNCATE TABLE.
+A sample list of tables and views being accessed by a proc is given in
+the right column of the table in Figure 1. Here, we can see that our
+imaginary procedure &quot;proc_SalesHistory&quot; does indeed access
+a few database objects.
+</p>
+<p>
+Note, that each name of a
+<span class="tbl">table</span> or <span class="viw">view</span> has a
+particular color. We know, thus, form the given list that our proc
+accesses only one view named <span class="viw">ACTUAL_VENDOR</span>,
+all other objects are tables.
+</p>
+<p>
+The single letters on the right side of the list of tables describe the kind
+of access that is implemented. A
+</p>
+
+<ul>
+<li>&quot;S&quot; stands for <span class="kwd">SELECT</span>,</li>
+<li>an &quot;U&quot; for <span class="kwd">UPDATE</span>,</li>
+<li>a &quot;D&quot; for <span class="kwd">DELETE</span>,</li>
+<li>an &quot;I&quot; for <span class="kwd">INSERT</span>,</li>
+<li>a &quot;US&quot; for <span class="kwd">UPDATE STATISTICS</span>,</li>
+<li>and a &quot;TT&quot; for <span class="kwd">TRUNCATE TABLE</span>.</li>
+</ul>
+
+<p>
+<a href="#FigureOne"><u>Click</u></a> on the name of each table and you should be
+transported to another page summarizing that database object. You can also click
+on the single letter described above and you should be transported to the first
+statement in the SQL code.
+</p>
+<p>
+The above list of access statements is of particular interest when SQL code needs
+to be debugged, re-engineered or documented, because then, we simply have to note
+what is in the table and can make basic assumptions about the SQL code without having
+to read (literally) hundreds of lines of code.
+</p>
+
+<h2><a name="FigureOne">About Figure 1</a></h2>
+<p>
+Note that the table in Figure 1 is just a sample table for a typical procedure or trigger
+parsed by Nextlevel.
+</p>
+<p>
+In a real page generated by nextlevel, each name of a procedure is linked with another
+html page containing the code of that database object. You would, for example, click on
+&quot;SALES_TRIG_I&quot; and be transported to a page outlining that trigger. You could,
+thus, examine all callers of a given procedure, simply by clicking on the link in the list,
+and using the back button of your browser. The same is true for the callgraph and the list
+of tables and views on the right side of the page.
+</p>
+<p>
+<b>For the sample table in Figure 1, however, html-links are disabled</b>.
+</p>
+
+<hr>
+<p><a href="index.html">Back</a></p>
+</body></html>

@@ -1,0 +1,67 @@
+body         {font-family: Verdana, Arial, Helvetica;
+              font-size: 12pt;
+             }
+p            {font-family: Verdana, Arial, Helvetica;
+              font-size: 12pt;
+             }
+LI            {font-family: Verdana, Arial, Helvetica;
+              font-size: 12pt;
+             }
+H1           {font-family: Helvetica;
+              font-size: 16pt;
+              font-weight:bold
+             }
+             
+H2           {font-family: Helvetica;
+              font-size: 14pt;
+              font-weight:bold
+             }
+H3           {font-family: Helvetica;
+              font-size: 12pt;
+              font-weight:bold
+             }
+
+H4           {font-family: Arial;
+              font-size: 12pt;
+	             }
+
+TD           {font-family: Verdana, Arial, Helvetica;
+              font-size: 12pt;
+             }
+
+CODE         {font-family: Courier;
+              font-size: 12pt;
+             }
+
+PRE          {font-family: Courier;
+              font-size: 12pt;
+             }
+.CAPTION     {font-family: Courier;
+              font-size: 20pt;
+             }
+
+.caption     {font-family: Courier;
+              font-size: 8pt;
+             }
+
+/* comment highlighting style 
+   (-- This is a comment or Slash Asterix ... Asterix Slash)
+*/
+.cmt
+{
+	COLOR: #009000;
+}
+/* string highlighting style 
+   used for ' ... ' and " ... " Strings
+*/
+.str
+{
+	background-color: #FFFFAE;
+	COLOR: #00644A;
+}
+
+/* keyword highlighting style  (e.g.: SELECT, INSERT INTO etc...)*/
+.kwd
+{
+	COLOR: #0000AA;
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>Trig: INTERFACE.dbo.COSTTYPE_TRIG_U</title>
+	<link rel="shortcut icon" href="res/trigger.jpg">
+<link rel="stylesheet" type="text/css" href="res/style.css">
+<link rel="stylesheet" type="text/css" href="res/office_xp.css" title="Office XP" />
+<script type="text/javascript" src="res/jsdomenu.js"></script>
+<script type="text/javascript" src="res/jsdomenubar.js"></script>
+<script type="text/javascript" src="menuconf.js"></script>
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</head>
+<body onload="initjsDOMenu('SUN/INTERFACE')">
+<table id="NoBord" width="100%"><tr><td align="right" valign="top">
+<img src="res/trigger.jpg" title="trigger"></td><td align="left" valign="top">
+<a href="../INTERFACE_SQL/dbo_COSTTYPE_TRIG_U.sql"><SPAN CLASS="pnm">COSTTYPE_TRIG_U</SPAN></a>&nbsp;(0 Callers,&nbsp;1 Calls,&nbsp;1 Tables Accessed)&nbsp;</td><td Align="right" valign="top"><div id="staticMenu"></div></td>
+</tr><tr><td align="right" valign="top">ON <img src="res/table.jpg" title="table"></td><td><a href="cost_types.html"><SPAN CLASS="tbl">COST_TYPES</SPAN></a> (UPDATE)</td><td>
+</table>
+
+<table id="NoBord" cellPadding="3" cellSpacing="0" width="100%">
+<tr><td align="left" valign="top">
+<script type="text/javascript" language="JavaScript" src="res/tree.js"></script>
+<script type="text/javascript" language="JavaScript">
+var TREE_ITEMS = 
+[
+['<code>COSTTYPE_TRIG_U<\/code>',,
+['<code>proc_Error<\/code>','proc_error.html|#0x'],
+],
+];
+</script>
+<script type="text/javascript" language="JavaScript" src="res/tree_tpl.js"></script>
+
+<br>
+<table id="Bord">
+<thead><tr>
+<TD id="BordHead">Calls</TD>
+<TD id="BordHead">Tables/Views</TD>
+</tr></thead><tr>
+<td id="Bord"><script type="text/javascript" language="JavaScript">
+<!--//
+  new tree (TREE_ITEMS, TREE_TPL);
+//-->
+</script></td>
+<td id="Bord">
+<table id="NoBord" cellpadding="3" cellSpacing="0">
+<tr>
+<td valign="top" align="left"><a href="cost_types.html"><SPAN CLASS="tbl">COST_TYPES</SPAN></a></td><td align="left" valign="top"><a href="#13_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table></td>
+</tr></table>
+</td><td Align="right" valign="top">
+<small>owner="dbo"</small>
+<td>
+</tr></table>
+<PRE><CODE>
+<SPAN CLASS="cmt">--
+</SPAN><SPAN CLASS="cmt">-- The COSTTYPE update trigger is fired when records in the COSTTYPE table are updated
+</SPAN><SPAN CLASS="cmt">-- Costtypes in existence are not expected to change, if they do, manual work on the
+</SPAN><SPAN CLASS="cmt">-- database is required to reflect the change, therefor we do error reporting here
+</SPAN><SPAN CLASS="cmt">-- and the developer/dba is expected to do the rest
+</SPAN><SPAN CLASS="cmt">--
+</SPAN><SPAN CLASS="kwd">create</SPAN> <SPAN CLASS="kwd">trigger</SPAN> COSTTYPE_TRIG_U <SPAN CLASS="kwd">on</SPAN> <a href="cost_types.html"><SPAN CLASS="tbl">COST_TYPES</SPAN></a> <SPAN CLASS="kwd">for</SPAN> <SPAN CLASS="kwd">UPDATE</SPAN> <SPAN CLASS="kwd">as</SPAN>
+<SPAN CLASS="kwd">begin</SPAN>
+  <SPAN CLASS="kwd">DECLARE</SPAN> <a name="cu_crs_COSTTYPE" href="#co_crs_COSTTYPE"><SPAN CLASS="crsr">crs_COSTTYPE</SPAN></a> <SPAN CLASS="kwd">CURSOR FOR</SPAN> <SPAN CLASS="cmt">-- Get all fields from that table
+</SPAN>    <SPAN CLASS="kwd">SELECT</SPAN> d.TYPE_ID      , i.TYPE_ID                         
+          ,d.DESCRIPTIONvc, i.DESCRIPTIONvc                   
+      <SPAN CLASS="kwd">FROM</SPAN> <a name="13_S" href="cost_types.html"><SPAN CLASS="tbl">inserted</SPAN></a> i, <a name="13_S" href="cost_types.html"><SPAN CLASS="tbl">deleted</SPAN></a> d
+     <SPAN CLASS="kwd">WHERE</SPAN> d.TYPE_ID        = i.TYPE_ID
+       <SPAN CLASS="kwd">AND</SPAN> d.DESCRIPTIONvc &lt;&gt; i.DESCRIPTIONvc
+  <SPAN CLASS="kwd">FOR</SPAN> <SPAN CLASS="kwd">READ O</SPAN><SPAN CLASS="kwd">NLY</SPAN>
+   
+  <SPAN CLASS="kwd">declare</SPAN>
+  @Error_Text <SPAN CLASS="kwd">varchar</SPAN>(1024)
+ ,@d_TYPE_ID       <SPAN CLASS="kwd">int</SPAN>         , @i_TYPE_ID       <SPAN CLASS="kwd">int</SPAN>
+ ,@d_DESCRIPTIONvc <SPAN CLASS="kwd">varchar</SPAN>(64) , @i_DESCRIPTIONvc <SPAN CLASS="kwd">varchar</SPAN>(64)
+ 
+  <SPAN CLASS="kwd">OPEN</SPAN> <a name="co_crs_COSTTYPE" href="#cu_crs_COSTTYPE"><SPAN CLASS="crsr">crs_COSTTYPE</SPAN></a>
+  <SPAN CLASS="kwd">WHILE</SPAN> (1 = 1)
+  <SPAN CLASS="kwd">BEGIN</SPAN>
+    <SPAN CLASS="kwd">FETCH</SPAN> <a name="co_crs_COSTTYPE" href="#cu_crs_COSTTYPE"><SPAN CLASS="crsr">crs_COSTTYPE</SPAN></a> <SPAN CLASS="kwd">INTO</SPAN> @d_TYPE_ID, @i_TYPE_ID
+                           ,@d_DESCRIPTIONvc, @i_DESCRIPTIONvc
+ 
+    <SPAN CLASS="kwd">IF</SPAN> (@@sqlstatus &lt;&gt; 0) <SPAN CLASS="kwd">BREAK</SPAN> <SPAN CLASS="cmt">-- Get out of here if there is no data left to process
+</SPAN> 
+    <SPAN CLASS="kwd">select</SPAN> @Error_Text = <SPAN CLASS="str">' TYPE_ID='</SPAN>       + <SPAN CLASS="kwd">convert</SPAN>(<SPAN CLASS="kwd">varchar</SPAN>, @d_TYPE_ID)
+                       + <SPAN CLASS="str">',DESCRIPTIONvc='</SPAN> + @d_DESCRIPTIONvc + <SPAN CLASS="str">' =&gt; '</SPAN> + @i_DESCRIPTIONvc
+ 
+    <SPAN CLASS="kwd">exec</SPAN> <a name="0x" href="proc_error.html"><SPAN CLASS="pnm">proc_Error</SPAN></a> <SPAN CLASS="str">'COST_TYPE_TRIG_U'</SPAN>, @Error_Text, <SPAN CLASS="str">'ERROR: Unexpected UPDATE on COST_TYPE!!'</SPAN>
+ 
+  <SPAN CLASS="kwd">END</SPAN>
+  <SPAN CLASS="kwd">CLOSE</SPAN> <a name="co_crs_COSTTYPE" href="#cu_crs_COSTTYPE"><SPAN CLASS="crsr">crs_COSTTYPE</SPAN></a>
+  <SPAN CLASS="kwd">DEALLOCATE CURSOR</SPAN> <a name="co_crs_COSTTYPE" href="#cu_crs_COSTTYPE"><SPAN CLASS="crsr">crs_COSTTYPE</SPAN></a>
+
+<SPAN CLASS="kwd">end</SPAN>
+go
+</CODE></PRE>
+
+</body></html>

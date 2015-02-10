@@ -1,0 +1,284 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>NextLevel Project Page - Reverse Engineering RDBMS</title>
+  <link rel="shortcut icon" href="images/nl_logo.jpg">
+
+  <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body bgcolor="#ffffff">
+<table border="0" cellpadding="3" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td align="left" bgcolor="#cccccc" valign="top">
+      <h1>NextLevel</h1>
+      </td>
+      <td align="right" bgcolor="#cccccc" valign="top"><a href="index.html">Back to My Homepage</a></td>
+    </tr>
+    <tr>
+      <td align="left" bgcolor="#aaaaaa"><b>Reverse Engineering Relational Databases</b></td>
+      <td align="right" bgcolor="#aaaaaa" valign="top"><a href="download.html">download</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Designing the XML Index File</h2>
+
+<p>NextLevel is a tool that generates HTML documents from SQL code contained in ASCII files.
+All HTML files generated contain useful summary information that can be used to make re-engineering
+a database a less annoying and rather fruitful task. In addition, all HTML files are linked
+such that analyzing database objects that depend on each other is supported.
+</p>
+<p>
+However, a user is required to present NextLevel with an XML index page and a set of SQL files on the
+local hard-drive before browsing any HTML can take place. How this is done, and what can be done about
+it is described on this page. A sample <a href="xml_index.html">NextLevel index XML file</a> taken from
+the sample database project ZEUS/TITAN is as a starting point available. Below will attempt to outline
+each XML take and its required and optional properties.
+</p>
+
+<p>The following topics are covered in this file:</p>
+<ul>
+<li><a href="#intro">Processing Instructions and Intro</a></li>
+<li><a href="#PROC">Parsing Stored Procedures and Triggers</a></li>
+<li><a href="#views">Defining Views and Their Column Definition</a></li>
+<li><a href="#tab">Defining Tables and Their Column Definition</a></li>
+</ul>
+<h2><a name="intro">Processing Instructions and Intro</a></h2>
+
+<table align="right" cellSpacing="3" style="border: 1px dashed #006600; solid rgb(51, 125, 51); color: rgb(0, 0, 0);">
+<tr><td>
+<PRE><CODE><span class="kwd">&lt;?xml version=</span><span class="str">&quot;1.0&quot;</span> <span class="kwd">encoding=</span><span class="str">&quot;ISO-8859-1&quot;</span>?&gt;
+<span class="kwd">&lt;?NextLevel version=</span><span class="str">&quot;1.1&quot;</span> <span class="kwd">date=</span><span class="str">&quot;November, 2004&quot;</span>?&gt;
+<span class="cmt">&lt;!-- Database CallGraph Utility Application File --&gt;
+&lt;!-- Generated with: php GenIdx.php idx.txt ZEUS TITAN dbo &gt; index.xml --&gt;</span>
+<span class="kwd">&lt;parse_files SERVER=</span><span class="str">&quot;ZEUS&quot;</span> <span class="kwd">DB=</span><span class="str">&quot;TITAN&quot;</span> <span class="kwd">owner=</span><span class="str">&quot;dbo&quot;</span>&gt;
+<span class="cmt">&lt;!-- header information to be used in nextlevel sample database index file --&gt;</span></CODE></PRE>
+</td>
+</tr>
+<tr><td align="center"><span class="caption">Figure 1: A Sample XML index File</span></td></tr>
+</table>
+<P>
+If you had a look into the <a href="xml_index.html">sample index file</a> you will have noted that an
+XML index file starts with two processing instructions and a set of comments as shown below in Figure 1.
+You should leave those processing instructions, because they tell NextLevel about the version of the XML
+file and whether NextLevel is the right XML processor for the file or not. Obviously, you can remove or
+edit any comments as you like. Although, the sequence of the XML tag-types presented here is not
+fixed, it is a good idea to follow it as presented in your on project, since I use them in this sequence
+all the time, and it is, thus, the most likely way of getting deterministic results.
+</P>
+<P>
+The last XML tag in Figure 1 is the root opening tag for all information related to a specific database
+on a specific server. The name of the tag is &quot;parse_files&quot;, it has three required properties:
+</P>
+
+	<TABLE border=1 cellPadding=5 cellSpacing=0>
+  
+		<TR>
+			<TD ALIGN="LEFT" VALIGN="TOP" bgcolor="#000000"><FONT COLOR="#ffffff" >Property Name</FONT> </TD>
+			<TD ALIGN="LEFT" VALIGN="TOP" bgcolor="#000000"><FONT COLOR="#ffffff">Description</FONT></TD></TR>
+		<TR>
+			<TD ALIGN="LEFT" VALIGN="TOP">SERVER</TD>
+			<TD>Is the name of the server on which a database runs.
+			</TD></TR>
+		<TR>
+			<TD ALIGN="LEFT" VALIGN="TOP">DB</TD>
+			<TD>Is the name of the database being imported to NextLevel.
+			</TD></TR>
+		<TR>
+			<TD ALIGN="LEFT" VALIGN="TOP">owner</TD>
+			<TD>Is the name of the owner of the database.
+			</TD></TR>
+	</TABLE>
+
+<P>
+Currently, (in Version 2.00 Build 32) NextLevel supports only one pair of parse_files tags
+(<code>&lt;parse_files&gt;...&lt;/parse_files&gt;</code>). Results will be unpredictable,
+if you use more than one pair of the parse_files tags per index file.
+</P>
+
+<h1>Integrating NextLevel Pages in an Existing Web-Site</h1>
+
+<table cellSpacing="3" align="right" style="border: 1px dashed #006600; solid rgb(51, 125, 51); color: rgb(0, 0, 0);">
+<tr><td><PRE><CODE><span class="kwd">&lt;htmlroot&gt;
+  &lt;backlink link=</span><span class="str">&quot;../index.html&quot;</span><span class="kwd"> text=</span><span class="str">"Back to Homepage"</span><span class="kwd"> /&gt;
+&lt;/htmlroot&gt;</span></CODE></PRE>
+</td>
+</tr>
+<tr><td align="center"><span class="CAPTION">Figure 2: The XML Tag: &quot;htmlroot&quot;</span></td></tr>
+</table>
+<p>
+It is sometimes useful to generate a back button on a set of pages in order to hint
+at a visitor what the context of the NextLevel pages is, -where they belong into,
+and how documents are structured. For this purpose, there is a <code><span class="kwd">backlink</span></code>
+XML tag, which is surround by an <code><span class="kwd">htmlroot</span></code> tag.
+</p>
+<p>
+The <code><span class="kwd">link</span></code> property of the <code><span class="kwd">backlink</span></code>
+tag in Figure 2 contains the URI address of the hyperlink to link to, while the <code><span class="kwd">text</span></code>
+property contains a text, which will be shown as information. Both properties are used to generate a hyperlink
+with an icon that points to the upper left corner, you should see this icon in the left upper corner of the main
+index page, if you use this tag. Both properties, <code><span class="kwd">link</span></code> and
+<code><span class="kwd">text</span></code> are required properties of the
+<code><span class="kwd">backlink</span></code> tag. 
+</p>
+<p>
+The <code><span class="kwd">backlink</span></code> tag is an optional tag of
+<code><span class="kwd">htmlroot</span></code>. The <code><span class="kwd">htmlroot</span></code>
+tag does not support any other tags at this time, but I plan to insert further html options here
+when they become available in later releases of NextLevel.
+</p>
+
+<h1>Setting Program Options</h1>
+<h1>Adding Additional Documentation</h1>
+
+<p>Database projects sometimes have one annoying fact, which is, that it is not possible to comment on a table,
+if there is no SQL code that refers to it. That is, we can comment on a table and its usage, if we have written
+a trigger, stored procedure, or view, that refers to that table. But imagine, we build a table, and use it for
+a tool that is external to our database. In such a case, it is only a question of time until people forget why
+this table used to be there and what it is all about. I have implemented the
+<span class="kwd">dbobj_docs</span> tag mainly to make an end to this situation, but in general to provide
+a means of commenting on a database object. The <span class="kwd">folder</span> property is required and it
+points relative or fixed to a folder that contains additional documentation in form of html files.
+</p>
+<table cellSpacing="3" align="right" style="border: 1px dashed #006600; solid rgb(51, 125, 51); color: rgb(0, 0, 0);">
+<tr><td><PRE><CODE><span class="kwd">&lt;program_opts&gt;
+  &lt;dbobj_docs folder=</span><span class="str">&quot;..\TITAN_DOKU\&quot;</span> <span class="kwd">/&gt;
+&lt;/program_opts&gt;</span></CODE></PRE>
+</td>
+</tr>
+<tr><td align="center"><span class="CAPTION">Figure 3: The XML Tag: &quot;dbobj_docs&quot;</span></td></tr>
+</table>
+<p>A sample application of the <span class="kwd">dbobj_docs</span> tag can be found in my sample database project
+called TITAN/ZEUS. The folder property points at an actual folder on the computer hard-drive, in this folder one
+can create files named as a database object would be named preceded by the name of the owner. Let us assume that
+we want to comment on a database object called <code>PRODUCT_PRICE</code> and the name of the owner is <code>dirk</code>,
+then the name of the file you should create in the documentation folder is <code>dirk_product_price.html</code>.
+Nextlevel will look for files matching the <code>&lt;owner&gt;_&lt;db_object_name&gt;.html</code> syntax, and include
+additional information taken from these pages.
+</p>
+<p>If you implemented the above tag successfully (and re-run Nextlevel), you should see a &quot;+ Documentation&quot;
+item on your table summary page, as you can see in the TITAN/ZEUS project in the <code>PRODUCT_PRICE</code> summary page.
+Click on this item and you see the contains of the additional html file in the documentation folder.
+</p>
+<p>
+The <code><span class="kwd">dbobj_docs</span></code> tag is an optional tag of
+<code><span class="kwd">program_opts</span></code>. The <code><span class="kwd">program_opts</span></code>
+tag does not support any other tags at this time, but I plan to insert further program options here
+when they become available in later releases of NextLevel.
+</p>
+
+<h2><a name="PROC">Parsing Stored Procedures and Triggers</a></h2>
+
+<p>Nextlevel needs to parse SQL code from stored procedures and triggers contained in ASCII files
+in order to compute dependencies and support analysis tasks as outlined above. We use the 
+<span class="kwd">procs</span> tag shown Figure 4 to provide Nextlevel with a list of files
+which contain the <code>create</code> statements of stored procedures and triggers
+(one <code>create</code> per file). To this end, we use one <span class="kwd">proc</span> tag per file,
+where the <span class="kwd">src</span> property points at the (folder and) filename,
+and the <span class="kwd">name</span> and <span class="kwd">owner</span> property contain the
+name of the database object and owner, respectively. All three properties are required.
+</p>
+<table cellSpacing="3" style="border: 1px dashed #006600; solid rgb(51, 125, 51); color: rgb(0, 0, 0);">
+<tr><td><PRE><CODE><span class="kwd">&lt;procs&gt;
+&lt;proc name=</span><span class="str">&quot;proc_PurchaseHistory&quot;</span> <span class="kwd">src=</span><span class="str">&quot;dbo_proc_PurchaseHistory.sql&quot;</span> <span class="kwd">type=</span><span class="str">&quot;P&quot;</span> <span class="kwd">owner=</span><span class="str">&quot;dbo&quot;</span>/&gt;
+<span class="kwd">&lt;proc name=</span><span class="str">&quot;proc_History&quot;</span> <span class="kwd">src=</span><span class="str">&quot;dbo_proc_History.sql&quot;</span> <span class="kwd">type=</span><span class="str">&quot;P&quot;</span> <span class="kwd">owner=</span><span class="str">&quot;dbo&quot;</span>/&gt;
+<span class="kwd">...
+&lt;/procs&gt;</span></CODE></PRE>
+</td>
+</tr>
+<tr><td align="center"><span class="CAPTION">Figure 4: The XML Tag: &quot;proc&quot;</span></td></tr>
+</table>
+
+<p>The <span class="kwd">type</span> property of the <span class="kwd">proc</span> tag in Figure 4
+can be either &quot;TR&quot; for a trigger definition or &quot;P&quot; for the definition of a
+stored procedure. This property is optional and listed only for historical reasons. Nextlevel parses
+the create statement in the SQL files and follows its definition to determine the type in question.
+It is good practice, though, to include the <span class="kwd">type</span> property for readability.
+</p>
+
+<p>The <span class="kwd">proc</span> tag can have additional properties, such as
+<code><span class="kwd">creator=</span><span class="str">&quot;Dirk&quot;</span></code>.
+These additional properties and their values are shown in the header of the proc summary page.
+</p>
+
+<h2><a name="views">Defining Views and Their Column Definition</a></h2>
+
+<p>Nextlevel requires SQL source code to be parsed as discussed in the last section. To implement this
+functionality for views we use the <span class="kwd">view</span> tag as shown in Figure 5. The
+<span class="kwd">name</span>, <span class="kwd">owner</span>, <span class="kwd">src</span> properties
+are required and have the same purpose as outlined for the <span class="kwd"><a href="#PROC">proc</a></span> XML tag.
+</p>
+
+<p>Additionally, each view definition can carry a set of <span class="kwd">col</span> tags which contain
+the basic data definition for each column of the view. The <span class="kwd">name</span> property is the
+name of the column and the <span class="kwd">type</span> describes its type and both properties are required.
+All other properties are optional and will be listed as given.
+</p>
+
+<table cellSpacing="3" style="border: 1px dashed #006600; solid rgb(51, 125, 51); color: rgb(0, 0, 0);">
+<tr><td><PRE><CODE><span class="kwd">&lt;view name=<span class="str">&quot;view_PURCHASE</span>&quot; owner=<span class="str">&quot;dbo</span>&quot; src=<span class="str">&quot;dbo_view_PURCHASE.sql</span>&quot;&gt;
+&lt;col name=<span class="str">&quot;PURCHASE_ID</span>&quot; type=<span class="str">&quot;int</span>&quot; len=<span class="str">&quot;4</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;col name=<span class="str">&quot;VENDOR_ID</span>&quot; type=<span class="str">&quot;int</span>&quot; len=<span class="str">&quot;4</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;col name=<span class="str">&quot;PRODUCT_ID</span>&quot; type=<span class="str">&quot;int</span>&quot; len=<span class="str">&quot;4</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;col name=<span class="str">&quot;PURCHASE_PRICEnc</span>&quot; type=<span class="str">&quot;numeric</span>&quot; len=<span class="str">&quot;6</span>&quot; prec=<span class="str">&quot;10</span>&quot; scale=<span class="str">&quot;2</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;col name=<span class="str">&quot;CURRENCY_ID</span>&quot; type=<span class="str">&quot;int</span>&quot; len=<span class="str">&quot;4</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;col name=<span class="str">&quot;UNITSi</span>&quot; type=<span class="str">&quot;int</span>&quot; len=<span class="str">&quot;4</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;col name=<span class="str">&quot;VDR_NAMEvc</span>&quot; type=<span class="str">&quot;varchar</span>&quot; len=<span class="str">&quot;64</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;col name=<span class="str">&quot;COUNTRYvc</span>&quot; type=<span class="str">&quot;varchar</span>&quot; len=<span class="str">&quot;64</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;col name=<span class="str">&quot;PRD_NAMEvc</span>&quot; type=<span class="str">&quot;varchar</span>&quot; len=<span class="str">&quot;64</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;col name=<span class="str">&quot;DESCRIPTIONvc</span>&quot; type=<span class="str">&quot;varchar</span>&quot; len=<span class="str">&quot;255</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;col name=<span class="str">&quot;STDRD_PRICE_ID</span>&quot; type=<span class="str">&quot;int</span>&quot; len=<span class="str">&quot;4</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;col name=<span class="str">&quot;SALES_PRICE_ID</span>&quot; type=<span class="str">&quot;int</span>&quot; len=<span class="str">&quot;4</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;col name=<span class="str">&quot;CAT_NAMEvc</span>&quot; type=<span class="str">&quot;varchar</span>&quot; len=<span class="str">&quot;64</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;col name=<span class="str">&quot;CAT_SUB_NAMEvc</span>&quot; type=<span class="str">&quot;varchar</span>&quot; len=<span class="str">&quot;64</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;col name=<span class="str">&quot;CAT_DESCRIPTIONvc</span>&quot; type=<span class="str">&quot;varchar</span>&quot; len=<span class="str">&quot;64</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;/view&gt;</span></CODE></PRE>
+</td>
+</tr>
+<tr><td align="center"><span class="CAPTION">Figure 5: How to define a view via the XML tag: &quot;view&quot;</span></td></tr>
+</table>
+
+<p>Note that the <span class="kwd">nulls</span> property of the <span class="kwd">col</span> tag
+should never contain any over value than <span class="str">&quot;NULL</span>&quot;, for null-able columns,
+and <span class="str">&quot;NOT NULL</span>&quot; for all others.
+</p>
+
+<p>The <span class="kwd">views</span> tag can have additional properties, such as
+<code><span class="kwd">creator=</span><span class="str">&quot;Dirk&quot;</span></code>.
+These additional properties and their values are shown in the header of the view summary page.
+</p>
+
+<h2><a name="tab">Defining Tables and Their Column Definition</a></h2>
+
+<p>It is quit comfortable, if one can review table data definitions when browsing
+the <code>SQL</code> source code of stored procedures, triggers, and views. To this
+end we can implement the <span class="kwd">tab</span> tag as shown in Figure 6.
+The <span class="kwd">name</span> and <span class="kwd">owner</span> properties
+are required and have the same purpose as outlined for the <span class="kwd"><a href="#PROC">proc</a></span> XML tag.
+The <span class="kwd">col</span> tag adheres to the same rules as previously
+described for the <a href="#views">definition of views</a>.
+</p>
+
+<table cellSpacing="3" style="border: 1px dashed #006600; solid rgb(51, 125, 51); color: rgb(0, 0, 0);">
+<tr><td><PRE><CODE><span class="kwd">&lt;tab name=<span class="str">&quot;COSTS</span>&quot; owner=<span class="str">&quot;dbo</span>&quot;&gt;
+&lt;col name=<span class="str">&quot;COST_ID</span>&quot; type=<span class="str">&quot;int</span>&quot; len=<span class="str">&quot;4</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;col name=<span class="str">&quot;SHOP_ID</span>&quot; type=<span class="str">&quot;int</span>&quot; len=<span class="str">&quot;4</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;col name=<span class="str">&quot;TYPE_ID</span>&quot; type=<span class="str">&quot;int</span>&quot; len=<span class="str">&quot;4</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;col name=<span class="str">&quot;PRICE</span>&quot; type=<span class="str">&quot;numeric</span>&quot; len=<span class="str">&quot;6</span>&quot; prec=<span class="str">&quot;10</span>&quot; scale=<span class="str">&quot;2</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;col name=<span class="str">&quot;CURRENCY_ID</span>&quot; type=<span class="str">&quot;int</span>&quot; len=<span class="str">&quot;4</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;col name=<span class="str">&quot;DateStamp</span>&quot; type=<span class="str">&quot;datetime</span>&quot; len=<span class="str">&quot;8</span>&quot; nulls=<span class="str">&quot;NOT NULL</span>&quot; /&gt;
+&lt;/tab&gt;</span></CODE></PRE>
+<tr><td align="center"><span class="CAPTION">Figure 6: How to define a table via the XML tag: &quot;tab&quot;</span></td></tr>
+</table>
+
+<p>The <span class="kwd">tab</span> tag can have additional properties, such as
+<code><span class="kwd">creator=</span><span class="str">&quot;Dirk&quot;</span></code>.
+These additional properties and their values are shown in the header of the table summary page.
+</p>
+
+<hr>
+<p><a href="index.html">Back to My Homepage</a></p>
+</body>
+</html>

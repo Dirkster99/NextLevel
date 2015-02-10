@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>Trig: INTERFACE.dbo.COSTS_TRIG_I</title>
+	<link rel="shortcut icon" href="res/trigger.jpg">
+<link rel="stylesheet" type="text/css" href="res/style.css">
+<link rel="stylesheet" type="text/css" href="res/office_xp.css" title="Office XP" />
+<script type="text/javascript" src="res/jsdomenu.js"></script>
+<script type="text/javascript" src="res/jsdomenubar.js"></script>
+<script type="text/javascript" src="menuconf.js"></script>
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</head>
+<body onload="initjsDOMenu('SUN/INTERFACE')">
+<table id="NoBord" width="100%"><tr><td align="right" valign="top">
+<img src="res/trigger.jpg" title="trigger"></td><td align="left" valign="top">
+<a href="../INTERFACE_SQL/dbo_COSTS_TRIG_I.sql"><SPAN CLASS="pnm">COSTS_TRIG_I</SPAN></a>&nbsp;(0 Callers,&nbsp;1 Calls,&nbsp;3 Tables Accessed)&nbsp;</td><td Align="right" valign="top"><div id="staticMenu"></div></td>
+</tr><tr><td align="right" valign="top">ON <img src="res/table.jpg" title="table"></td><td><a href="costs.html"><SPAN CLASS="tbl">COSTS</SPAN></a> (INSERT)</td><td>
+</table>
+
+<table id="NoBord" cellPadding="3" cellSpacing="0" width="100%">
+<tr><td align="left" valign="top">
+<script type="text/javascript" language="JavaScript" src="res/tree.js"></script>
+<script type="text/javascript" language="JavaScript">
+var TREE_ITEMS = 
+[
+['<code>COSTS_TRIG_I<\/code>',,
+['<code>proc_ShopPerformance<\/code>','proc_shopperformance.html|#3x',
+['<code><SPAN class=\"uproc\">sp_exchange<SPAN><\/code>','__ExternCalls.html'],
+],
+],
+];
+</script>
+<script type="text/javascript" language="JavaScript" src="res/tree_tpl.js"></script>
+
+<br>
+<table id="Bord">
+<thead><tr>
+<TD id="BordHead">Calls</TD>
+<TD id="BordHead">Tables/Views</TD>
+</tr></thead><tr>
+<td id="Bord"><script type="text/javascript" language="JavaScript">
+<!--//
+  new tree (TREE_ITEMS, TREE_TPL);
+//-->
+</script></td>
+<td id="Bord">
+<table id="NoBord" cellpadding="3" cellSpacing="0">
+<tr>
+<td valign="top" align="left"><a href="cost_types.html"><SPAN CLASS="tbl">COST_TYPES</SPAN></a></td><td align="left" valign="top"><a href="#13_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="costs.html"><SPAN CLASS="tbl">COSTS</SPAN></a></td><td align="left" valign="top"><a href="#12_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="currency.html"><SPAN CLASS="tbl">CURRENCY</SPAN></a></td><td align="left" valign="top"><a href="#14_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table></td>
+</tr></table>
+</td><td Align="right" valign="top">
+<small>owner="dbo"</small>
+<td>
+</tr></table>
+<PRE><CODE>
+
+<SPAN CLASS="cmt">--
+</SPAN><SPAN CLASS="cmt">-- The COSTS insert trigger is fired when records in the COSTS table are inserted
+</SPAN><SPAN CLASS="cmt">-- Each new record changes the performance of a shop, the procedure
+</SPAN><SPAN CLASS="cmt">-- proc_ShopPerformance does the processing
+</SPAN><SPAN CLASS="cmt">--
+</SPAN><SPAN CLASS="kwd">create</SPAN> <SPAN CLASS="kwd">trigger</SPAN> COSTS_TRIG_I <SPAN CLASS="kwd">on</SPAN> <a href="costs.html"><SPAN CLASS="tbl">COSTS</SPAN></a> <SPAN CLASS="kwd">for</SPAN> <SPAN CLASS="kwd">INSERT</SPAN> <SPAN CLASS="kwd">as</SPAN>
+<SPAN CLASS="kwd">begin</SPAN>
+  <SPAN CLASS="kwd">DECLARE</SPAN> <a name="cu_crs_ShopPerform" href="#co_crs_ShopPerform"><SPAN CLASS="crsr">crs_ShopPerform</SPAN></a> <SPAN CLASS="kwd">CURSOR FOR</SPAN> <SPAN CLASS="cmt">-- Get all fields from that table
+</SPAN>    <SPAN CLASS="kwd">SELECT</SPAN> i.COST_ID
+          ,i.SHOP_ID
+          ,i.PRICE
+          ,CUR.NAMEvc
+          ,CTP.DESCRIPTIONvc
+     <SPAN CLASS="kwd">FROM</SPAN> <a name="12_S" href="costs.html"><SPAN CLASS="tbl">inserted</SPAN></a> i, <a name="13_S" href="cost_types.html"><SPAN CLASS="tbl">COST_TYPES</SPAN></a> CTP, <a name="14_S" href="currency.html"><SPAN CLASS="tbl">CURRENCY</SPAN></a> CUR
+    <SPAN CLASS="kwd">WHERE</SPAN> CUR.CURRENCY_ID = i.CURRENCY_ID
+      <SPAN CLASS="kwd">AND</SPAN> i.TYPE_ID = CTP.TYPE_ID
+  <SPAN CLASS="kwd">FOR</SPAN> <SPAN CLASS="kwd">READ O</SPAN><SPAN CLASS="kwd">NLY</SPAN>
+
+  <SPAN CLASS="kwd">declare</SPAN>
+   @Error_Text <SPAN CLASS="kwd">varchar</SPAN>(1024)
+  ,@i_COST_ID     <SPAN CLASS="kwd">int</SPAN>
+  ,@i_SHOP_ID     <SPAN CLASS="kwd">int</SPAN>
+  ,@i_DESCRIPTIONvc <SPAN CLASS="kwd">varchar</SPAN>(64)
+  ,@i_PRICE       <SPAN CLASS="kwd">numeric</SPAN>(10,2)
+  ,@i_NAMEvc        <SPAN CLASS="kwd">varchar</SPAN>(64)
+
+    <SPAN CLASS="kwd">OPEN</SPAN> <a name="co_crs_ShopPerform" href="#cu_crs_ShopPerform"><SPAN CLASS="crsr">crs_ShopPerform</SPAN></a>
+    <SPAN CLASS="kwd">WHILE</SPAN> (1 = 1)
+    <SPAN CLASS="kwd">BEGIN</SPAN>
+      <SPAN CLASS="kwd">FETCH</SPAN> <a name="co_crs_ShopPerform" href="#cu_crs_ShopPerform"><SPAN CLASS="crsr">crs_ShopPerform</SPAN></a> <SPAN CLASS="kwd">INTO</SPAN> @i_COST_ID, @i_SHOP_ID, @i_PRICE, @i_NAMEvc, @i_DESCRIPTIONvc
+   
+      <SPAN CLASS="kwd">IF</SPAN> (@@sqlstatus &lt;&gt; 0) <SPAN CLASS="kwd">BREAK</SPAN> <SPAN CLASS="cmt">-- Break loop once we finished this
+</SPAN>   
+      <SPAN CLASS="kwd">exec</SPAN> <a name="3x" href="proc_shopperformance.html"><SPAN CLASS="pnm">proc_ShopPerformance</SPAN></a> 2, 1, @i_COST_ID, @i_PRICE,@i_NAMEvc, @i_DESCRIPTIONvc,@i_SHOP_ID
+   
+    <SPAN CLASS="kwd">END</SPAN>
+    <SPAN CLASS="kwd">CLOSE</SPAN> <a name="co_crs_ShopPerform" href="#cu_crs_ShopPerform"><SPAN CLASS="crsr">crs_ShopPerform</SPAN></a>
+    <SPAN CLASS="kwd">DEALLOCATE CURSOR</SPAN> <a name="co_crs_ShopPerform" href="#cu_crs_ShopPerform"><SPAN CLASS="crsr">crs_ShopPerform</SPAN></a>
+
+<SPAN CLASS="kwd">end</SPAN>
+</CODE></PRE>
+
+</body></html>

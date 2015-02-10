@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>Trig: TITAN.dbo.PURCHASE_TRIG_I</title>
+	<link rel="shortcut icon" href="res/trigger.jpg">
+<link rel="stylesheet" type="text/css" href="res/style.css">
+<link rel="stylesheet" type="text/css" href="res/office_xp.css" title="Office XP" />
+<script type="text/javascript" src="res/jsdomenu.js"></script>
+<script type="text/javascript" src="res/jsdomenubar.js"></script>
+<script type="text/javascript" src="menuconf.js"></script>
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+</head>
+<body onload="initjsDOMenu('ZEUS/TITAN')">
+<table id="NoBord" width="100%"><tr><td align="right" valign="top">
+<img src="res/trigger.jpg" title="trigger"></td><td align="left" valign="top">
+<a href="../TITAN_SQL/dbo_Purchase_TRIG_I.sql"><SPAN CLASS="pnm">PURCHASE_TRIG_I</SPAN></a>&nbsp;(0 Callers,&nbsp;1 Calls,&nbsp;2 Tables Accessed)&nbsp;</td><td Align="right" valign="top"><div id="staticMenu"></div></td>
+</tr><tr><td align="right" valign="top">ON <img src="res/table.jpg" title="table"></td><td><a href="purchase.html"><SPAN CLASS="tbl">PURCHASE</SPAN></a> (INSERT)</td><td>
+</table>
+
+<table id="NoBord" cellPadding="3" cellSpacing="0" width="100%">
+<tr><td align="left" valign="top">
+<script type="text/javascript" language="JavaScript" src="res/tree.js"></script>
+<script type="text/javascript" language="JavaScript">
+var TREE_ITEMS = 
+[
+['<code>PURCHASE_TRIG_I<\/code>',,
+['<code>proc_PurchaseHistory<\/code>','proc_purchasehistory.html|#1x',
+['<code><SPAN class=\"uproc\">SUN.INTERFACE.dbo.proc_PurchaseHistory<SPAN><\/code>','__ExternCalls.html'],
+['<code><SPAN class=\"uproc\">MOON.TITAN.dbo.proc_PurchaseHistory<SPAN><\/code>','__ExternCalls.html'],
+['<code><SPAN class=\"uproc\">sp_exchange<SPAN><\/code>','__ExternCalls.html'],
+],
+],
+];
+</script>
+<script type="text/javascript" language="JavaScript" src="res/tree_tpl.js"></script>
+
+<br>
+<table id="Bord">
+<thead><tr>
+<TD id="BordHead">Calls</TD>
+<TD id="BordHead">Tables/Views</TD>
+</tr></thead><tr>
+<td id="Bord"><script type="text/javascript" language="JavaScript">
+<!--//
+  new tree (TREE_ITEMS, TREE_TPL);
+//-->
+</script></td>
+<td id="Bord">
+<table id="NoBord" cellpadding="3" cellSpacing="0">
+<tr>
+<td valign="top" align="left"><a href="currency.html"><SPAN CLASS="tbl">CURRENCY</SPAN></a></td><td align="left" valign="top"><a href="#14_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top" align="left"><a href="purchase.html"><SPAN CLASS="tbl">PURCHASE</SPAN></a></td><td align="left" valign="top"><a href="#6_S">S</a></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table></td>
+</tr></table>
+</td><td Align="right" valign="top">
+<small>owner="dbo"</small>
+<td>
+</tr></table>
+<PRE><CODE>
+
+<SPAN CLASS="cmt">--
+</SPAN><SPAN CLASS="cmt">-- The Purchase insert trigger is fired when records in the COSTS table are inserted
+</SPAN><SPAN CLASS="cmt">-- Each new purchase changes the Purchase-History of a shop, the procedure
+</SPAN><SPAN CLASS="cmt">-- proc_PurchaseHistory does the processing
+</SPAN><SPAN CLASS="cmt">--
+</SPAN><SPAN CLASS="kwd">create</SPAN> <SPAN CLASS="kwd">trigger</SPAN> PURCHASE_TRIG_I <SPAN CLASS="kwd">on</SPAN> <a href="purchase.html"><SPAN CLASS="tbl">PURCHASE</SPAN></a> <SPAN CLASS="kwd">for</SPAN> <SPAN CLASS="kwd">INSERT</SPAN> <SPAN CLASS="kwd">as</SPAN>
+<SPAN CLASS="kwd">begin</SPAN>
+  <SPAN CLASS="kwd">DECLARE</SPAN> <a name="cu_crs_PurchHist" href="#co_crs_PurchHist"><SPAN CLASS="crsr">crs_PurchHist</SPAN></a> <SPAN CLASS="kwd">CURSOR FOR</SPAN> <SPAN CLASS="cmt">-- Get all fields from that table
+</SPAN>    <SPAN CLASS="kwd">SELECT</SPAN> i.PURCHASE_ID
+          ,i.PURCHASE_PRICEnc
+          ,CUR.NAMEvc
+          ,i.UNITSi
+      <SPAN CLASS="kwd">FROM</SPAN> <a name="6_S" href="purchase.html"><SPAN CLASS="tbl">inserted</SPAN></a> i, <a name="14_S" href="currency.html"><SPAN CLASS="tbl">CURRENCY</SPAN></a> CUR
+     <SPAN CLASS="kwd">WHERE</SPAN> CUR.CURRENCY_ID = i.CURRENCY_ID
+  <SPAN CLASS="kwd">FOR</SPAN> <SPAN CLASS="kwd">READ O</SPAN><SPAN CLASS="kwd">NLY</SPAN>
+   
+  <SPAN CLASS="kwd">declare</SPAN>
+    @i_PURCHASE_ID      <SPAN CLASS="kwd">int</SPAN>
+   ,@i_PURCHASE_PRICEnc <SPAN CLASS="kwd">numeric</SPAN>(10,2)
+   ,@CUR_NAMEvc         <SPAN CLASS="kwd">varchar</SPAN>(64)
+   ,@i_UNITSi           <SPAN CLASS="kwd">int</SPAN>
+ 
+  <SPAN CLASS="kwd">OPEN</SPAN> <a name="co_crs_PurchHist" href="#cu_crs_PurchHist"><SPAN CLASS="crsr">crs_PurchHist</SPAN></a>
+  <SPAN CLASS="kwd">WHILE</SPAN> (1 = 1)
+  <SPAN CLASS="kwd">BEGIN</SPAN>
+    <SPAN CLASS="kwd">FETCH</SPAN> <a name="co_crs_PurchHist" href="#cu_crs_PurchHist"><SPAN CLASS="crsr">crs_PurchHist</SPAN></a> <SPAN CLASS="kwd">INTO</SPAN> @i_PURCHASE_ID, @i_PURCHASE_PRICEnc, @CUR_NAMEvc, @i_UNITSi
+ 
+    <SPAN CLASS="kwd">IF</SPAN> (@@sqlstatus &lt;&gt; 0) <SPAN CLASS="kwd">BREAK</SPAN>
+ 
+    <SPAN CLASS="kwd">exec</SPAN> <a name="1x" href="proc_purchasehistory.html"><SPAN CLASS="pnm">proc_PurchaseHistory</SPAN></a> 2, 2, @i_PURCHASE_ID, @i_PURCHASE_PRICEnc, @CUR_NAMEvc, @i_UNITSi
+  <SPAN CLASS="kwd">END</SPAN>
+  <SPAN CLASS="kwd">CLOSE</SPAN> <a name="co_crs_PurchHist" href="#cu_crs_PurchHist"><SPAN CLASS="crsr">crs_PurchHist</SPAN></a>
+  <SPAN CLASS="kwd">DEALLOCATE CURSOR</SPAN> <a name="co_crs_PurchHist" href="#cu_crs_PurchHist"><SPAN CLASS="crsr">crs_PurchHist</SPAN></a>
+
+<SPAN CLASS="kwd">end</SPAN>
+go
+
+</CODE></PRE>
+
+</body></html>

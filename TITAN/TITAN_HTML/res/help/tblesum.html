@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>NextLevel Online Help - Reverse Engineering RDBMS</title>
+	<link rel="shortcut icon" href="../nlogo.jpg">
+  <link rel="stylesheet" type="text/css" href="../style.css">
+  
+<link rel="stylesheet" type="text/css" href="../office_xp.css" title="Office XP" />
+<script type="text/javascript" src="jsdomenu.js"></script>
+<script type="text/javascript" src="jsdomenubar.js"></script>
+<script type="text/javascript" src="helpmenuconf.js"></script>
+</head>
+
+<body  onload="initjsDOMenu()" BGCOLOR="#ffffff">
+
+<table border="0" cellPadding="3" cellSpacing="0" width="100%">
+<tr>
+ <td align="left" valign="top"><h1>NextLevel</h1></td>
+ <td align="right" valign="top"><div id="staticMenu"></div></td>
+</tr>
+<tr><td colspan="2"><b>Online Help</b></td>
+</table>
+
+<h1>Table Summary Page</h1>
+
+<p>
+Understanding the role of a table in a database involves the knowledge of each
+program accessing it, -its size, and the design of each column and other details.
+This and more valuable information is summarized on one page (for each table)
+labeled with an icon &quot;<img src="../table.jpg" title="table">&quot; of a table.
+</p>
+<p>
+The data shown below in Figure 4 gives an example of a summary page for a table named
+<span class="tbl">COST_TYPES</span>. This tables has 2 columns called
+&quot;TYPE_ID&quot; and &quot;DESCRIPTIONvc&quot; of the data type
+<span class="kwd">int</span> and <span class="kwd">varchar</span>,
+as we can see in the table labeled &quot;Table Definition&quot;.
+We can also see just above that table how much space this table costs
+in terms of data, index, and total size (if this information was imported via XML).
+</p>
+<p>
+The list in the table labeled &quot;Objects Accessing Table&quot; shows
+the names of each procedure or trigger that implement an SQL statement
+on this table. The left column shows the objects, click on them and you
+should see the summary page for that proc, while the right side show each
+class of implementing statement (SELECT, INSERT etc.), just click on the
+statement and you will be transported to its first occurrence in the
+<a href="callgraph.html"><u>proc</u></a>.
+</p>
+
+<table cellSpacing="3" width="100%" style="border: 1px dashed #006600; solid rgb(51, 125, 51); color: rgb(0, 0, 0);">
+<tr><td>
+<table border="0" cellSpacing="0" width="100%">
+<tr><td align="left" valign="top"><table border="0">
+<tr><td align="right" valign="top"><img src="../table.jpg" title="table"></td><td align="left" valign="top">
+COST_TYPES<small>
+ owner="dbo"</small>
+</td></tr>
+<tr><td align="right" valign="top">
+<img src="../trigger.jpg" title="trigger"></td><td align="left" valign="top"><SPAN CLASS="pnm">COSTTYPE_TRIG_U</SPAN>&nbsp;
+<small>(ON: UPDATE)</small></td></tr>
+<tr><td align="right" valign="top">
+<img src="../trigger.jpg" title="trigger"></td><td align="left" valign="top"><SPAN CLASS="pnm">COSTTYPE_TRIG_D</SPAN>&nbsp;
+<small>(ON: DELETE)</small></td></tr>
+</table>
+</td>
+<td align="right" valign="top"><div id="staticMenu"></div></td>
+</tr>
+</table>
+
+<table border="0" cellspacing="4"><tr>
+<tr><td></td><td valign="top" align="left">
+<small>Data 48 KB
++ index 2 KB
+= 50 KB</small>
+
+
+</td></tr>
+<td valign="top" align="left">Objects Accessing Table</td>
+<td valign="top" align="left">Table Definition</td></tr><tr>
+<td valign="top" align="left">
+
+<table border="1" cellPadding="3" cellSpacing="0">
+<thead><tr>
+<TD align="left" valign="top">Database Object</TD>
+<TD align="left" valign="top">Access</TD>
+</tr></thead>
+<tr><td align="left" valign="top"><SPAN CLASS="pnm">COSTS_TRIG_D</SPAN></td><td align="left" valign="top">SELECT</td></tr>
+<tr><td align="left" valign="top"><SPAN CLASS="pnm">COSTS_TRIG_I</SPAN></td><td align="left" valign="top">SELECT</td></tr>
+<tr><td align="left" valign="top"><SPAN CLASS="pnm">COSTS_TRIG_U</SPAN></td><td align="left" valign="top">SELECT</td></tr>
+<tr><td align="left" valign="top"><SPAN CLASS="pnm">COSTTYPE_TRIG_D</SPAN></td><td align="left" valign="top">SELECT</td></tr>
+<tr><td align="left" valign="top"><SPAN CLASS="pnm">COSTTYPE_TRIG_U</SPAN></td><td align="left" valign="top">SELECT</td></tr>
+</table>
+
+</td>
+
+<td valign="top" align="left">
+
+<table border="0" cellPadding="4" cellSpacing="0">
+<thead><tr>
+
+<TD ALIGN="LEFT" VALIGN="TOP">column</TD>
+<TD ALIGN="LEFT" VALIGN="TOP">type</TD>
+<TD ALIGN="LEFT" VALIGN="TOP">len</TD>
+<TD ALIGN="LEFT" VALIGN="TOP">nulls</TD>
+</tr></thead>
+<tr BGCOLOR="#DDDDDD"><td>TYPE_ID</td><td>int</td><td>4</td><td>no</td>
+</tr>
+<tr BGCOLOR="#FFFFFF"><td>DESCRIPTIONvc</td><td>varchar</td><td>64</td><td>no</td>
+</tr>
+</table>
+
+</td>
+</tr></table>
+
+</td>
+</tr>
+<tr><td align="center"><span class="caption">Figure 4: Summarizing Information on a Database Table</caption></code></td></tr>
+</table>
+<p>Note that html links in the SQL source code are <b>disabled</b> on this sample page.
+</p>
+<p>
+We can see in the figure above that <span class="tbl">COST_TYPES</span> is accessed from
+within the database by no more 5 triggers, which select information from
+the table. This knowledge by itself can lead us to conclude that data in
+<span class="tbl">COST_TYPES</span> is either static or fed into the database
+by external sources (e.g. client program).
+</p>
+<p>
+The table <span class="tbl">COST_TYPES</span> has 2 triggers as we can see in the 2
+entries labeled with a proc icon &quot;<img src="../trigger.jpg" title="trigger">&quot;.
+Click on each name and you will see the trigger summary page.
+</p>
+
+<hr>
+<p><a href="index.html">Back</a></p>
+</body></html>
