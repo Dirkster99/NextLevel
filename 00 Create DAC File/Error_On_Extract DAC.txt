@@ -1,0 +1,18 @@
+
+
+TITLE: Microsoft SQL Server Management Studio
+------------------------------
+
+Validation of the schema model for data package failed.
+Error SQL71562: Error validating element [dbo].[proc_PurchaseHistory]: Procedure: [dbo].[proc_PurchaseHistory] has an unresolved reference to object [MOON].[TITAN].[dbo].[proc_PurchaseHistory]. External references are not supported when creating a package from this platform.
+Error SQL71562: Error validating element [dbo].[proc_PurchaseHistory]: Procedure: [dbo].[proc_PurchaseHistory] has an unresolved reference to object [SUN].[TITAN].[dbo].[proc_PurchaseHistory1]. External references are not supported when creating a package from this platform.
+Error SQL71562: Error validating element [dbo].[proc_SalesHistory]: Procedure: [dbo].[proc_SalesHistory] has an unresolved reference to object [SUN].[TITAN].[dbo].[proc_PurchaseHistory]. External references are not supported when creating a package from this platform.
+Error SQL71562: Error validating element [dbo].[proc_ShopPerformance]: Procedure: [dbo].[proc_ShopPerformance] has an unresolved reference to object [HERCULES].[dbo].[SHOPS]. External references are not supported when creating a package from this platform.
+Error SQL71562: Error validating element [dbo].[SALES_TRIG_I]: Trigger: [dbo].[SALES_TRIG_I] has an unresolved reference to object [HERCULES].[dbo].[SHOPS]. External references are not supported when creating a package from this platform.
+ (Microsoft.SqlServer.Dac)
+
+------------------------------
+BUTTONS:
+
+OK
+------------------------------
