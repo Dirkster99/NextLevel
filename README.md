@@ -1,4 +1,4 @@
-
+[![Build status](https://ci.appveyor.com/api/projects/status/f62raqf3kgqivfyu?svg=true)](https://ci.appveyor.com/project/Dirkster99/nextlevel)
 # Relational Database Tool NextLevel V2.0
 
 ## Introduction
